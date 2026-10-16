@@ -450,9 +450,8 @@
     window.addEventListener('DOMContentLoaded', async () => {
       lucide.createIcons();
       await fetchLanguages();
-      await fetchVoices();
+      await setSample('ur');
       loadHistory();
-      setSample('ur'); // Default sample to Urdu for easy testing
     });
 
     async function fetchLanguages() {
@@ -506,7 +505,8 @@
       try {
         const langParam = (currentEngine === 'edge-tts' && currentLanguage !== 'all') ? `&language=${encodeURIComponent(currentLanguage)}` : '';
         const res = await fetch(`/api/voices?engine=${currentEngine}${langParam}`);
-        allVoices = await res.json();
+        const data = await res.json();
+        allVoices = Array.isArray(data) ? data : [];
         document.getElementById('voiceCountBadge').innerText = `${allVoices.length} Voices`;
         renderVoices();
         updateSelectedVoiceBanner();
@@ -515,9 +515,14 @@
       }
     }
 
-    function setLanguage(lang) {
+    async function setLanguage(lang, targetVoiceId = null) {
       currentLanguage = lang;
       
+      // If user chooses non-English/Spanish language while on Kokoro, auto-switch to LoveVoice Global
+      if (currentEngine === 'kokoro' && lang !== 'English' && lang !== 'Spanish' && lang !== 'all') {
+        await switchEngine('edge-tts');
+      }
+
       // Update pills styling
       const pills = document.querySelectorAll('#quickLangContainer button');
       pills.forEach(p => {
@@ -532,7 +537,10 @@
       const select = document.getElementById('allLangSelect');
       if (select) select.value = lang;
 
-      fetchVoices();
+      await fetchVoices();
+      if (targetVoiceId) {
+        selectVoice(targetVoiceId);
+      }
     }
 
     function onDropdownLangChange() {
@@ -817,27 +825,22 @@
       handleTextInput();
     }
 
-    function setSample(lang) {
+    async function setSample(lang) {
       if (lang === 'ur') {
         document.getElementById('textInput').value = "السلام علیکم! LoveVoice Studio میں خوش آمدید۔ اب آپ اردو، ہندی، عربی، انگلش اور ہسپانوی سمیت دنیا کی تمام زبانوں میں بہترین اور قدرتی آوازیں تیار کر سکتے ہیں۔ یہ آڈیو بالکل واضح اور انسان جیسی ہے۔";
-        setLanguage('Urdu');
-        selectVoice('ur-PK-UzmaNeural');
+        await setLanguage('Urdu', 'ur-PK-UzmaNeural');
       } else if (lang === 'hi') {
         document.getElementById('textInput').value = "नमस्ते! LoveVoice Studio में आपका स्वागत है। अब आप हिंदी, उर्दू, अंग्रेजी और दुनिया भर की भाषाओं में स्वाभाविक आवाज़ें आसानी से उत्पन्न कर सकते हैं।";
-        setLanguage('Hindi');
-        selectVoice('hi-IN-SwaraNeural');
+        await setLanguage('Hindi', 'hi-IN-SwaraNeural');
       } else if (lang === 'ar') {
         document.getElementById('textInput').value = "مرحباً بكم في استوديو LoveVoice! يمكنك الآن إنشاء تعليقات صوتية طبيعية واحترافية باللغة العربية وأكثر من 70 لغة حول العالم.";
-        setLanguage('Arabic');
-        selectVoice('ar-SA-ZariyahNeural');
+        await setLanguage('Arabic', 'ar-SA-ZariyahNeural');
       } else if (lang === 'es') {
         document.getElementById('textInput').value = "¡Bienvenido a LoveVoice Studio! Ahora puedes generar locuciones humanas y expresivas en español con calidad de estudio en segundos.";
-        setLanguage('Spanish');
-        selectVoice('es-ES-ElviraNeural');
+        await setLanguage('Spanish', 'es-ES-ElviraNeural');
       } else {
         document.getElementById('textInput').value = "Welcome to LoveVoice Studio! You can now generate natural neural voiceovers across 322+ voices in over 76 languages with studio-grade clarity.";
-        setLanguage('English');
-        selectVoice('en-US-JennyNeural');
+        await setLanguage('English', 'en-US-JennyNeural');
       }
       handleTextInput();
     }
