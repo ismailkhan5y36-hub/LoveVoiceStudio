@@ -195,7 +195,14 @@ async def get_voices(engine: str = "edge-tts", language: Optional[str] = None):
     if not language or language.lower() == "all":
         return CACHED_VOICES
     lang_lower = language.lower()
-    return [v for v in CACHED_VOICES if v["language"].lower() == lang_lower]
+import smart_director
+
+class DirectRequest(BaseModel):
+    text: str
+
+@app.post("/api/smart-direct")
+async def analyze_tone(req: DirectRequest):
+    return smart_director.analyze_text(req.text)
 
 import re
 
