@@ -233,3 +233,49 @@ def analyze_text(text: str) -> Dict[str, Any]:
         "volume": matched_config["volume"],
         "reason": matched_config["reason"]
     }
+
+def enhance_word_level_emotions(text: str) -> str:
+    """
+    Transforms flat text into emotionally expressive phrasing by injecting
+    breath marks, emphasis punctuation, and micro-pauses so that every word
+    is spoken with natural human inflection and emotional depth.
+    """
+    analysis = analyze_text(text)
+    emotion = analysis["emotion"]
+    
+    t = text.strip()
+    if not t:
+        return text
+
+    # Clean existing double punctuation
+    t = re.sub(r'\s*([,،۔।!?.…]+)\s*', r'\1 ', t)
+    
+    # Add breathing pauses after common emotional anchors
+    t = re.sub(r'(السلام علیکم|مرحبا|خوش آمدید|شکریہ|الحمدللہ|سبحان اللہ)', r'\1! ', t)
+    t = re.sub(r'(بہت زیادہ|بہت ہی|بے حد|بہت خوش|بہت اداس|یقین مانیں)', r'...\1...', t)
+    t = re.sub(r'(افسوس|افسوسناک|کاش|ہائے|یا اللہ|افف)', r'\1... ', t)
+    t = re.sub(r'(سنو|راز کی بات|دیکھو|خبردار|ہوشیار|جلدی کرو)', r'\1! ', t)
+    t = re.sub(r'(ایک دفعہ کا ذکر ہے|بہت پرانی بات ہے|کہتے ہیں کہ)', r'\1... ', t)
+
+    # English & Latin anchors
+    t = re.sub(r'\b(hello|welcome|congratulations|thank you|wow|omg|look)\b', r'\1!', t, flags=re.IGNORECASE)
+    t = re.sub(r'\b(honestly|to be honest|believe me|listen to me|you know|in fact)\b', r'...\1...', t, flags=re.IGNORECASE)
+    t = re.sub(r'\b(sadly|unfortunately|i miss you|i am so sorry|oh no)\b', r'\1...', t, flags=re.IGNORECASE)
+    t = re.sub(r'\b(once upon a time|long ago|deep inside|suddenly)\b', r'\1...', t, flags=re.IGNORECASE)
+
+    # Emotion specific tuning
+    if emotion == "happy":
+        t = re.sub(r'(مبارک ہو|جیت مبارک|خوشی|مبارکباد)', r'\1!', t)
+    elif emotion in ["sad", "whisper"]:
+        t = re.sub(r'([.۔])', r'...\n', t)
+    elif emotion == "excited":
+        t = re.sub(r'([،,])', r'! ', t)
+
+    # Clean up multi-punctuation artifacts
+    t = re.sub(r'\.{4,}', '... ', t)
+    t = re.sub(r'!{2,}', '! ', t)
+    t = re.sub(r'\s+([,،۔।!?.…])', r'\1', t)
+    t = re.sub(r'([,،۔।!?.…])([^\s0-9,،۔।!?.…])', r'\1 \2', t)
+    
+    return t.strip()
+

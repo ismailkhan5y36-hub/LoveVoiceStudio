@@ -698,7 +698,7 @@
       document.getElementById('activeEmotionLabel').innerText = cfg.label;
     }
 
-    function enhancePacing() {
+    async function enhancePacing() {
       const ta = document.getElementById('textInput');
       let val = ta.value.trim();
       if (!val) {
@@ -706,19 +706,33 @@
         return;
       }
       
-      // Smartly enhance punctuation to create realistic human breath pauses and emotional rhythm
-      val = val.replace(/\b(However|Therefore|Meanwhile|Consequently|Furthermore|Moreover|In addition|Honestly|Surprisingly|Fortunately|Generally|Basically)\b/gi, '$1,');
-      val = val.replace(/\s*,\s*,+/g, ',');
-      val = val.replace(/\s+([.,!?;:۔।])/g, '$1');
-      val = val.replace(/\.{2,}/g, '... ');
-      val = val.replace(/([.,!?;:۔।])([^\s0-9.,!?;:۔।])/g, '$1 $2');
+      try {
+        const res = await fetch('/api/smart-enhance', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ text: val })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          ta.value = data.enhanced;
+        } else {
+          val = val.replace(/\b(However|Therefore|Meanwhile|Consequently|Furthermore|Moreover|In addition|Honestly|Surprisingly|Fortunately|Generally|Basically)\b/gi, '$1,');
+          val = val.replace(/\s*,\s*,+/g, ',');
+          val = val.replace(/\s+([.,!?;:۔।])/g, '$1');
+          val = val.replace(/\.{2,}/g, '... ');
+          val = val.replace(/([.,!?;:۔।])([^\s0-9.,!?;:۔।])/g, '$1 $2');
+          ta.value = val.trim();
+        }
+      } catch (e) {
+        val = val.replace(/\.{2,}/g, '... ');
+        ta.value = val.trim();
+      }
       
-      ta.value = val.trim();
-      updateCharCount();
+      handleTextInput();
       
       const note = document.getElementById('qualityNote');
       const oldText = note.innerText;
-      note.innerText = '✨ Text pacing optimized for natural emotional breathing!';
+      note.innerText = '🎭 Word-level emotion pacing & breath applied!';
       note.classList.add('text-amber-300');
       setTimeout(() => {
         note.innerText = oldText;

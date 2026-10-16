@@ -204,6 +204,11 @@ class DirectRequest(BaseModel):
 async def analyze_tone(req: DirectRequest):
     return smart_director.analyze_text(req.text)
 
+@app.post("/api/smart-enhance")
+async def enhance_text(req: DirectRequest):
+    enhanced = smart_director.enhance_word_level_emotions(req.text)
+    return {"original": req.text, "enhanced": enhanced}
+
 import re
 
 def split_text_into_chunks(text: str, max_chunk_size: int = 2500) -> List[str]:
