@@ -221,6 +221,9 @@
             <button onclick="setSample('ar')" class="text-[11px] bg-dark-750 hover:bg-dark-700 text-teal-400 px-2 py-1 rounded transition">🇸🇦 عربي</button>
             <button onclick="setSample('en')" class="text-[11px] bg-dark-750 hover:bg-dark-700 text-indigo-400 px-2 py-1 rounded transition">🇺🇸 EN</button>
             <button onclick="setSample('es')" class="text-[11px] bg-dark-750 hover:bg-dark-700 text-rose-400 px-2 py-1 rounded transition">🇪🇸 ES</button>
+            <button onclick="enhancePacing()" class="text-[11px] bg-brand-600/20 hover:bg-brand-600/30 text-amber-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1 border border-brand-500/30 font-medium" title="Smart Emotion & Breath Pacing">
+              <i data-lucide="sparkles" class="w-3 h-3 text-amber-400"></i> Smart Pacing
+            </button>
             <button onclick="clearText()" class="text-xs text-slate-400 hover:text-rose-400 transition p-1" title="Clear text">
               <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
             </button>
@@ -282,6 +285,39 @@
               <span id="volumeVal" class="font-mono text-brand-400 font-semibold">+0%</span>
             </div>
             <input type="range" id="volumeSlider" min="-50" max="50" value="0" step="5" oninput="updateControls()" class="w-full accent-brand-500 cursor-pointer">
+          </div>
+        </div>
+
+        <!-- SMART EMOTION & MOOD PRESETS -->
+        <div class="mt-3 pt-3 border-t border-dark-700/60">
+          <div class="flex items-center justify-between text-xs mb-2">
+            <span class="text-slate-300 flex items-center gap-1.5 font-medium">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> Smart Voice Emotion / Tone:
+            </span>
+            <span id="activeEmotionLabel" class="text-xs font-mono text-brand-300 font-bold">🌟 Natural / Story</span>
+          </div>
+          <div class="grid grid-cols-4 sm:grid-cols-7 gap-1.5 text-[11px]">
+            <button type="button" onclick="setEmotion('natural')" id="emo-natural" class="emotion-btn p-1.5 rounded-lg border border-brand-500 bg-brand-500/20 text-white font-medium flex flex-col items-center gap-0.5 transition shadow-sm">
+              <span class="text-sm">🌟</span><span class="truncate">Natural</span>
+            </button>
+            <button type="button" onclick="setEmotion('happy')" id="emo-happy" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
+              <span class="text-sm">😃</span><span class="truncate">Cheerful</span>
+            </button>
+            <button type="button" onclick="setEmotion('sad')" id="emo-sad" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
+              <span class="text-sm">😢</span><span class="truncate">Emotional</span>
+            </button>
+            <button type="button" onclick="setEmotion('whisper')" id="emo-whisper" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
+              <span class="text-sm">🤫</span><span class="truncate">Whisper</span>
+            </button>
+            <button type="button" onclick="setEmotion('dramatic')" id="emo-dramatic" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
+              <span class="text-sm">🎙️</span><span class="truncate">Drama</span>
+            </button>
+            <button type="button" onclick="setEmotion('excited')" id="emo-excited" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
+              <span class="text-sm">⚡</span><span class="truncate">Excited</span>
+            </button>
+            <button type="button" onclick="setEmotion('news')" id="emo-news" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
+              <span class="text-sm">📰</span><span class="truncate">News</span>
+            </button>
           </div>
         </div>
 
@@ -602,6 +638,63 @@
       document.getElementById('rateVal').innerText = `${rate >= 0 ? '+' : ''}${rate}%`;
       document.getElementById('pitchVal').innerText = `${pitch >= 0 ? '+' : ''}${pitch}Hz`;
       document.getElementById('volumeVal').innerText = `${volume >= 0 ? '+' : ''}${volume}%`;
+    }
+
+    const EMOTIONS = {
+      natural:  { rate: 0, pitch: 0, volume: 0, label: '🌟 Natural / Story' },
+      happy:    { rate: 10, pitch: 15, volume: 5, label: '😃 Cheerful & Happy' },
+      sad:      { rate: -15, pitch: -10, volume: -5, label: '😢 Emotional & Sad' },
+      whisper:  { rate: -10, pitch: -20, volume: -30, label: '🤫 Whisper / ASMR' },
+      dramatic: { rate: -8, pitch: -6, volume: 10, label: '🎙️ Dramatic Audiobook' },
+      excited:  { rate: 18, pitch: 20, volume: 10, label: '⚡ Excited & Energetic' },
+      news:     { rate: 6, pitch: -2, volume: 5, label: '📰 Authoritative News' }
+    };
+
+    function setEmotion(type) {
+      const cfg = EMOTIONS[type] || EMOTIONS.natural;
+      document.getElementById('rateSlider').value = cfg.rate;
+      document.getElementById('pitchSlider').value = cfg.pitch;
+      document.getElementById('volumeSlider').value = cfg.volume;
+      updateControls();
+
+      document.querySelectorAll('.emotion-btn').forEach(b => {
+        b.classList.remove('border-brand-500', 'bg-brand-500/20', 'text-white', 'shadow-sm');
+        b.classList.add('border-dark-700', 'bg-dark-900', 'text-slate-400');
+      });
+      const activeBtn = document.getElementById(`emo-${type}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('border-dark-700', 'bg-dark-900', 'text-slate-400');
+        activeBtn.classList.add('border-brand-500', 'bg-brand-500/20', 'text-white', 'shadow-sm');
+      }
+      document.getElementById('activeEmotionLabel').innerText = cfg.label;
+    }
+
+    function enhancePacing() {
+      const ta = document.getElementById('textInput');
+      let val = ta.value.trim();
+      if (!val) {
+        alert('Please enter or select some text first!');
+        return;
+      }
+      
+      // Smartly enhance punctuation to create realistic human breath pauses and emotional rhythm
+      val = val.replace(/\b(However|Therefore|Meanwhile|Consequently|Furthermore|Moreover|In addition|Honestly|Surprisingly|Fortunately|Generally|Basically)\b/gi, '$1,');
+      val = val.replace(/\s*,\s*,+/g, ',');
+      val = val.replace(/\s+([.,!?;:۔।])/g, '$1');
+      val = val.replace(/\.{2,}/g, '... ');
+      val = val.replace(/([.,!?;:۔।])([^\s0-9.,!?;:۔।])/g, '$1 $2');
+      
+      ta.value = val.trim();
+      updateCharCount();
+      
+      const note = document.getElementById('qualityNote');
+      const oldText = note.innerText;
+      note.innerText = '✨ Text pacing optimized for natural emotional breathing!';
+      note.classList.add('text-amber-300');
+      setTimeout(() => {
+        note.innerText = oldText;
+        note.classList.remove('text-amber-300');
+      }, 3000);
     }
 
     function updateCharCount() {
