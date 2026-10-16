@@ -866,13 +866,27 @@
       isGenerating = true;
       btn.disabled = true;
       let secondsPassed = 0;
+      
+      const words = text.split(/\s+/).filter(Boolean).length;
+      const approxMins = Math.max(0.1, (words / 130)).toFixed(1);
+      const isLongText = words > 80;
+
       const timerInterval = setInterval(() => {
         secondsPassed++;
-        btnText.innerText = currentEngine === 'kokoro' 
-          ? `⏳ Synthesizing Ultra Audio (${secondsPassed}s · Local CPU)...` 
-          : `⏳ Generating Speech (${secondsPassed}s)...`;
+        if (isLongText) {
+          btnText.innerText = `⏳ Generating ~${approxMins} min Audio (${words} words · Parallel)... ${secondsPassed}s`;
+        } else {
+          btnText.innerText = currentEngine === 'kokoro' 
+            ? `⏳ Synthesizing Ultra Audio (${secondsPassed}s · Local CPU)...` 
+            : `⏳ Generating Speech (${secondsPassed}s)...`;
+        }
       }, 1000);
-      btnText.innerText = currentEngine === 'kokoro' ? '⏳ Synthesizing Ultra Audio (Local CPU)...' : '⏳ Generating Speech...';
+      
+      if (isLongText) {
+        btnText.innerText = `⏳ Starting Parallel Synthesis (~${approxMins} min Audio)...`;
+      } else {
+        btnText.innerText = currentEngine === 'kokoro' ? '⏳ Synthesizing Ultra Audio (Local CPU)...' : '⏳ Generating Speech...';
+      }
 
       try {
         const response = await fetch('/api/generate', {

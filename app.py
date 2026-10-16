@@ -329,7 +329,7 @@ async def generate_speech(req: TTSRequest):
     if req.voice not in voice_ids and CACHED_VOICES:
         raise HTTPException(status_code=400, detail="Invalid voice selected.")
     
-    chunks = split_text_into_chunks(text, max_chunk_size=2500)
+    chunks = split_text_into_chunks(text, max_chunk_size=1500)
     
     try:
         if len(chunks) == 1:
@@ -342,23 +342,33 @@ async def generate_speech(req: TTSRequest):
             )
             await communicate.save(str(filepath))
         else:
+            temp_paths = [OUTPUTS_DIR / f"temp_{item_id}_{idx}.mp3" for idx in range(len(chunks))]
+            
+            async def run_single_chunk(idx: int, chunk_text: str, dest_path: Path):
+                comm = edge_tts.Communicate(
+                    text=chunk_text,
+                    voice=req.voice,
+                    rate=req.rate,
+                    pitch=req.pitch,
+                    volume=req.volume
+                )
+                await comm.save(str(dest_path))
+
+            # Parallel download of all chunks simultaneously
+            await asyncio.gather(*[
+                run_single_chunk(i, chunks[i], temp_paths[i]) for i in range(len(chunks))
+            ])
+
+            # Merge in order
             with open(filepath, "wb") as outfile:
-                for idx, chunk in enumerate(chunks):
-                    temp_chunk_path = OUTPUTS_DIR / f"temp_{item_id}_{idx}.mp3"
-                    communicate = edge_tts.Communicate(
-                        text=chunk,
-                        voice=req.voice,
-                        rate=req.rate,
-                        pitch=req.pitch,
-                        volume=req.volume
-                    )
-                    await communicate.save(str(temp_chunk_path))
-                    with open(temp_chunk_path, "rb") as infile:
-                        outfile.write(infile.read())
-                    try:
-                        temp_chunk_path.unlink()
-                    except Exception:
-                        pass
+                for p in temp_paths:
+                    if p.exists():
+                        with open(p, "rb") as infile:
+                            outfile.write(infile.read())
+                        try:
+                            p.unlink()
+                        except Exception:
+                            pass
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Generation failed: {str(e)}")
     
