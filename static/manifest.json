@@ -1,0 +1,21 @@
+{
+  "name": "LoveVoice Studio AI",
+  "short_name": "LoveVoice",
+  "description": "Global Neural Text-to-Speech Studio with 322+ Voices in 76+ Languages",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07080b",
+  "theme_color": "#7c3aed",
+  "icons": [
+    {
+      "src": "/static/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

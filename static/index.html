@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>LoveVoice Studio AI — 322+ Global Voices in 76+ Languages</title>
+  
+  <!-- PWA & Mobile Meta -->
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#7c3aed">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="/static/icon.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            dark: {
+              950: '#07080b',
+              900: '#0c0d14',
+              850: '#11131c',
+              800: '#181a26',
+              700: '#232638',
+              600: '#32364e',
+            },
+            brand: {
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #07080b;
+      color: #f1f5f9;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.16) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.12) 0px, transparent 50%);
+      background-attachment: fixed;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.25);
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(139, 92, 246, 0.5);
+    }
+    .voice-card.selected {
+      border-color: #8b5cf6 !important;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.22), rgba(124, 58, 237, 0.10)) !important;
+      box-shadow: 0 0 20px -3px rgba(139, 92, 246, 0.35);
+    }
+    audio::-webkit-media-controls-panel {
+      background-color: #181a26;
+    }
+    audio::-webkit-media-controls-current-time-display,
+    audio::-webkit-media-controls-time-remaining-display {
+      color: #f1f5f9;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-brand-500 selection:text-white pb-10">
+
+  <!-- TOP APP BAR -->
+  <header class="border-b border-dark-700/80 bg-dark-900/90 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-brand-600/30">
+          <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">LoveVoice Studio AI</h1>
+            <span class="text-[9px] sm:text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-500/20 to-purple-500/20 text-amber-300 border border-amber-500/30">322+ Voices · Global</span>
+          </div>
+          <p class="text-[11px] sm:text-xs text-slate-400">Urdu, Hindi, Arabic, Spanish, English & 70+ Languages</p>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <!-- PWA Install Button (Shown on Mobile) -->
+        <button id="pwaInstallBtn" onclick="installPWA()" class="hidden flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-gradient-to-r from-brand-600 to-indigo-600 text-white text-xs font-semibold shadow-md transition">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <span class="hidden sm:inline">Install</span> App
+        </button>
+
+        <button onclick="toggleHistoryDrawer()" class="relative p-2 rounded-lg bg-dark-800 hover:bg-dark-700 text-slate-300 hover:text-white border border-dark-700 transition" title="Generation History">
+          <i data-lucide="history" class="w-5 h-5"></i>
+          <span id="historyBadge" class="hidden absolute -top-1 -right-1 bg-brand-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5 grid grid-cols-1 lg:grid-cols-12 gap-5">
+
+    <!-- LEFT COLUMN: ENGINE & VOICE SELECTOR (5 cols on desktop, full width on mobile) -->
+    <div class="lg:col-span-5 flex flex-col space-y-4">
+      <div class="bg-dark-850/90 border border-dark-700/80 rounded-2xl p-4 sm:p-5 shadow-xl flex flex-col h-[650px] sm:h-[750px]">
+        
+        <!-- ENGINE SELECTOR -->
+        <div class="mb-3">
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2 flex items-center justify-between">
+            <span class="flex items-center gap-1.5"><i data-lucide="cpu" class="w-3.5 h-3.5 text-brand-400"></i> Speech Synthesis Engine</span>
+            <span id="engineBadgeInfo" class="text-[10px] font-mono text-emerald-400 font-bold">Cloud 322 Voices Active</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 p-1.5 bg-dark-900 rounded-xl border border-dark-700/80">
+            <!-- Engine 1: LoveVoice Global (Default) -->
+            <button onclick="switchEngine('edge-tts')" id="engineBtn-edge" class="p-2.5 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm">
+              <span class="font-bold text-xs tracking-tight flex items-center gap-1 truncate">⚡ LoveVoice Global</span>
+              <span class="text-[9px] uppercase font-mono px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 font-bold mt-1 inline-block w-fit">322 Voices · 76+ Langs</span>
+              <span class="text-[10px] text-slate-300 mt-1 line-clamp-1 leading-tight">Instant HD (~1s)</span>
+            </button>
+
+            <!-- Engine 2: Kokoro Ultra -->
+            <button onclick="switchEngine('kokoro')" id="engineBtn-kokoro" class="p-2.5 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800">
+              <span class="font-bold text-xs tracking-tight flex items-center gap-1 truncate">🌟 Kokoro Ultra</span>
+              <span class="text-[9px] uppercase font-mono px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-bold mt-1 inline-block w-fit">ElevenLabs Grade</span>
+              <span class="text-[10px] text-slate-400 mt-1 line-clamp-1 leading-tight">Human Breathing (29 Voices)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- VOICE LIST HEADER -->
+        <div class="flex items-center justify-between pb-2 border-b border-dark-700/60">
+          <div class="flex items-center space-x-2">
+            <i data-lucide="mic" class="w-4 h-4 text-brand-400"></i>
+            <h2 id="voiceListTitle" class="font-semibold text-white text-sm">Select Global Voice</h2>
+          </div>
+          <span id="voiceCountBadge" class="text-xs font-mono bg-dark-700/80 text-brand-300 px-2 py-0.5 rounded-md">322 Voices</span>
+        </div>
+
+        <!-- LANGUAGE SELECTOR & FILTERS -->
+        <div class="pt-2.5 space-y-2">
+          
+          <!-- QUICK POPULAR LANGUAGE PILLS (Horizontal Scroll on Mobile) -->
+          <div id="quickLangContainer" class="flex space-x-1.5 overflow-x-auto custom-scrollbar pb-1 text-xs">
+            <button onclick="setLanguage('all')" id="pill-all" class="px-2.5 py-1 rounded-lg bg-brand-600 text-white font-semibold whitespace-nowrap shadow-sm">🌟 All</button>
+            <button onclick="setLanguage('Urdu')" id="pill-Urdu" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇵🇰 Urdu</button>
+            <button onclick="setLanguage('Hindi')" id="pill-Hindi" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇮🇳 Hindi</button>
+            <button onclick="setLanguage('English')" id="pill-English" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇺🇸 English</button>
+            <button onclick="setLanguage('Spanish')" id="pill-Spanish" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇪🇸 Spanish</button>
+            <button onclick="setLanguage('Arabic')" id="pill-Arabic" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇸🇦 Arabic</button>
+            <button onclick="setLanguage('French')" id="pill-French" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇫🇷 French</button>
+            <button onclick="setLanguage('German')" id="pill-German" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇩🇪 German</button>
+          </div>
+
+          <!-- ALL LANGUAGES DROPDOWN + SEARCH -->
+          <div class="grid grid-cols-12 gap-2">
+            <!-- Full Language Select Dropdown (76+ Languages) -->
+            <div class="col-span-7">
+              <select id="allLangSelect" onchange="onDropdownLangChange()" class="w-full bg-dark-900 border border-dark-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-brand-500 font-medium">
+                <option value="all">🌍 All Languages (76+)</option>
+              </select>
+            </div>
+            <!-- Gender Select -->
+            <div class="col-span-5">
+              <select id="genderFilter" onchange="renderVoices()" class="w-full bg-dark-900 border border-dark-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500">
+                <option value="all">All Genders</option>
+                <option value="Female">👩 Female</option>
+                <option value="Male">👨 Male</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Free-text Search -->
+          <div class="relative">
+            <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5"></i>
+            <input type="text" id="voiceSearchInput" oninput="renderVoices()" placeholder="Search voice, language, country..." class="w-full bg-dark-900 border border-dark-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500">
+          </div>
+        </div>
+
+        <!-- VOICE CARDS LIST -->
+        <div id="voiceListContainer" class="flex-1 overflow-y-auto custom-scrollbar mt-3 space-y-2 pr-1">
+          <div class="flex items-center justify-center h-40 text-slate-500 text-xs">Loading voices...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: SCRIPT, PARAMETERS & AUDIO PLAYER (7 cols) -->
+    <div class="lg:col-span-7 flex flex-col space-y-4">
+
+      <!-- SCRIPT EDITOR CARD -->
+      <div class="bg-dark-850/90 border border-dark-700/80 rounded-2xl p-4 sm:p-5 shadow-xl flex flex-col">
+        <div class="flex items-center justify-between pb-3 border-b border-dark-700/60">
+          <div class="flex items-center space-x-2">
+            <i data-lucide="file-text" class="w-5 h-5 text-brand-400"></i>
+            <h2 class="font-semibold text-white text-base">Text to Speech Script</h2>
+          </div>
+          <!-- Quick Samples for Different Languages -->
+          <div class="flex items-center space-x-1.5 flex-wrap">
+            <button onclick="setSample('ur')" class="text-[11px] bg-dark-750 hover:bg-dark-700 text-emerald-400 px-2 py-1 rounded transition">🇵🇰 اردو</button>
+            <button onclick="setSample('hi')" class="text-[11px] bg-dark-750 hover:bg-dark-700 text-amber-400 px-2 py-1 rounded transition">🇮🇳 हिंदी</button>
+            <button onclick="setSample('ar')" class="text-[11px] bg-dark-750 hover:bg-dark-700 text-teal-400 px-2 py-1 rounded transition">🇸🇦 عربي</button>
+            <button onclick="setSample('en')" class="text-[11px] bg-dark-750 hover:bg-dark-700 text-indigo-400 px-2 py-1 rounded transition">🇺🇸 EN</button>
+            <button onclick="setSample('es')" class="text-[11px] bg-dark-750 hover:bg-dark-700 text-rose-400 px-2 py-1 rounded transition">🇪🇸 ES</button>
+            <button onclick="clearText()" class="text-xs text-slate-400 hover:text-rose-400 transition p-1" title="Clear text">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- CURRENT SELECTED VOICE BANNER -->
+        <div class="mt-3 p-3 rounded-xl bg-dark-900/90 border border-brand-500/30 flex items-center justify-between">
+          <div class="flex items-center space-x-3 min-w-0">
+            <span id="currentVoiceAvatar" class="text-2xl flex-shrink-0">👩</span>
+            <div class="min-w-0">
+              <div class="flex items-center space-x-2 truncate">
+                <span class="text-xs text-slate-400">Active:</span>
+                <span id="currentVoiceName" class="font-bold text-white text-sm truncate">Jenny</span>
+                <span id="currentVoiceFlag">🇺🇸</span>
+                <span id="currentEngineBadge" class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">⚡ Global HD</span>
+              </div>
+              <div id="currentVoiceDetails" class="text-[11px] text-slate-400 font-mono truncate">en-US-JennyNeural (English · United States)</div>
+            </div>
+          </div>
+          <span class="text-[10px] uppercase font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 flex-shrink-0">Active</span>
+        </div>
+
+        <div class="mt-3 relative">
+          <textarea id="textInput" rows="7" placeholder="Type or paste text in ANY language (Urdu, Hindi, Arabic, Spanish, English, etc.)... Supports up to 30,000 characters with auto-chunking!" 
+            class="w-full bg-dark-900 border border-dark-700/80 rounded-xl p-4 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition resize-none leading-relaxed"
+            oninput="updateCharCount()"></textarea>
+          
+          <div class="flex items-center justify-between mt-2 px-1 text-xs text-slate-400">
+            <span id="charCountLabel">0 / 30,000 characters</span>
+            <span id="qualityNote" class="text-brand-300 font-medium">⚡ 322 Voices · 76+ Languages · 48kHz HD Audio</span>
+          </div>
+        </div>
+
+        <!-- AUDIO FINE TUNING CONTROLS -->
+        <div class="mt-3 pt-3 border-t border-dark-700/60 grid grid-cols-1 md:grid-cols-3 gap-3">
+          <!-- Speed / Rate -->
+          <div class="bg-dark-900/60 border border-dark-700/50 rounded-xl p-2.5">
+            <div class="flex justify-between items-center text-xs mb-1">
+              <span class="text-slate-400 flex items-center gap-1"><i data-lucide="gauge" class="w-3.5 h-3.5 text-violet-400"></i> Speed / Pacing</span>
+              <span id="rateVal" class="font-mono text-brand-400 font-semibold">+0%</span>
+            </div>
+            <input type="range" id="rateSlider" min="-50" max="50" value="0" step="5" oninput="updateControls()" class="w-full accent-brand-500 cursor-pointer">
+          </div>
+
+          <!-- Pitch -->
+          <div id="pitchCard" class="bg-dark-900/60 border border-dark-700/50 rounded-xl p-2.5">
+            <div class="flex justify-between items-center text-xs mb-1">
+              <span class="text-slate-400 flex items-center gap-1"><i data-lucide="sliders" class="w-3.5 h-3.5 text-indigo-400"></i> Pitch</span>
+              <span id="pitchVal" class="font-mono text-brand-400 font-semibold">+0Hz</span>
+            </div>
+            <input type="range" id="pitchSlider" min="-50" max="50" value="0" step="5" oninput="updateControls()" class="w-full accent-brand-500 cursor-pointer">
+          </div>
+
+          <!-- Volume -->
+          <div class="bg-dark-900/60 border border-dark-700/50 rounded-xl p-2.5">
+            <div class="flex justify-between items-center text-xs mb-1">
+              <span class="text-slate-400 flex items-center gap-1"><i data-lucide="volume-2" class="w-3.5 h-3.5 text-emerald-400"></i> Volume</span>
+              <span id="volumeVal" class="font-mono text-brand-400 font-semibold">+0%</span>
+            </div>
+            <input type="range" id="volumeSlider" min="-50" max="50" value="0" step="5" oninput="updateControls()" class="w-full accent-brand-500 cursor-pointer">
+          </div>
+        </div>
+
+        <!-- GENERATE BUTTON -->
+        <button id="generateBtn" onclick="generateVoice()" class="mt-4 w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-semibold text-sm shadow-lg shadow-brand-600/30 hover:shadow-brand-600/50 flex items-center justify-center space-x-2 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+          <i data-lucide="play" class="w-4 h-4 fill-white"></i>
+          <span id="generateBtnText">Generate Speech</span>
+        </button>
+      </div>
+
+      <!-- ACTIVE GENERATED PLAYER CARD -->
+      <div id="playerCard" class="bg-dark-850/90 border border-dark-700/80 rounded-2xl p-4 sm:p-5 shadow-xl">
+        <div class="flex items-center justify-between pb-3 border-b border-dark-700/60">
+          <div class="flex items-center space-x-3 min-w-0">
+            <div id="playerAvatar" class="w-10 h-10 rounded-full bg-brand-500/20 border border-brand-500/40 flex items-center justify-center text-lg flex-shrink-0">🎧</div>
+            <div class="min-w-0">
+              <div class="flex items-center space-x-2 truncate">
+                <span id="playerVoiceName" class="font-bold text-white text-base truncate">Audio Player</span>
+                <span id="playerFlag" class="text-sm"></span>
+                <span id="playerCountry" class="text-xs text-slate-400 truncate"></span>
+              </div>
+              <div class="text-xs text-slate-400 truncate">
+                <span id="playerMeta">Ready to synthesize</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-2 flex-shrink-0">
+            <a id="downloadBtn" href="#" download="lovevoice_speech.mp3" class="hidden flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-md shadow-emerald-600/20 transition">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              <span>Download MP3</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- AUDIO PLAYER CONTROLS (NATIVE) -->
+        <div class="mt-3">
+          <audio id="audioElement" class="w-full rounded-xl" controls preload="auto"></audio>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- HISTORY DRAWER (MODAL SLIDE-IN) -->
+  <div id="historyModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex justify-end">
+    <div class="w-full max-w-md bg-dark-900 border-l border-dark-700 h-full p-5 flex flex-col shadow-2xl">
+      <div class="flex items-center justify-between pb-4 border-b border-dark-700">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="history" class="w-5 h-5 text-brand-400"></i>
+          <h3 class="font-bold text-white text-lg">Generation History</h3>
+        </div>
+        <button onclick="toggleHistoryDrawer()" class="p-1 rounded-lg hover:bg-dark-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div id="historyListContainer" class="flex-1 overflow-y-auto custom-scrollbar my-4 space-y-3">
+        <div class="text-center py-10 text-slate-500 text-sm">No audio generated yet.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT APP LOGIC -->
+  <script>
+    let currentEngine = 'edge-tts'; // Default to ultra-fast global 322 voices
+    let allVoices = [];
+    let allLanguages = [];
+    let currentLanguage = 'all';
+    let selectedVoiceId = 'en-US-JennyNeural';
+    let isGenerating = false;
+    let deferredPwaPrompt = null;
+
+    // Service Worker Registration for PWA
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/sw.js').catch(err => console.log('SW error:', err));
+    }
+
+    // PWA Install prompt listener
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      deferredPwaPrompt = e;
+      const btn = document.getElementById('pwaInstallBtn');
+      if (btn) btn.classList.remove('hidden');
+    });
+
+    function installPWA() {
+      if (deferredPwaPrompt) {
+        deferredPwaPrompt.prompt();
+        deferredPwaPrompt.userChoice.then(choice => {
+          if (choice.outcome === 'accepted') {
+            document.getElementById('pwaInstallBtn').classList.add('hidden');
+          }
+          deferredPwaPrompt = null;
+        });
+      } else {
+        alert('To install on mobile, open your browser menu (3 dots) and tap "Add to Home screen" or "Install App".');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      lucide.createIcons();
+      await fetchLanguages();
+      await fetchVoices();
+      loadHistory();
+      setSample('ur'); // Default sample to Urdu for easy testing
+    });
+
+    async function fetchLanguages() {
+      try {
+        const res = await fetch('/api/languages');
+        allLanguages = await res.json();
+        
+        const select = document.getElementById('allLangSelect');
+        select.innerHTML = `<option value="all">🌍 All Languages (${allLanguages.length}+)</option>` + 
+          allLanguages.map(l => `<option value="${l.name}">${l.flag} ${l.name} (${l.count})</option>`).join('');
+      } catch (err) {
+        console.error('Failed to fetch languages:', err);
+      }
+    }
+
+    async function switchEngine(engine) {
+      currentEngine = engine;
+      
+      const btnEdge = document.getElementById('engineBtn-edge');
+      const btnKokoro = document.getElementById('engineBtn-kokoro');
+      const title = document.getElementById('voiceListTitle');
+      const genBtnText = document.getElementById('generateBtnText');
+      const qualityNote = document.getElementById('qualityNote');
+      const badgeInfo = document.getElementById('engineBadgeInfo');
+      const quickLangs = document.getElementById('quickLangContainer');
+
+      if (engine === 'edge-tts') {
+        btnEdge.className = 'p-2.5 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm';
+        btnKokoro.className = 'p-2.5 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800';
+        title.innerText = 'Select Global Voice';
+        genBtnText.innerText = 'Generate Speech';
+        qualityNote.innerText = '⚡ 322 Voices · 76+ Languages · 48kHz HD Audio';
+        badgeInfo.innerText = 'Cloud 322 Voices Active';
+        quickLangs.classList.remove('hidden');
+        selectedVoiceId = 'ur-PK-UzmaNeural';
+      } else {
+        btnKokoro.className = 'p-2.5 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm';
+        btnEdge.className = 'p-2.5 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800';
+        title.innerText = 'Kokoro Ultra Voices';
+        genBtnText.innerText = 'Generate ElevenLabs Quality Audio';
+        qualityNote.innerText = '✨ ONNX Micro-inflection · 24kHz Studio Audio (29 Voices)';
+        badgeInfo.innerText = 'ElevenLabs Grade (29 Voices)';
+        quickLangs.classList.add('hidden');
+        selectedVoiceId = 'af_heart';
+      }
+
+      await fetchVoices();
+    }
+
+    async function fetchVoices() {
+      try {
+        const langParam = (currentEngine === 'edge-tts' && currentLanguage !== 'all') ? `&language=${encodeURIComponent(currentLanguage)}` : '';
+        const res = await fetch(`/api/voices?engine=${currentEngine}${langParam}`);
+        allVoices = await res.json();
+        document.getElementById('voiceCountBadge').innerText = `${allVoices.length} Voices`;
+        renderVoices();
+        updateSelectedVoiceBanner();
+      } catch (err) {
+        console.error('Failed to fetch voices:', err);
+      }
+    }
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      
+      // Update pills styling
+      const pills = document.querySelectorAll('#quickLangContainer button');
+      pills.forEach(p => {
+        p.className = 'px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700';
+      });
+      const activePill = document.getElementById(`pill-${lang}`);
+      if (activePill) {
+        activePill.className = 'px-2.5 py-1 rounded-lg bg-brand-600 text-white font-semibold whitespace-nowrap shadow-sm';
+      }
+
+      // Update dropdown value
+      const select = document.getElementById('allLangSelect');
+      if (select) select.value = lang;
+
+      fetchVoices();
+    }
+
+    function onDropdownLangChange() {
+      const val = document.getElementById('allLangSelect').value;
+      setLanguage(val);
+    }
+
+    function renderVoices() {
+      const container = document.getElementById('voiceListContainer');
+      const search = document.getElementById('voiceSearchInput').value.toLowerCase();
+      const gender = document.getElementById('genderFilter').value;
+
+      let filtered = allVoices.filter(v => {
+        if (gender !== 'all' && v.gender !== gender) return false;
+        if (search) {
+          const matchName = (v.name || '').toLowerCase().includes(search);
+          const matchCountry = (v.country || '').toLowerCase().includes(search);
+          const matchLang = (v.language || '').toLowerCase().includes(search);
+          const matchId = (v.id || '').toLowerCase().includes(search);
+          if (!matchName && !matchCountry && !matchLang && !matchId) return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">No voices match your search.</div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(v => {
+        const isSel = v.id === selectedVoiceId;
+        const avatar = v.gender === 'Female' ? '👩' : '👨';
+        const badge = currentEngine === 'kokoro'
+          ? (v.id === 'af_heart' || v.id === 'am_adam' ? '<span class="text-[9px] uppercase px-1.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold">Flagship</span>' : '')
+          : (v.featured ? '<span class="text-[9px] uppercase px-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 font-bold">Featured</span>' : '');
+
+        return `
+          <div onclick="selectVoice('${v.id}')" class="voice-card cursor-pointer p-3 rounded-xl border border-dark-700/70 bg-dark-900/60 hover:border-brand-500/60 hover:bg-dark-800 transition flex items-center justify-between ${isSel ? 'selected' : ''}">
+            <div class="flex items-center space-x-3 min-w-0">
+              <div class="w-9 h-9 rounded-full bg-dark-750 border border-dark-600 flex items-center justify-center text-base flex-shrink-0">
+                ${avatar}
+              </div>
+              <div class="min-w-0">
+                <div class="flex items-center space-x-1.5">
+                  <span class="font-semibold text-white text-xs truncate">${v.name}</span>
+                  <span class="text-xs" title="${v.country}">${v.flag || '🌐'}</span>
+                  ${badge}
+                </div>
+                <div class="text-[11px] text-slate-400 truncate">${v.language} · ${v.country} · ${v.gender}</div>
+              </div>
+            </div>
+            
+            <div class="flex items-center space-x-1.5 flex-shrink-0">
+              <button onclick="event.stopPropagation(); quickPreviewVoice('${v.id}')" class="px-2 py-1 rounded bg-dark-800 hover:bg-brand-600 text-slate-300 hover:text-white transition text-[11px] font-semibold flex items-center gap-1" title="Listen voice">
+                <span>▶ Preview</span>
+              </button>
+              ${isSel ? '<span class="text-brand-400 font-bold text-sm ml-1">✓</span>' : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function selectVoice(id) {
+      selectedVoiceId = id;
+      renderVoices();
+      updateSelectedVoiceBanner();
+    }
+
+    function updateSelectedVoiceBanner() {
+      const v = allVoices.find(x => x.id === selectedVoiceId) || allVoices[0];
+      if (!v) return;
+      selectedVoiceId = v.id;
+      document.getElementById('currentVoiceAvatar').innerText = v.gender === 'Female' ? '👩' : '👨';
+      document.getElementById('currentVoiceName').innerText = v.name;
+      document.getElementById('currentVoiceFlag').innerText = v.flag || '🌐';
+      
+      const badge = document.getElementById('currentEngineBadge');
+      if (currentEngine === 'kokoro') {
+        badge.innerText = '🌟 ElevenLabs Quality';
+        badge.className = 'text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30';
+        document.getElementById('currentVoiceDetails').innerText = `${v.id} · ${v.desc || `${v.country} · ${v.gender}`}`;
+      } else {
+        badge.innerText = '⚡ Global HD';
+        badge.className = 'text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30';
+        document.getElementById('currentVoiceDetails').innerText = `${v.id} (${v.language} · ${v.country})`;
+      }
+    }
+
+    async function quickPreviewVoice(id) {
+      const v = allVoices.find(x => x.id === id);
+      if (!v) return;
+      
+      let samplePhrase = `Hello, my name is ${v.name}, your neural voice in LoveVoice Studio.`;
+      if (v.language === 'Urdu') {
+        samplePhrase = `السلام علیکم! میرا نام ${v.name} ہے۔ یہ LoveVoice Studio میں اردو کی نیورل آواز ہے۔`;
+      } else if (v.language === 'Hindi') {
+        samplePhrase = `नमस्ते! मेरा नाम ${v.name} है। LoveVoice Studio में आपका स्वागत है।`;
+      } else if (v.language === 'Spanish') {
+        samplePhrase = `Hola, mi nombre es ${v.name}, tu voz neuronal en LoveVoice Studio.`;
+      } else if (v.language === 'Arabic') {
+        samplePhrase = `مرحباً، اسمي ${v.name}، صوتك الطبيعي في استوديو LoveVoice.`;
+      }
+      
+      try {
+        const res = await fetch('/api/generate', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            text: samplePhrase,
+            voice: id,
+            engine: currentEngine,
+            rate: '+0%',
+            pitch: '+0Hz',
+            volume: '+0%'
+          })
+        });
+        const data = await res.json();
+        if (data.url) {
+          playInMainPlayer(data);
+        }
+      } catch (err) {
+        console.error('Preview error:', err);
+      }
+    }
+
+    function updateControls() {
+      const rate = document.getElementById('rateSlider').value;
+      const pitch = document.getElementById('pitchSlider').value;
+      const volume = document.getElementById('volumeSlider').value;
+
+      document.getElementById('rateVal').innerText = `${rate >= 0 ? '+' : ''}${rate}%`;
+      document.getElementById('pitchVal').innerText = `${pitch >= 0 ? '+' : ''}${pitch}Hz`;
+      document.getElementById('volumeVal').innerText = `${volume >= 0 ? '+' : ''}${volume}%`;
+    }
+
+    function updateCharCount() {
+      const val = document.getElementById('textInput').value;
+      const count = val.length;
+      const label = document.getElementById('charCountLabel');
+      label.innerText = `${count.toLocaleString()} / 30,000 characters`;
+      if (count > 30000) {
+        label.classList.add('text-rose-400', 'font-bold');
+      } else {
+        label.classList.remove('text-rose-400', 'font-bold');
+      }
+    }
+
+    function clearText() {
+      document.getElementById('textInput').value = '';
+      updateCharCount();
+    }
+
+    function setSample(lang) {
+      if (lang === 'ur') {
+        document.getElementById('textInput').value = "السلام علیکم! LoveVoice Studio میں خوش آمدید۔ اب آپ اردو، ہندی، عربی، انگلش اور ہسپانوی سمیت دنیا کی تمام زبانوں میں بہترین اور قدرتی آوازیں تیار کر سکتے ہیں۔ یہ آڈیو بالکل واضح اور انسان جیسی ہے۔";
+        setLanguage('Urdu');
+        selectVoice('ur-PK-UzmaNeural');
+      } else if (lang === 'hi') {
+        document.getElementById('textInput').value = "नमस्ते! LoveVoice Studio में आपका स्वागत है। अब आप हिंदी, उर्दू, अंग्रेजी और दुनिया भर की भाषाओं में स्वाभाविक आवाज़ें आसानी से उत्पन्न कर सकते हैं।";
+        setLanguage('Hindi');
+        selectVoice('hi-IN-SwaraNeural');
+      } else if (lang === 'ar') {
+        document.getElementById('textInput').value = "مرحباً بكم في استوديو LoveVoice! يمكنك الآن إنشاء تعليقات صوتية طبيعية واحترافية باللغة العربية وأكثر من 70 لغة حول العالم.";
+        setLanguage('Arabic');
+        selectVoice('ar-SA-ZariyahNeural');
+      } else if (lang === 'es') {
+        document.getElementById('textInput').value = "¡Bienvenido a LoveVoice Studio! Ahora puedes generar locuciones humanas y expresivas en español con calidad de estudio en segundos.";
+        setLanguage('Spanish');
+        selectVoice('es-ES-ElviraNeural');
+      } else {
+        document.getElementById('textInput').value = "Welcome to LoveVoice Studio! You can now generate natural neural voiceovers across 322+ voices in over 76 languages with studio-grade clarity.";
+        setLanguage('English');
+        selectVoice('en-US-JennyNeural');
+      }
+      updateCharCount();
+    }
+
+    async function generateVoice() {
+      const text = document.getElementById('textInput').value.trim();
+      if (!text) {
+        alert('Please enter some text in the box above.');
+        return;
+      }
+      if (text.length > 30000) {
+        alert('Text exceeds 30,000 characters limit. Please shorten it slightly.');
+        return;
+      }
+      if (isGenerating) return;
+
+      const rate = `${document.getElementById('rateSlider').value >= 0 ? '+' : ''}${document.getElementById('rateSlider').value}%`;
+      const pitch = `${document.getElementById('pitchSlider').value >= 0 ? '+' : ''}${document.getElementById('pitchSlider').value}Hz`;
+      const volume = `${document.getElementById('volumeSlider').value >= 0 ? '+' : ''}${document.getElementById('volumeSlider').value}%`;
+
+      const btn = document.getElementById('generateBtn');
+      const btnText = document.getElementById('generateBtnText');
+      isGenerating = true;
+      btn.disabled = true;
+      let secondsPassed = 0;
+      const timerInterval = setInterval(() => {
+        secondsPassed++;
+        btnText.innerText = currentEngine === 'kokoro' 
+          ? `⏳ Synthesizing Ultra Audio (${secondsPassed}s · Local CPU)...` 
+          : `⏳ Generating Speech (${secondsPassed}s)...`;
+      }, 1000);
+      btnText.innerText = currentEngine === 'kokoro' ? '⏳ Synthesizing Ultra Audio (Local CPU)...' : '⏳ Generating Speech...';
+
+      try {
+        const response = await fetch('/api/generate', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            text: text,
+            voice: selectedVoiceId,
+            engine: currentEngine,
+            rate: rate,
+            pitch: pitch,
+            volume: volume
+          })
+        });
+
+        if (!response.ok) {
+          const errData = await response.json();
+          throw new Error(errData.detail || 'Generation failed.');
+        }
+
+        const data = await response.json();
+        playInMainPlayer(data);
+        loadHistory();
+      } catch (err) {
+        alert('Generation failed: ' + err.message);
+      } finally {
+        clearInterval(timerInterval);
+        isGenerating = false;
+        btn.disabled = false;
+        btnText.innerText = currentEngine === 'kokoro' ? 'Generate ElevenLabs Quality Audio' : 'Generate Speech';
+      }
+    }
+
+    function playInMainPlayer(item) {
+      document.getElementById('playerAvatar').innerText = item.voice_gender === 'Female' ? '👩' : '👨';
+      document.getElementById('playerVoiceName').innerText = item.voice_name;
+      document.getElementById('playerFlag').innerText = item.voice_flag;
+      document.getElementById('playerCountry').innerText = `(${item.voice_country})`;
+      const engineLabel = item.engine === 'kokoro' ? '🌟 Kokoro Ultra' : '⚡ LoveVoice Global';
+      document.getElementById('playerMeta').innerText = `${engineLabel} · ${item.size_kb} KB · Generated in ${item.generation_time}s`;
+      
+      const dlBtn = document.getElementById('downloadBtn');
+      dlBtn.classList.remove('hidden');
+      dlBtn.href = item.url;
+      dlBtn.download = `lovevoice_${item.voice_name}_${item.id}.mp3`;
+
+      const audio = document.getElementById('audioElement');
+      audio.src = item.url + '?t=' + Date.now();
+      audio.load();
+      audio.play().catch(err => {
+        console.log('Autoplay deferred or user interaction needed:', err);
+      });
+    }
+
+    async function loadHistory() {
+      try {
+        const res = await fetch('/api/history');
+        const history = await res.json();
+        const badge = document.getElementById('historyBadge');
+        if (history.length > 0) {
+          badge.innerText = history.length;
+          badge.classList.remove('hidden');
+        } else {
+          badge.classList.add('hidden');
+        }
+
+        const container = document.getElementById('historyListContainer');
+        if (history.length === 0) {
+          container.innerHTML = `<div class="text-center py-10 text-slate-500 text-sm">No audio generated yet.</div>`;
+          return;
+        }
+
+        container.innerHTML = history.map(h => {
+          const engineTag = h.engine === 'kokoro'
+            ? '<span class="text-[9px] uppercase px-1 rounded bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30">Kokoro</span>'
+            : '<span class="text-[9px] uppercase px-1 rounded bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">Global HD</span>';
+
+          return `
+            <div class="p-3 rounded-xl border border-dark-700 bg-dark-850 hover:border-dark-600 transition flex flex-col space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-white flex items-center gap-1.5">${h.voice_flag} ${h.voice_name} ${engineTag}</span>
+                <span class="text-slate-500 font-mono text-[10px]">${h.created_at}</span>
+              </div>
+              <p class="text-xs text-slate-300 line-clamp-2 italic">"${h.text}"</p>
+              <div class="flex items-center justify-between pt-1 border-t border-dark-750">
+                <span class="text-[10px] text-slate-400 font-mono">${h.size_kb} KB (${h.generation_time}s)</span>
+                <div class="flex items-center space-x-1.5">
+                  <button onclick="playHistoryAudio('${h.url}', '${h.voice_name}', '${h.voice_flag}', '${h.voice_gender}')" class="px-2 py-1 rounded bg-brand-600 hover:bg-brand-500 text-white text-[11px] font-semibold" title="Play">
+                    ▶ Play
+                  </button>
+                  <a href="${h.url}" download="${h.filename}" class="px-2 py-1 rounded bg-dark-700 hover:bg-emerald-600 text-slate-300 hover:text-white text-[11px]" title="Download">
+                    ⬇ MP3
+                  </a>
+                  <button onclick="deleteHistoryItem('${h.id}')" class="px-2 py-1 rounded bg-dark-700 hover:bg-rose-600 text-slate-400 hover:text-white text-[11px]" title="Delete">
+                    ✕
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        console.error('History load failed:', err);
+      }
+    }
+
+    function playHistoryAudio(url, name, flag, gender) {
+      document.getElementById('playerAvatar').innerText = gender === 'Female' ? '👩' : '👨';
+      document.getElementById('playerVoiceName').innerText = name;
+      document.getElementById('playerFlag').innerText = flag;
+      document.getElementById('playerMeta').innerText = `Replaying from history`;
+
+      const dlBtn = document.getElementById('downloadBtn');
+      dlBtn.classList.remove('hidden');
+      dlBtn.href = url;
+      dlBtn.download = `${name}_audio.mp3`;
+
+      const audio = document.getElementById('audioElement');
+      audio.src = url;
+      audio.load();
+      audio.play().catch(e => console.log(e));
+      toggleHistoryDrawer();
+    }
+
+    async function deleteHistoryItem(id) {
+      await fetch(`/api/history/${id}`, { method: 'DELETE' });
+      loadHistory();
+    }
+
+    function toggleHistoryDrawer() {
+      const modal = document.getElementById('historyModal');
+      modal.classList.toggle('hidden');
+    }
+  </script>
+</body>
+</html>

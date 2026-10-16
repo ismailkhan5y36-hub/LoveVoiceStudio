@@ -1,0 +1,3222 @@
+[
+  {
+    "id": "ar-SA-HamedNeural",
+    "name": "Hamed",
+    "gender": "Male",
+    "locale": "ar-SA",
+    "country": "Saudi Arabia",
+    "flag": "🇸🇦",
+    "language": "Arabic",
+    "featured": true
+  },
+  {
+    "id": "ar-SA-ZariyahNeural",
+    "name": "Zariyah",
+    "gender": "Female",
+    "locale": "ar-SA",
+    "country": "Saudi Arabia",
+    "flag": "🇸🇦",
+    "language": "Arabic",
+    "featured": true
+  },
+  {
+    "id": "en-US-AriaNeural",
+    "name": "Aria",
+    "gender": "Female",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": true
+  },
+  {
+    "id": "en-US-GuyNeural",
+    "name": "Guy",
+    "gender": "Male",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": true
+  },
+  {
+    "id": "en-US-JennyNeural",
+    "name": "Jenny",
+    "gender": "Female",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": true
+  },
+  {
+    "id": "hi-IN-MadhurNeural",
+    "name": "Madhur",
+    "gender": "Male",
+    "locale": "hi-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Hindi",
+    "featured": true
+  },
+  {
+    "id": "hi-IN-SwaraNeural",
+    "name": "Swara",
+    "gender": "Female",
+    "locale": "hi-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Hindi",
+    "featured": true
+  },
+  {
+    "id": "es-MX-DaliaNeural",
+    "name": "Dalia",
+    "gender": "Female",
+    "locale": "es-MX",
+    "country": "Mexico",
+    "flag": "🇲🇽",
+    "language": "Spanish",
+    "featured": true
+  },
+  {
+    "id": "es-MX-JorgeNeural",
+    "name": "Jorge",
+    "gender": "Male",
+    "locale": "es-MX",
+    "country": "Mexico",
+    "flag": "🇲🇽",
+    "language": "Spanish",
+    "featured": true
+  },
+  {
+    "id": "es-ES-AlvaroNeural",
+    "name": "Alvaro",
+    "gender": "Male",
+    "locale": "es-ES",
+    "country": "Spain",
+    "flag": "🇪🇸",
+    "language": "Spanish",
+    "featured": true
+  },
+  {
+    "id": "es-ES-ElviraNeural",
+    "name": "Elvira",
+    "gender": "Female",
+    "locale": "es-ES",
+    "country": "Spain",
+    "flag": "🇪🇸",
+    "language": "Spanish",
+    "featured": true
+  },
+  {
+    "id": "ur-PK-AsadNeural",
+    "name": "Asad",
+    "gender": "Male",
+    "locale": "ur-PK",
+    "country": "Pakistan",
+    "flag": "🇵🇰",
+    "language": "Urdu",
+    "featured": true
+  },
+  {
+    "id": "ur-PK-UzmaNeural",
+    "name": "Uzma",
+    "gender": "Female",
+    "locale": "ur-PK",
+    "country": "Pakistan",
+    "flag": "🇵🇰",
+    "language": "Urdu",
+    "featured": true
+  },
+  {
+    "id": "af-ZA-AdriNeural",
+    "name": "Adri",
+    "gender": "Female",
+    "locale": "af-ZA",
+    "country": "South Africa",
+    "flag": "🇿🇦",
+    "language": "Afrikaans",
+    "featured": false
+  },
+  {
+    "id": "af-ZA-WillemNeural",
+    "name": "Willem",
+    "gender": "Male",
+    "locale": "af-ZA",
+    "country": "South Africa",
+    "flag": "🇿🇦",
+    "language": "Afrikaans",
+    "featured": false
+  },
+  {
+    "id": "sq-AL-AnilaNeural",
+    "name": "Anila",
+    "gender": "Female",
+    "locale": "sq-AL",
+    "country": "Albania",
+    "flag": "🇦🇱",
+    "language": "Albanian",
+    "featured": false
+  },
+  {
+    "id": "sq-AL-IlirNeural",
+    "name": "Ilir",
+    "gender": "Male",
+    "locale": "sq-AL",
+    "country": "Albania",
+    "flag": "🇦🇱",
+    "language": "Albanian",
+    "featured": false
+  },
+  {
+    "id": "am-ET-AmehaNeural",
+    "name": "Ameha",
+    "gender": "Male",
+    "locale": "am-ET",
+    "country": "Ethiopia",
+    "flag": "🇪🇹",
+    "language": "Amharic",
+    "featured": false
+  },
+  {
+    "id": "am-ET-MekdesNeural",
+    "name": "Mekdes",
+    "gender": "Female",
+    "locale": "am-ET",
+    "country": "Ethiopia",
+    "flag": "🇪🇹",
+    "language": "Amharic",
+    "featured": false
+  },
+  {
+    "id": "ar-DZ-AminaNeural",
+    "name": "Amina",
+    "gender": "Female",
+    "locale": "ar-DZ",
+    "country": "Algeria",
+    "flag": "🇩🇿",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-DZ-IsmaelNeural",
+    "name": "Ismael",
+    "gender": "Male",
+    "locale": "ar-DZ",
+    "country": "Algeria",
+    "flag": "🇩🇿",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-BH-AliNeural",
+    "name": "Ali",
+    "gender": "Male",
+    "locale": "ar-BH",
+    "country": "Bahrain",
+    "flag": "🇧🇭",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-BH-LailaNeural",
+    "name": "Laila",
+    "gender": "Female",
+    "locale": "ar-BH",
+    "country": "Bahrain",
+    "flag": "🇧🇭",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-EG-SalmaNeural",
+    "name": "Salma",
+    "gender": "Female",
+    "locale": "ar-EG",
+    "country": "Egypt",
+    "flag": "🇪🇬",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-EG-ShakirNeural",
+    "name": "Shakir",
+    "gender": "Male",
+    "locale": "ar-EG",
+    "country": "Egypt",
+    "flag": "🇪🇬",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-IQ-BasselNeural",
+    "name": "Bassel",
+    "gender": "Male",
+    "locale": "ar-IQ",
+    "country": "Iraq",
+    "flag": "🇮🇶",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-IQ-RanaNeural",
+    "name": "Rana",
+    "gender": "Female",
+    "locale": "ar-IQ",
+    "country": "Iraq",
+    "flag": "🇮🇶",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-JO-SanaNeural",
+    "name": "Sana",
+    "gender": "Female",
+    "locale": "ar-JO",
+    "country": "Jordan",
+    "flag": "🇯🇴",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-JO-TaimNeural",
+    "name": "Taim",
+    "gender": "Male",
+    "locale": "ar-JO",
+    "country": "Jordan",
+    "flag": "🇯🇴",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-KW-FahedNeural",
+    "name": "Fahed",
+    "gender": "Male",
+    "locale": "ar-KW",
+    "country": "Kuwait",
+    "flag": "🇰🇼",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-KW-NouraNeural",
+    "name": "Noura",
+    "gender": "Female",
+    "locale": "ar-KW",
+    "country": "Kuwait",
+    "flag": "🇰🇼",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-LB-LaylaNeural",
+    "name": "Layla",
+    "gender": "Female",
+    "locale": "ar-LB",
+    "country": "Lebanon",
+    "flag": "🇱🇧",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-LB-RamiNeural",
+    "name": "Rami",
+    "gender": "Male",
+    "locale": "ar-LB",
+    "country": "Lebanon",
+    "flag": "🇱🇧",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-LY-ImanNeural",
+    "name": "Iman",
+    "gender": "Female",
+    "locale": "ar-LY",
+    "country": "Libya",
+    "flag": "🇱🇾",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-LY-OmarNeural",
+    "name": "Omar",
+    "gender": "Male",
+    "locale": "ar-LY",
+    "country": "Libya",
+    "flag": "🇱🇾",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-MA-JamalNeural",
+    "name": "Jamal",
+    "gender": "Male",
+    "locale": "ar-MA",
+    "country": "Morocco",
+    "flag": "🇲🇦",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-MA-MounaNeural",
+    "name": "Mouna",
+    "gender": "Female",
+    "locale": "ar-MA",
+    "country": "Morocco",
+    "flag": "🇲🇦",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-OM-AbdullahNeural",
+    "name": "Abdullah",
+    "gender": "Male",
+    "locale": "ar-OM",
+    "country": "Oman",
+    "flag": "🇴🇲",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-OM-AyshaNeural",
+    "name": "Aysha",
+    "gender": "Female",
+    "locale": "ar-OM",
+    "country": "Oman",
+    "flag": "🇴🇲",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-QA-AmalNeural",
+    "name": "Amal",
+    "gender": "Female",
+    "locale": "ar-QA",
+    "country": "Qatar",
+    "flag": "🇶🇦",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-QA-MoazNeural",
+    "name": "Moaz",
+    "gender": "Male",
+    "locale": "ar-QA",
+    "country": "Qatar",
+    "flag": "🇶🇦",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-SY-AmanyNeural",
+    "name": "Amany",
+    "gender": "Female",
+    "locale": "ar-SY",
+    "country": "Syria",
+    "flag": "🇸🇾",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-SY-LaithNeural",
+    "name": "Laith",
+    "gender": "Male",
+    "locale": "ar-SY",
+    "country": "Syria",
+    "flag": "🇸🇾",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-TN-HediNeural",
+    "name": "Hedi",
+    "gender": "Male",
+    "locale": "ar-TN",
+    "country": "Tunisia",
+    "flag": "🇹🇳",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-TN-ReemNeural",
+    "name": "Reem",
+    "gender": "Female",
+    "locale": "ar-TN",
+    "country": "Tunisia",
+    "flag": "🇹🇳",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-AE-FatimaNeural",
+    "name": "Fatima",
+    "gender": "Female",
+    "locale": "ar-AE",
+    "country": "United Arab Emirates",
+    "flag": "🇦🇪",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-AE-HamdanNeural",
+    "name": "Hamdan",
+    "gender": "Male",
+    "locale": "ar-AE",
+    "country": "United Arab Emirates",
+    "flag": "🇦🇪",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-YE-MaryamNeural",
+    "name": "Maryam",
+    "gender": "Female",
+    "locale": "ar-YE",
+    "country": "Yemen",
+    "flag": "🇾🇪",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "ar-YE-SalehNeural",
+    "name": "Saleh",
+    "gender": "Male",
+    "locale": "ar-YE",
+    "country": "Yemen",
+    "flag": "🇾🇪",
+    "language": "Arabic",
+    "featured": false
+  },
+  {
+    "id": "az-AZ-BabekNeural",
+    "name": "Babek",
+    "gender": "Male",
+    "locale": "az-AZ",
+    "country": "Latin, Azerbaijan",
+    "flag": "🇦🇿",
+    "language": "Azerbaijani",
+    "featured": false
+  },
+  {
+    "id": "az-AZ-BanuNeural",
+    "name": "Banu",
+    "gender": "Female",
+    "locale": "az-AZ",
+    "country": "Latin, Azerbaijan",
+    "flag": "🇦🇿",
+    "language": "Azerbaijani",
+    "featured": false
+  },
+  {
+    "id": "bn-BD-NabanitaNeural",
+    "name": "Nabanita",
+    "gender": "Female",
+    "locale": "bn-BD",
+    "country": "Bangladesh",
+    "flag": "🇧🇩",
+    "language": "Bangla",
+    "featured": false
+  },
+  {
+    "id": "bn-BD-PradeepNeural",
+    "name": "Pradeep",
+    "gender": "Male",
+    "locale": "bn-BD",
+    "country": "Bangladesh",
+    "flag": "🇧🇩",
+    "language": "Bangla",
+    "featured": false
+  },
+  {
+    "id": "bn-IN-BashkarNeural",
+    "name": "Bashkar",
+    "gender": "Male",
+    "locale": "bn-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Bengali",
+    "featured": false
+  },
+  {
+    "id": "bn-IN-TanishaaNeural",
+    "name": "Tanishaa",
+    "gender": "Female",
+    "locale": "bn-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Bengali",
+    "featured": false
+  },
+  {
+    "id": "bs-BA-GoranNeural",
+    "name": "Goran",
+    "gender": "Male",
+    "locale": "bs-BA",
+    "country": "Bosnia and Herzegovina",
+    "flag": "🇧🇦",
+    "language": "Bosnian",
+    "featured": false
+  },
+  {
+    "id": "bs-BA-VesnaNeural",
+    "name": "Vesna",
+    "gender": "Female",
+    "locale": "bs-BA",
+    "country": "Bosnia and Herzegovina",
+    "flag": "🇧🇦",
+    "language": "Bosnian",
+    "featured": false
+  },
+  {
+    "id": "bg-BG-BorislavNeural",
+    "name": "Borislav",
+    "gender": "Male",
+    "locale": "bg-BG",
+    "country": "Bulgaria",
+    "flag": "🇧🇬",
+    "language": "Bulgarian",
+    "featured": false
+  },
+  {
+    "id": "bg-BG-KalinaNeural",
+    "name": "Kalina",
+    "gender": "Female",
+    "locale": "bg-BG",
+    "country": "Bulgaria",
+    "flag": "🇧🇬",
+    "language": "Bulgarian",
+    "featured": false
+  },
+  {
+    "id": "my-MM-NilarNeural",
+    "name": "Nilar",
+    "gender": "Female",
+    "locale": "my-MM",
+    "country": "Myanmar",
+    "flag": "🇲🇲",
+    "language": "Burmese",
+    "featured": false
+  },
+  {
+    "id": "my-MM-ThihaNeural",
+    "name": "Thiha",
+    "gender": "Male",
+    "locale": "my-MM",
+    "country": "Myanmar",
+    "flag": "🇲🇲",
+    "language": "Burmese",
+    "featured": false
+  },
+  {
+    "id": "ca-ES-EnricNeural",
+    "name": "Enric",
+    "gender": "Male",
+    "locale": "ca-ES",
+    "country": "ca-ES",
+    "flag": "🇪🇸",
+    "language": "Catalan",
+    "featured": false
+  },
+  {
+    "id": "ca-ES-JoanaNeural",
+    "name": "Joana",
+    "gender": "Female",
+    "locale": "ca-ES",
+    "country": "ca-ES",
+    "flag": "🇪🇸",
+    "language": "Catalan",
+    "featured": false
+  },
+  {
+    "id": "zh-HK-HiuGaaiNeural",
+    "name": "HiuGaai",
+    "gender": "Female",
+    "locale": "zh-HK",
+    "country": "Cantonese, Traditional",
+    "flag": "🇭🇰",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "zh-HK-HiuMaanNeural",
+    "name": "HiuMaan",
+    "gender": "Female",
+    "locale": "zh-HK",
+    "country": "Cantonese, Traditional",
+    "flag": "🇭🇰",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "zh-HK-WanLungNeural",
+    "name": "WanLung",
+    "gender": "Male",
+    "locale": "zh-HK",
+    "country": "Cantonese, Traditional",
+    "flag": "🇭🇰",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "zh-CN-XiaoxiaoNeural",
+    "name": "Xiaoxiao",
+    "gender": "Female",
+    "locale": "zh-CN",
+    "country": "Mandarin, Simplified",
+    "flag": "🇨🇳",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "zh-CN-XiaoyiNeural",
+    "name": "Xiaoyi",
+    "gender": "Female",
+    "locale": "zh-CN",
+    "country": "Mandarin, Simplified",
+    "flag": "🇨🇳",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "zh-CN-YunjianNeural",
+    "name": "Yunjian",
+    "gender": "Male",
+    "locale": "zh-CN",
+    "country": "Mandarin, Simplified",
+    "flag": "🇨🇳",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "zh-CN-YunxiNeural",
+    "name": "Yunxi",
+    "gender": "Male",
+    "locale": "zh-CN",
+    "country": "Mandarin, Simplified",
+    "flag": "🇨🇳",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "zh-CN-YunxiaNeural",
+    "name": "Yunxia",
+    "gender": "Male",
+    "locale": "zh-CN",
+    "country": "Mandarin, Simplified",
+    "flag": "🇨🇳",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "zh-CN-YunyangNeural",
+    "name": "Yunyang",
+    "gender": "Male",
+    "locale": "zh-CN",
+    "country": "Mandarin, Simplified",
+    "flag": "🇨🇳",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "zh-CN-liaoning-XiaobeiNeural",
+    "name": "Xiaobei",
+    "gender": "Female",
+    "locale": "zh-CN-liaoning",
+    "country": "Northeastern Mandarin, Simplified",
+    "flag": "🌐",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "zh-TW-HsiaoChenNeural",
+    "name": "HsiaoChen",
+    "gender": "Female",
+    "locale": "zh-TW",
+    "country": "Taiwanese Mandarin, Traditional",
+    "flag": "🇹🇼",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "zh-TW-HsiaoYuNeural",
+    "name": "HsiaoYu",
+    "gender": "Female",
+    "locale": "zh-TW",
+    "country": "Taiwanese Mandarin, Traditional",
+    "flag": "🇹🇼",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "zh-TW-YunJheNeural",
+    "name": "YunJhe",
+    "gender": "Male",
+    "locale": "zh-TW",
+    "country": "Taiwanese Mandarin, Traditional",
+    "flag": "🇹🇼",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "zh-CN-shaanxi-XiaoniNeural",
+    "name": "Xiaoni",
+    "gender": "Female",
+    "locale": "zh-CN-shaanxi",
+    "country": "Zhongyuan Mandarin Shaanxi, Simplified",
+    "flag": "🌐",
+    "language": "Chinese",
+    "featured": false
+  },
+  {
+    "id": "hr-HR-GabrijelaNeural",
+    "name": "Gabrijela",
+    "gender": "Female",
+    "locale": "hr-HR",
+    "country": "Croatia",
+    "flag": "🇭🇷",
+    "language": "Croatian",
+    "featured": false
+  },
+  {
+    "id": "hr-HR-SreckoNeural",
+    "name": "Srecko",
+    "gender": "Male",
+    "locale": "hr-HR",
+    "country": "Croatia",
+    "flag": "🇭🇷",
+    "language": "Croatian",
+    "featured": false
+  },
+  {
+    "id": "cs-CZ-AntoninNeural",
+    "name": "Antonin",
+    "gender": "Male",
+    "locale": "cs-CZ",
+    "country": "Czechia",
+    "flag": "🇨🇿",
+    "language": "Czech",
+    "featured": false
+  },
+  {
+    "id": "cs-CZ-VlastaNeural",
+    "name": "Vlasta",
+    "gender": "Female",
+    "locale": "cs-CZ",
+    "country": "Czechia",
+    "flag": "🇨🇿",
+    "language": "Czech",
+    "featured": false
+  },
+  {
+    "id": "da-DK-ChristelNeural",
+    "name": "Christel",
+    "gender": "Female",
+    "locale": "da-DK",
+    "country": "Denmark",
+    "flag": "🇩🇰",
+    "language": "Danish",
+    "featured": false
+  },
+  {
+    "id": "da-DK-JeppeNeural",
+    "name": "Jeppe",
+    "gender": "Male",
+    "locale": "da-DK",
+    "country": "Denmark",
+    "flag": "🇩🇰",
+    "language": "Danish",
+    "featured": false
+  },
+  {
+    "id": "nl-BE-ArnaudNeural",
+    "name": "Arnaud",
+    "gender": "Male",
+    "locale": "nl-BE",
+    "country": "Belgium",
+    "flag": "🇧🇪",
+    "language": "Dutch",
+    "featured": false
+  },
+  {
+    "id": "nl-BE-DenaNeural",
+    "name": "Dena",
+    "gender": "Female",
+    "locale": "nl-BE",
+    "country": "Belgium",
+    "flag": "🇧🇪",
+    "language": "Dutch",
+    "featured": false
+  },
+  {
+    "id": "nl-NL-ColetteNeural",
+    "name": "Colette",
+    "gender": "Female",
+    "locale": "nl-NL",
+    "country": "Netherlands",
+    "flag": "🇳🇱",
+    "language": "Dutch",
+    "featured": false
+  },
+  {
+    "id": "nl-NL-FennaNeural",
+    "name": "Fenna",
+    "gender": "Female",
+    "locale": "nl-NL",
+    "country": "Netherlands",
+    "flag": "🇳🇱",
+    "language": "Dutch",
+    "featured": false
+  },
+  {
+    "id": "nl-NL-MaartenNeural",
+    "name": "Maarten",
+    "gender": "Male",
+    "locale": "nl-NL",
+    "country": "Netherlands",
+    "flag": "🇳🇱",
+    "language": "Dutch",
+    "featured": false
+  },
+  {
+    "id": "en-AU-NatashaNeural",
+    "name": "Natasha",
+    "gender": "Female",
+    "locale": "en-AU",
+    "country": "Australia",
+    "flag": "🇦🇺",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-AU-WilliamMultilingualNeural",
+    "name": "WilliamMultilingual",
+    "gender": "Male",
+    "locale": "en-AU",
+    "country": "Australia",
+    "flag": "🇦🇺",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-CA-ClaraNeural",
+    "name": "Clara",
+    "gender": "Female",
+    "locale": "en-CA",
+    "country": "Canada",
+    "flag": "🇨🇦",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-CA-LiamNeural",
+    "name": "Liam",
+    "gender": "Male",
+    "locale": "en-CA",
+    "country": "Canada",
+    "flag": "🇨🇦",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-HK-SamNeural",
+    "name": "Sam",
+    "gender": "Male",
+    "locale": "en-HK",
+    "country": "Hong Kong SAR",
+    "flag": "🇭🇰",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-HK-YanNeural",
+    "name": "Yan",
+    "gender": "Female",
+    "locale": "en-HK",
+    "country": "Hong Kong SAR",
+    "flag": "🇭🇰",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-IN-NeerjaNeural",
+    "name": "Neerja",
+    "gender": "Female",
+    "locale": "en-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-IN-NeerjaExpressiveNeural",
+    "name": "NeerjaExpressive",
+    "gender": "Female",
+    "locale": "en-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-IN-PrabhatNeural",
+    "name": "Prabhat",
+    "gender": "Male",
+    "locale": "en-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-IE-ConnorNeural",
+    "name": "Connor",
+    "gender": "Male",
+    "locale": "en-IE",
+    "country": "Ireland",
+    "flag": "🇮🇪",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-IE-EmilyNeural",
+    "name": "Emily",
+    "gender": "Female",
+    "locale": "en-IE",
+    "country": "Ireland",
+    "flag": "🇮🇪",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-KE-AsiliaNeural",
+    "name": "Asilia",
+    "gender": "Female",
+    "locale": "en-KE",
+    "country": "Kenya",
+    "flag": "🇰🇪",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-KE-ChilembaNeural",
+    "name": "Chilemba",
+    "gender": "Male",
+    "locale": "en-KE",
+    "country": "Kenya",
+    "flag": "🇰🇪",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-NZ-MitchellNeural",
+    "name": "Mitchell",
+    "gender": "Male",
+    "locale": "en-NZ",
+    "country": "New Zealand",
+    "flag": "🇳🇿",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-NZ-MollyNeural",
+    "name": "Molly",
+    "gender": "Female",
+    "locale": "en-NZ",
+    "country": "New Zealand",
+    "flag": "🇳🇿",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-NG-AbeoNeural",
+    "name": "Abeo",
+    "gender": "Male",
+    "locale": "en-NG",
+    "country": "Nigeria",
+    "flag": "🇳🇬",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-NG-EzinneNeural",
+    "name": "Ezinne",
+    "gender": "Female",
+    "locale": "en-NG",
+    "country": "Nigeria",
+    "flag": "🇳🇬",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-PH-JamesNeural",
+    "name": "James",
+    "gender": "Male",
+    "locale": "en-PH",
+    "country": "Philippines",
+    "flag": "🇵🇭",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-PH-RosaNeural",
+    "name": "Rosa",
+    "gender": "Female",
+    "locale": "en-PH",
+    "country": "Philippines",
+    "flag": "🇵🇭",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-SG-LunaNeural",
+    "name": "Luna",
+    "gender": "Female",
+    "locale": "en-SG",
+    "country": "Singapore",
+    "flag": "🇸🇬",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-SG-WayneNeural",
+    "name": "Wayne",
+    "gender": "Male",
+    "locale": "en-SG",
+    "country": "Singapore",
+    "flag": "🇸🇬",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-ZA-LeahNeural",
+    "name": "Leah",
+    "gender": "Female",
+    "locale": "en-ZA",
+    "country": "South Africa",
+    "flag": "🇿🇦",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-ZA-LukeNeural",
+    "name": "Luke",
+    "gender": "Male",
+    "locale": "en-ZA",
+    "country": "South Africa",
+    "flag": "🇿🇦",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-TZ-ElimuNeural",
+    "name": "Elimu",
+    "gender": "Male",
+    "locale": "en-TZ",
+    "country": "Tanzania",
+    "flag": "🇹🇿",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-TZ-ImaniNeural",
+    "name": "Imani",
+    "gender": "Female",
+    "locale": "en-TZ",
+    "country": "Tanzania",
+    "flag": "🇹🇿",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-GB-LibbyNeural",
+    "name": "Libby",
+    "gender": "Female",
+    "locale": "en-GB",
+    "country": "United Kingdom",
+    "flag": "🇬🇧",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-GB-MaisieNeural",
+    "name": "Maisie",
+    "gender": "Female",
+    "locale": "en-GB",
+    "country": "United Kingdom",
+    "flag": "🇬🇧",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-GB-RyanNeural",
+    "name": "Ryan",
+    "gender": "Male",
+    "locale": "en-GB",
+    "country": "United Kingdom",
+    "flag": "🇬🇧",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-GB-SoniaNeural",
+    "name": "Sonia",
+    "gender": "Female",
+    "locale": "en-GB",
+    "country": "United Kingdom",
+    "flag": "🇬🇧",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-GB-ThomasNeural",
+    "name": "Thomas",
+    "gender": "Male",
+    "locale": "en-GB",
+    "country": "United Kingdom",
+    "flag": "🇬🇧",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-AnaNeural",
+    "name": "Ana",
+    "gender": "Female",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-AndrewNeural",
+    "name": "Andrew",
+    "gender": "Male",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-AndrewMultilingualNeural",
+    "name": "AndrewMultilingual",
+    "gender": "Male",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-AvaNeural",
+    "name": "Ava",
+    "gender": "Female",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-AvaMultilingualNeural",
+    "name": "AvaMultilingual",
+    "gender": "Female",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-BrianNeural",
+    "name": "Brian",
+    "gender": "Male",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-BrianMultilingualNeural",
+    "name": "BrianMultilingual",
+    "gender": "Male",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-ChristopherNeural",
+    "name": "Christopher",
+    "gender": "Male",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-EmmaNeural",
+    "name": "Emma",
+    "gender": "Female",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-EmmaMultilingualNeural",
+    "name": "EmmaMultilingual",
+    "gender": "Female",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-EricNeural",
+    "name": "Eric",
+    "gender": "Male",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-MichelleNeural",
+    "name": "Michelle",
+    "gender": "Female",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-RogerNeural",
+    "name": "Roger",
+    "gender": "Male",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "en-US-SteffanNeural",
+    "name": "Steffan",
+    "gender": "Male",
+    "locale": "en-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "English",
+    "featured": false
+  },
+  {
+    "id": "et-EE-AnuNeural",
+    "name": "Anu",
+    "gender": "Female",
+    "locale": "et-EE",
+    "country": "Estonia",
+    "flag": "🇪🇪",
+    "language": "Estonian",
+    "featured": false
+  },
+  {
+    "id": "et-EE-KertNeural",
+    "name": "Kert",
+    "gender": "Male",
+    "locale": "et-EE",
+    "country": "Estonia",
+    "flag": "🇪🇪",
+    "language": "Estonian",
+    "featured": false
+  },
+  {
+    "id": "fil-PH-AngeloNeural",
+    "name": "Angelo",
+    "gender": "Male",
+    "locale": "fil-PH",
+    "country": "Philippines",
+    "flag": "🇵🇭",
+    "language": "Filipino",
+    "featured": false
+  },
+  {
+    "id": "fil-PH-BlessicaNeural",
+    "name": "Blessica",
+    "gender": "Female",
+    "locale": "fil-PH",
+    "country": "Philippines",
+    "flag": "🇵🇭",
+    "language": "Filipino",
+    "featured": false
+  },
+  {
+    "id": "fi-FI-HarriNeural",
+    "name": "Harri",
+    "gender": "Male",
+    "locale": "fi-FI",
+    "country": "Finland",
+    "flag": "🇫🇮",
+    "language": "Finnish",
+    "featured": false
+  },
+  {
+    "id": "fi-FI-NooraNeural",
+    "name": "Noora",
+    "gender": "Female",
+    "locale": "fi-FI",
+    "country": "Finland",
+    "flag": "🇫🇮",
+    "language": "Finnish",
+    "featured": false
+  },
+  {
+    "id": "fr-BE-CharlineNeural",
+    "name": "Charline",
+    "gender": "Female",
+    "locale": "fr-BE",
+    "country": "Belgium",
+    "flag": "🇧🇪",
+    "language": "French",
+    "featured": false
+  },
+  {
+    "id": "fr-BE-GerardNeural",
+    "name": "Gerard",
+    "gender": "Male",
+    "locale": "fr-BE",
+    "country": "Belgium",
+    "flag": "🇧🇪",
+    "language": "French",
+    "featured": false
+  },
+  {
+    "id": "fr-CA-AntoineNeural",
+    "name": "Antoine",
+    "gender": "Male",
+    "locale": "fr-CA",
+    "country": "Canada",
+    "flag": "🇨🇦",
+    "language": "French",
+    "featured": false
+  },
+  {
+    "id": "fr-CA-JeanNeural",
+    "name": "Jean",
+    "gender": "Male",
+    "locale": "fr-CA",
+    "country": "Canada",
+    "flag": "🇨🇦",
+    "language": "French",
+    "featured": false
+  },
+  {
+    "id": "fr-CA-SylvieNeural",
+    "name": "Sylvie",
+    "gender": "Female",
+    "locale": "fr-CA",
+    "country": "Canada",
+    "flag": "🇨🇦",
+    "language": "French",
+    "featured": false
+  },
+  {
+    "id": "fr-CA-ThierryNeural",
+    "name": "Thierry",
+    "gender": "Male",
+    "locale": "fr-CA",
+    "country": "Canada",
+    "flag": "🇨🇦",
+    "language": "French",
+    "featured": false
+  },
+  {
+    "id": "fr-FR-DeniseNeural",
+    "name": "Denise",
+    "gender": "Female",
+    "locale": "fr-FR",
+    "country": "France",
+    "flag": "🇫🇷",
+    "language": "French",
+    "featured": false
+  },
+  {
+    "id": "fr-FR-EloiseNeural",
+    "name": "Eloise",
+    "gender": "Female",
+    "locale": "fr-FR",
+    "country": "France",
+    "flag": "🇫🇷",
+    "language": "French",
+    "featured": false
+  },
+  {
+    "id": "fr-FR-HenriNeural",
+    "name": "Henri",
+    "gender": "Male",
+    "locale": "fr-FR",
+    "country": "France",
+    "flag": "🇫🇷",
+    "language": "French",
+    "featured": false
+  },
+  {
+    "id": "fr-FR-RemyMultilingualNeural",
+    "name": "RemyMultilingual",
+    "gender": "Male",
+    "locale": "fr-FR",
+    "country": "France",
+    "flag": "🇫🇷",
+    "language": "French",
+    "featured": false
+  },
+  {
+    "id": "fr-FR-VivienneMultilingualNeural",
+    "name": "VivienneMultilingual",
+    "gender": "Female",
+    "locale": "fr-FR",
+    "country": "France",
+    "flag": "🇫🇷",
+    "language": "French",
+    "featured": false
+  },
+  {
+    "id": "fr-CH-ArianeNeural",
+    "name": "Ariane",
+    "gender": "Female",
+    "locale": "fr-CH",
+    "country": "Switzerland",
+    "flag": "🇨🇭",
+    "language": "French",
+    "featured": false
+  },
+  {
+    "id": "fr-CH-FabriceNeural",
+    "name": "Fabrice",
+    "gender": "Male",
+    "locale": "fr-CH",
+    "country": "Switzerland",
+    "flag": "🇨🇭",
+    "language": "French",
+    "featured": false
+  },
+  {
+    "id": "gl-ES-RoiNeural",
+    "name": "Roi",
+    "gender": "Male",
+    "locale": "gl-ES",
+    "country": "gl-ES",
+    "flag": "🇪🇸",
+    "language": "Galician",
+    "featured": false
+  },
+  {
+    "id": "gl-ES-SabelaNeural",
+    "name": "Sabela",
+    "gender": "Female",
+    "locale": "gl-ES",
+    "country": "gl-ES",
+    "flag": "🇪🇸",
+    "language": "Galician",
+    "featured": false
+  },
+  {
+    "id": "ka-GE-EkaNeural",
+    "name": "Eka",
+    "gender": "Female",
+    "locale": "ka-GE",
+    "country": "Georgia",
+    "flag": "🇬🇪",
+    "language": "Georgian",
+    "featured": false
+  },
+  {
+    "id": "ka-GE-GiorgiNeural",
+    "name": "Giorgi",
+    "gender": "Male",
+    "locale": "ka-GE",
+    "country": "Georgia",
+    "flag": "🇬🇪",
+    "language": "Georgian",
+    "featured": false
+  },
+  {
+    "id": "de-AT-IngridNeural",
+    "name": "Ingrid",
+    "gender": "Female",
+    "locale": "de-AT",
+    "country": "Austria",
+    "flag": "🇦🇹",
+    "language": "German",
+    "featured": false
+  },
+  {
+    "id": "de-AT-JonasNeural",
+    "name": "Jonas",
+    "gender": "Male",
+    "locale": "de-AT",
+    "country": "Austria",
+    "flag": "🇦🇹",
+    "language": "German",
+    "featured": false
+  },
+  {
+    "id": "de-DE-AmalaNeural",
+    "name": "Amala",
+    "gender": "Female",
+    "locale": "de-DE",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "language": "German",
+    "featured": false
+  },
+  {
+    "id": "de-DE-ConradNeural",
+    "name": "Conrad",
+    "gender": "Male",
+    "locale": "de-DE",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "language": "German",
+    "featured": false
+  },
+  {
+    "id": "de-DE-FlorianMultilingualNeural",
+    "name": "FlorianMultilingual",
+    "gender": "Male",
+    "locale": "de-DE",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "language": "German",
+    "featured": false
+  },
+  {
+    "id": "de-DE-KatjaNeural",
+    "name": "Katja",
+    "gender": "Female",
+    "locale": "de-DE",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "language": "German",
+    "featured": false
+  },
+  {
+    "id": "de-DE-KillianNeural",
+    "name": "Killian",
+    "gender": "Male",
+    "locale": "de-DE",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "language": "German",
+    "featured": false
+  },
+  {
+    "id": "de-DE-SeraphinaMultilingualNeural",
+    "name": "SeraphinaMultilingual",
+    "gender": "Female",
+    "locale": "de-DE",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "language": "German",
+    "featured": false
+  },
+  {
+    "id": "de-CH-JanNeural",
+    "name": "Jan",
+    "gender": "Male",
+    "locale": "de-CH",
+    "country": "Switzerland",
+    "flag": "🇨🇭",
+    "language": "German",
+    "featured": false
+  },
+  {
+    "id": "de-CH-LeniNeural",
+    "name": "Leni",
+    "gender": "Female",
+    "locale": "de-CH",
+    "country": "Switzerland",
+    "flag": "🇨🇭",
+    "language": "German",
+    "featured": false
+  },
+  {
+    "id": "el-GR-AthinaNeural",
+    "name": "Athina",
+    "gender": "Female",
+    "locale": "el-GR",
+    "country": "Greece",
+    "flag": "🇬🇷",
+    "language": "Greek",
+    "featured": false
+  },
+  {
+    "id": "el-GR-NestorasNeural",
+    "name": "Nestoras",
+    "gender": "Male",
+    "locale": "el-GR",
+    "country": "Greece",
+    "flag": "🇬🇷",
+    "language": "Greek",
+    "featured": false
+  },
+  {
+    "id": "gu-IN-DhwaniNeural",
+    "name": "Dhwani",
+    "gender": "Female",
+    "locale": "gu-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Gujarati",
+    "featured": false
+  },
+  {
+    "id": "gu-IN-NiranjanNeural",
+    "name": "Niranjan",
+    "gender": "Male",
+    "locale": "gu-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Gujarati",
+    "featured": false
+  },
+  {
+    "id": "he-IL-AvriNeural",
+    "name": "Avri",
+    "gender": "Male",
+    "locale": "he-IL",
+    "country": "Israel",
+    "flag": "🇮🇱",
+    "language": "Hebrew",
+    "featured": false
+  },
+  {
+    "id": "he-IL-HilaNeural",
+    "name": "Hila",
+    "gender": "Female",
+    "locale": "he-IL",
+    "country": "Israel",
+    "flag": "🇮🇱",
+    "language": "Hebrew",
+    "featured": false
+  },
+  {
+    "id": "hu-HU-NoemiNeural",
+    "name": "Noemi",
+    "gender": "Female",
+    "locale": "hu-HU",
+    "country": "Hungary",
+    "flag": "🇭🇺",
+    "language": "Hungarian",
+    "featured": false
+  },
+  {
+    "id": "hu-HU-TamasNeural",
+    "name": "Tamas",
+    "gender": "Male",
+    "locale": "hu-HU",
+    "country": "Hungary",
+    "flag": "🇭🇺",
+    "language": "Hungarian",
+    "featured": false
+  },
+  {
+    "id": "is-IS-GudrunNeural",
+    "name": "Gudrun",
+    "gender": "Female",
+    "locale": "is-IS",
+    "country": "Iceland",
+    "flag": "🇮🇸",
+    "language": "Icelandic",
+    "featured": false
+  },
+  {
+    "id": "is-IS-GunnarNeural",
+    "name": "Gunnar",
+    "gender": "Male",
+    "locale": "is-IS",
+    "country": "Iceland",
+    "flag": "🇮🇸",
+    "language": "Icelandic",
+    "featured": false
+  },
+  {
+    "id": "id-ID-ArdiNeural",
+    "name": "Ardi",
+    "gender": "Male",
+    "locale": "id-ID",
+    "country": "Indonesia",
+    "flag": "🇮🇩",
+    "language": "Indonesian",
+    "featured": false
+  },
+  {
+    "id": "id-ID-GadisNeural",
+    "name": "Gadis",
+    "gender": "Female",
+    "locale": "id-ID",
+    "country": "Indonesia",
+    "flag": "🇮🇩",
+    "language": "Indonesian",
+    "featured": false
+  },
+  {
+    "id": "iu-Latn-CA-SiqiniqNeural",
+    "name": "Siqiniq",
+    "gender": "Female",
+    "locale": "iu-Latn-CA",
+    "country": "Latin, Canada",
+    "flag": "🇨🇦",
+    "language": "Inuktitut",
+    "featured": false
+  },
+  {
+    "id": "iu-Latn-CA-TaqqiqNeural",
+    "name": "Taqqiq",
+    "gender": "Male",
+    "locale": "iu-Latn-CA",
+    "country": "Latin, Canada",
+    "flag": "🇨🇦",
+    "language": "Inuktitut",
+    "featured": false
+  },
+  {
+    "id": "iu-Cans-CA-SiqiniqNeural",
+    "name": "Siqiniq",
+    "gender": "Female",
+    "locale": "iu-Cans-CA",
+    "country": "Syllabics, Canada",
+    "flag": "🇨🇦",
+    "language": "Inuktitut",
+    "featured": false
+  },
+  {
+    "id": "iu-Cans-CA-TaqqiqNeural",
+    "name": "Taqqiq",
+    "gender": "Male",
+    "locale": "iu-Cans-CA",
+    "country": "Syllabics, Canada",
+    "flag": "🇨🇦",
+    "language": "Inuktitut",
+    "featured": false
+  },
+  {
+    "id": "ga-IE-ColmNeural",
+    "name": "Colm",
+    "gender": "Male",
+    "locale": "ga-IE",
+    "country": "Ireland",
+    "flag": "🇮🇪",
+    "language": "Irish",
+    "featured": false
+  },
+  {
+    "id": "ga-IE-OrlaNeural",
+    "name": "Orla",
+    "gender": "Female",
+    "locale": "ga-IE",
+    "country": "Ireland",
+    "flag": "🇮🇪",
+    "language": "Irish",
+    "featured": false
+  },
+  {
+    "id": "it-IT-DiegoNeural",
+    "name": "Diego",
+    "gender": "Male",
+    "locale": "it-IT",
+    "country": "Italy",
+    "flag": "🇮🇹",
+    "language": "Italian",
+    "featured": false
+  },
+  {
+    "id": "it-IT-ElsaNeural",
+    "name": "Elsa",
+    "gender": "Female",
+    "locale": "it-IT",
+    "country": "Italy",
+    "flag": "🇮🇹",
+    "language": "Italian",
+    "featured": false
+  },
+  {
+    "id": "it-IT-GiuseppeMultilingualNeural",
+    "name": "GiuseppeMultilingual",
+    "gender": "Male",
+    "locale": "it-IT",
+    "country": "Italy",
+    "flag": "🇮🇹",
+    "language": "Italian",
+    "featured": false
+  },
+  {
+    "id": "it-IT-IsabellaNeural",
+    "name": "Isabella",
+    "gender": "Female",
+    "locale": "it-IT",
+    "country": "Italy",
+    "flag": "🇮🇹",
+    "language": "Italian",
+    "featured": false
+  },
+  {
+    "id": "ja-JP-KeitaNeural",
+    "name": "Keita",
+    "gender": "Male",
+    "locale": "ja-JP",
+    "country": "Japan",
+    "flag": "🇯🇵",
+    "language": "Japanese",
+    "featured": false
+  },
+  {
+    "id": "ja-JP-NanamiNeural",
+    "name": "Nanami",
+    "gender": "Female",
+    "locale": "ja-JP",
+    "country": "Japan",
+    "flag": "🇯🇵",
+    "language": "Japanese",
+    "featured": false
+  },
+  {
+    "id": "jv-ID-DimasNeural",
+    "name": "Dimas",
+    "gender": "Male",
+    "locale": "jv-ID",
+    "country": "Latin, Indonesia",
+    "flag": "🇮🇩",
+    "language": "Javanese",
+    "featured": false
+  },
+  {
+    "id": "jv-ID-SitiNeural",
+    "name": "Siti",
+    "gender": "Female",
+    "locale": "jv-ID",
+    "country": "Latin, Indonesia",
+    "flag": "🇮🇩",
+    "language": "Javanese",
+    "featured": false
+  },
+  {
+    "id": "kn-IN-GaganNeural",
+    "name": "Gagan",
+    "gender": "Male",
+    "locale": "kn-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Kannada",
+    "featured": false
+  },
+  {
+    "id": "kn-IN-SapnaNeural",
+    "name": "Sapna",
+    "gender": "Female",
+    "locale": "kn-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Kannada",
+    "featured": false
+  },
+  {
+    "id": "kk-KZ-AigulNeural",
+    "name": "Aigul",
+    "gender": "Female",
+    "locale": "kk-KZ",
+    "country": "Kazakhstan",
+    "flag": "🇰🇿",
+    "language": "Kazakh",
+    "featured": false
+  },
+  {
+    "id": "kk-KZ-DauletNeural",
+    "name": "Daulet",
+    "gender": "Male",
+    "locale": "kk-KZ",
+    "country": "Kazakhstan",
+    "flag": "🇰🇿",
+    "language": "Kazakh",
+    "featured": false
+  },
+  {
+    "id": "km-KH-PisethNeural",
+    "name": "Piseth",
+    "gender": "Male",
+    "locale": "km-KH",
+    "country": "Cambodia",
+    "flag": "🇰🇭",
+    "language": "Khmer",
+    "featured": false
+  },
+  {
+    "id": "km-KH-SreymomNeural",
+    "name": "Sreymom",
+    "gender": "Female",
+    "locale": "km-KH",
+    "country": "Cambodia",
+    "flag": "🇰🇭",
+    "language": "Khmer",
+    "featured": false
+  },
+  {
+    "id": "ko-KR-HyunsuMultilingualNeural",
+    "name": "HyunsuMultilingual",
+    "gender": "Male",
+    "locale": "ko-KR",
+    "country": "Korea",
+    "flag": "🇰🇷",
+    "language": "Korean",
+    "featured": false
+  },
+  {
+    "id": "ko-KR-InJoonNeural",
+    "name": "InJoon",
+    "gender": "Male",
+    "locale": "ko-KR",
+    "country": "Korea",
+    "flag": "🇰🇷",
+    "language": "Korean",
+    "featured": false
+  },
+  {
+    "id": "ko-KR-SunHiNeural",
+    "name": "SunHi",
+    "gender": "Female",
+    "locale": "ko-KR",
+    "country": "Korea",
+    "flag": "🇰🇷",
+    "language": "Korean",
+    "featured": false
+  },
+  {
+    "id": "lo-LA-ChanthavongNeural",
+    "name": "Chanthavong",
+    "gender": "Male",
+    "locale": "lo-LA",
+    "country": "Laos",
+    "flag": "🇱🇦",
+    "language": "Lao",
+    "featured": false
+  },
+  {
+    "id": "lo-LA-KeomanyNeural",
+    "name": "Keomany",
+    "gender": "Female",
+    "locale": "lo-LA",
+    "country": "Laos",
+    "flag": "🇱🇦",
+    "language": "Lao",
+    "featured": false
+  },
+  {
+    "id": "lv-LV-EveritaNeural",
+    "name": "Everita",
+    "gender": "Female",
+    "locale": "lv-LV",
+    "country": "Latvia",
+    "flag": "🇱🇻",
+    "language": "Latvian",
+    "featured": false
+  },
+  {
+    "id": "lv-LV-NilsNeural",
+    "name": "Nils",
+    "gender": "Male",
+    "locale": "lv-LV",
+    "country": "Latvia",
+    "flag": "🇱🇻",
+    "language": "Latvian",
+    "featured": false
+  },
+  {
+    "id": "lt-LT-LeonasNeural",
+    "name": "Leonas",
+    "gender": "Male",
+    "locale": "lt-LT",
+    "country": "Lithuania",
+    "flag": "🇱🇹",
+    "language": "Lithuanian",
+    "featured": false
+  },
+  {
+    "id": "lt-LT-OnaNeural",
+    "name": "Ona",
+    "gender": "Female",
+    "locale": "lt-LT",
+    "country": "Lithuania",
+    "flag": "🇱🇹",
+    "language": "Lithuanian",
+    "featured": false
+  },
+  {
+    "id": "mk-MK-AleksandarNeural",
+    "name": "Aleksandar",
+    "gender": "Male",
+    "locale": "mk-MK",
+    "country": "North Macedonia",
+    "flag": "🇲🇰",
+    "language": "Macedonian",
+    "featured": false
+  },
+  {
+    "id": "mk-MK-MarijaNeural",
+    "name": "Marija",
+    "gender": "Female",
+    "locale": "mk-MK",
+    "country": "North Macedonia",
+    "flag": "🇲🇰",
+    "language": "Macedonian",
+    "featured": false
+  },
+  {
+    "id": "ms-MY-OsmanNeural",
+    "name": "Osman",
+    "gender": "Male",
+    "locale": "ms-MY",
+    "country": "Malaysia",
+    "flag": "🇲🇾",
+    "language": "Malay",
+    "featured": false
+  },
+  {
+    "id": "ms-MY-YasminNeural",
+    "name": "Yasmin",
+    "gender": "Female",
+    "locale": "ms-MY",
+    "country": "Malaysia",
+    "flag": "🇲🇾",
+    "language": "Malay",
+    "featured": false
+  },
+  {
+    "id": "ml-IN-MidhunNeural",
+    "name": "Midhun",
+    "gender": "Male",
+    "locale": "ml-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Malayalam",
+    "featured": false
+  },
+  {
+    "id": "ml-IN-SobhanaNeural",
+    "name": "Sobhana",
+    "gender": "Female",
+    "locale": "ml-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Malayalam",
+    "featured": false
+  },
+  {
+    "id": "mt-MT-GraceNeural",
+    "name": "Grace",
+    "gender": "Female",
+    "locale": "mt-MT",
+    "country": "Malta",
+    "flag": "🇲🇹",
+    "language": "Maltese",
+    "featured": false
+  },
+  {
+    "id": "mt-MT-JosephNeural",
+    "name": "Joseph",
+    "gender": "Male",
+    "locale": "mt-MT",
+    "country": "Malta",
+    "flag": "🇲🇹",
+    "language": "Maltese",
+    "featured": false
+  },
+  {
+    "id": "mr-IN-AarohiNeural",
+    "name": "Aarohi",
+    "gender": "Female",
+    "locale": "mr-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Marathi",
+    "featured": false
+  },
+  {
+    "id": "mr-IN-ManoharNeural",
+    "name": "Manohar",
+    "gender": "Male",
+    "locale": "mr-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Marathi",
+    "featured": false
+  },
+  {
+    "id": "mn-MN-BataaNeural",
+    "name": "Bataa",
+    "gender": "Male",
+    "locale": "mn-MN",
+    "country": "Mongolia",
+    "flag": "🇲🇳",
+    "language": "Mongolian",
+    "featured": false
+  },
+  {
+    "id": "mn-MN-YesuiNeural",
+    "name": "Yesui",
+    "gender": "Female",
+    "locale": "mn-MN",
+    "country": "Mongolia",
+    "flag": "🇲🇳",
+    "language": "Mongolian",
+    "featured": false
+  },
+  {
+    "id": "ne-NP-HemkalaNeural",
+    "name": "Hemkala",
+    "gender": "Female",
+    "locale": "ne-NP",
+    "country": "Nepal",
+    "flag": "🇳🇵",
+    "language": "Nepali",
+    "featured": false
+  },
+  {
+    "id": "ne-NP-SagarNeural",
+    "name": "Sagar",
+    "gender": "Male",
+    "locale": "ne-NP",
+    "country": "Nepal",
+    "flag": "🇳🇵",
+    "language": "Nepali",
+    "featured": false
+  },
+  {
+    "id": "nb-NO-FinnNeural",
+    "name": "Finn",
+    "gender": "Male",
+    "locale": "nb-NO",
+    "country": "Norway",
+    "flag": "🇳🇴",
+    "language": "Norwegian Bokmål",
+    "featured": false
+  },
+  {
+    "id": "nb-NO-PernilleNeural",
+    "name": "Pernille",
+    "gender": "Female",
+    "locale": "nb-NO",
+    "country": "Norway",
+    "flag": "🇳🇴",
+    "language": "Norwegian Bokmål",
+    "featured": false
+  },
+  {
+    "id": "ps-AF-GulNawazNeural",
+    "name": "GulNawaz",
+    "gender": "Male",
+    "locale": "ps-AF",
+    "country": "Afghanistan",
+    "flag": "🇦🇫",
+    "language": "Pashto",
+    "featured": false
+  },
+  {
+    "id": "ps-AF-LatifaNeural",
+    "name": "Latifa",
+    "gender": "Female",
+    "locale": "ps-AF",
+    "country": "Afghanistan",
+    "flag": "🇦🇫",
+    "language": "Pashto",
+    "featured": false
+  },
+  {
+    "id": "fa-IR-DilaraNeural",
+    "name": "Dilara",
+    "gender": "Female",
+    "locale": "fa-IR",
+    "country": "Iran",
+    "flag": "🇮🇷",
+    "language": "Persian",
+    "featured": false
+  },
+  {
+    "id": "fa-IR-FaridNeural",
+    "name": "Farid",
+    "gender": "Male",
+    "locale": "fa-IR",
+    "country": "Iran",
+    "flag": "🇮🇷",
+    "language": "Persian",
+    "featured": false
+  },
+  {
+    "id": "pl-PL-MarekNeural",
+    "name": "Marek",
+    "gender": "Male",
+    "locale": "pl-PL",
+    "country": "Poland",
+    "flag": "🇵🇱",
+    "language": "Polish",
+    "featured": false
+  },
+  {
+    "id": "pl-PL-ZofiaNeural",
+    "name": "Zofia",
+    "gender": "Female",
+    "locale": "pl-PL",
+    "country": "Poland",
+    "flag": "🇵🇱",
+    "language": "Polish",
+    "featured": false
+  },
+  {
+    "id": "pt-BR-AntonioNeural",
+    "name": "Antonio",
+    "gender": "Male",
+    "locale": "pt-BR",
+    "country": "Brazil",
+    "flag": "🇧🇷",
+    "language": "Portuguese",
+    "featured": false
+  },
+  {
+    "id": "pt-BR-FranciscaNeural",
+    "name": "Francisca",
+    "gender": "Female",
+    "locale": "pt-BR",
+    "country": "Brazil",
+    "flag": "🇧🇷",
+    "language": "Portuguese",
+    "featured": false
+  },
+  {
+    "id": "pt-BR-ThalitaMultilingualNeural",
+    "name": "ThalitaMultilingual",
+    "gender": "Female",
+    "locale": "pt-BR",
+    "country": "Brazil",
+    "flag": "🇧🇷",
+    "language": "Portuguese",
+    "featured": false
+  },
+  {
+    "id": "pt-PT-DuarteNeural",
+    "name": "Duarte",
+    "gender": "Male",
+    "locale": "pt-PT",
+    "country": "Portugal",
+    "flag": "🇵🇹",
+    "language": "Portuguese",
+    "featured": false
+  },
+  {
+    "id": "pt-PT-RaquelNeural",
+    "name": "Raquel",
+    "gender": "Female",
+    "locale": "pt-PT",
+    "country": "Portugal",
+    "flag": "🇵🇹",
+    "language": "Portuguese",
+    "featured": false
+  },
+  {
+    "id": "ro-RO-AlinaNeural",
+    "name": "Alina",
+    "gender": "Female",
+    "locale": "ro-RO",
+    "country": "Romania",
+    "flag": "🇷🇴",
+    "language": "Romanian",
+    "featured": false
+  },
+  {
+    "id": "ro-RO-EmilNeural",
+    "name": "Emil",
+    "gender": "Male",
+    "locale": "ro-RO",
+    "country": "Romania",
+    "flag": "🇷🇴",
+    "language": "Romanian",
+    "featured": false
+  },
+  {
+    "id": "ru-RU-DmitryNeural",
+    "name": "Dmitry",
+    "gender": "Male",
+    "locale": "ru-RU",
+    "country": "Russia",
+    "flag": "🇷🇺",
+    "language": "Russian",
+    "featured": false
+  },
+  {
+    "id": "ru-RU-SvetlanaNeural",
+    "name": "Svetlana",
+    "gender": "Female",
+    "locale": "ru-RU",
+    "country": "Russia",
+    "flag": "🇷🇺",
+    "language": "Russian",
+    "featured": false
+  },
+  {
+    "id": "sr-RS-NicholasNeural",
+    "name": "Nicholas",
+    "gender": "Male",
+    "locale": "sr-RS",
+    "country": "Cyrillic, Serbia",
+    "flag": "🇷🇸",
+    "language": "Serbian",
+    "featured": false
+  },
+  {
+    "id": "sr-RS-SophieNeural",
+    "name": "Sophie",
+    "gender": "Female",
+    "locale": "sr-RS",
+    "country": "Cyrillic, Serbia",
+    "flag": "🇷🇸",
+    "language": "Serbian",
+    "featured": false
+  },
+  {
+    "id": "si-LK-SameeraNeural",
+    "name": "Sameera",
+    "gender": "Male",
+    "locale": "si-LK",
+    "country": "Sri Lanka",
+    "flag": "🇱🇰",
+    "language": "Sinhala",
+    "featured": false
+  },
+  {
+    "id": "si-LK-ThiliniNeural",
+    "name": "Thilini",
+    "gender": "Female",
+    "locale": "si-LK",
+    "country": "Sri Lanka",
+    "flag": "🇱🇰",
+    "language": "Sinhala",
+    "featured": false
+  },
+  {
+    "id": "sk-SK-LukasNeural",
+    "name": "Lukas",
+    "gender": "Male",
+    "locale": "sk-SK",
+    "country": "Slovakia",
+    "flag": "🇸🇰",
+    "language": "Slovak",
+    "featured": false
+  },
+  {
+    "id": "sk-SK-ViktoriaNeural",
+    "name": "Viktoria",
+    "gender": "Female",
+    "locale": "sk-SK",
+    "country": "Slovakia",
+    "flag": "🇸🇰",
+    "language": "Slovak",
+    "featured": false
+  },
+  {
+    "id": "sl-SI-PetraNeural",
+    "name": "Petra",
+    "gender": "Female",
+    "locale": "sl-SI",
+    "country": "Slovenia",
+    "flag": "🇸🇮",
+    "language": "Slovenian",
+    "featured": false
+  },
+  {
+    "id": "sl-SI-RokNeural",
+    "name": "Rok",
+    "gender": "Male",
+    "locale": "sl-SI",
+    "country": "Slovenia",
+    "flag": "🇸🇮",
+    "language": "Slovenian",
+    "featured": false
+  },
+  {
+    "id": "so-SO-MuuseNeural",
+    "name": "Muuse",
+    "gender": "Male",
+    "locale": "so-SO",
+    "country": "Somalia",
+    "flag": "🇸🇴",
+    "language": "Somali",
+    "featured": false
+  },
+  {
+    "id": "so-SO-UbaxNeural",
+    "name": "Ubax",
+    "gender": "Female",
+    "locale": "so-SO",
+    "country": "Somalia",
+    "flag": "🇸🇴",
+    "language": "Somali",
+    "featured": false
+  },
+  {
+    "id": "es-AR-ElenaNeural",
+    "name": "Elena",
+    "gender": "Female",
+    "locale": "es-AR",
+    "country": "Argentina",
+    "flag": "🇦🇷",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-AR-TomasNeural",
+    "name": "Tomas",
+    "gender": "Male",
+    "locale": "es-AR",
+    "country": "Argentina",
+    "flag": "🇦🇷",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-BO-MarceloNeural",
+    "name": "Marcelo",
+    "gender": "Male",
+    "locale": "es-BO",
+    "country": "Bolivia",
+    "flag": "🇧🇴",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-BO-SofiaNeural",
+    "name": "Sofia",
+    "gender": "Female",
+    "locale": "es-BO",
+    "country": "Bolivia",
+    "flag": "🇧🇴",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-CL-CatalinaNeural",
+    "name": "Catalina",
+    "gender": "Female",
+    "locale": "es-CL",
+    "country": "Chile",
+    "flag": "🇨🇱",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-CL-LorenzoNeural",
+    "name": "Lorenzo",
+    "gender": "Male",
+    "locale": "es-CL",
+    "country": "Chile",
+    "flag": "🇨🇱",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-CO-GonzaloNeural",
+    "name": "Gonzalo",
+    "gender": "Male",
+    "locale": "es-CO",
+    "country": "Colombia",
+    "flag": "🇨🇴",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-CO-SalomeNeural",
+    "name": "Salome",
+    "gender": "Female",
+    "locale": "es-CO",
+    "country": "Colombia",
+    "flag": "🇨🇴",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-CR-JuanNeural",
+    "name": "Juan",
+    "gender": "Male",
+    "locale": "es-CR",
+    "country": "Costa Rica",
+    "flag": "🇨🇷",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-CR-MariaNeural",
+    "name": "Maria",
+    "gender": "Female",
+    "locale": "es-CR",
+    "country": "Costa Rica",
+    "flag": "🇨🇷",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-CU-BelkysNeural",
+    "name": "Belkys",
+    "gender": "Female",
+    "locale": "es-CU",
+    "country": "Cuba",
+    "flag": "🇨🇺",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-CU-ManuelNeural",
+    "name": "Manuel",
+    "gender": "Male",
+    "locale": "es-CU",
+    "country": "Cuba",
+    "flag": "🇨🇺",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-DO-EmilioNeural",
+    "name": "Emilio",
+    "gender": "Male",
+    "locale": "es-DO",
+    "country": "Dominican Republic",
+    "flag": "🇩🇴",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-DO-RamonaNeural",
+    "name": "Ramona",
+    "gender": "Female",
+    "locale": "es-DO",
+    "country": "Dominican Republic",
+    "flag": "🇩🇴",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-EC-AndreaNeural",
+    "name": "Andrea",
+    "gender": "Female",
+    "locale": "es-EC",
+    "country": "Ecuador",
+    "flag": "🇪🇨",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-EC-LuisNeural",
+    "name": "Luis",
+    "gender": "Male",
+    "locale": "es-EC",
+    "country": "Ecuador",
+    "flag": "🇪🇨",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-SV-LorenaNeural",
+    "name": "Lorena",
+    "gender": "Female",
+    "locale": "es-SV",
+    "country": "El Salvador",
+    "flag": "🇸🇻",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-SV-RodrigoNeural",
+    "name": "Rodrigo",
+    "gender": "Male",
+    "locale": "es-SV",
+    "country": "El Salvador",
+    "flag": "🇸🇻",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-GQ-JavierNeural",
+    "name": "Javier",
+    "gender": "Male",
+    "locale": "es-GQ",
+    "country": "Equatorial Guinea",
+    "flag": "🇬🇶",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-GQ-TeresaNeural",
+    "name": "Teresa",
+    "gender": "Female",
+    "locale": "es-GQ",
+    "country": "Equatorial Guinea",
+    "flag": "🇬🇶",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-GT-AndresNeural",
+    "name": "Andres",
+    "gender": "Male",
+    "locale": "es-GT",
+    "country": "Guatemala",
+    "flag": "🇬🇹",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-GT-MartaNeural",
+    "name": "Marta",
+    "gender": "Female",
+    "locale": "es-GT",
+    "country": "Guatemala",
+    "flag": "🇬🇹",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-HN-CarlosNeural",
+    "name": "Carlos",
+    "gender": "Male",
+    "locale": "es-HN",
+    "country": "Honduras",
+    "flag": "🇭🇳",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-HN-KarlaNeural",
+    "name": "Karla",
+    "gender": "Female",
+    "locale": "es-HN",
+    "country": "Honduras",
+    "flag": "🇭🇳",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-NI-FedericoNeural",
+    "name": "Federico",
+    "gender": "Male",
+    "locale": "es-NI",
+    "country": "Nicaragua",
+    "flag": "🇳🇮",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-NI-YolandaNeural",
+    "name": "Yolanda",
+    "gender": "Female",
+    "locale": "es-NI",
+    "country": "Nicaragua",
+    "flag": "🇳🇮",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-PA-MargaritaNeural",
+    "name": "Margarita",
+    "gender": "Female",
+    "locale": "es-PA",
+    "country": "Panama",
+    "flag": "🇵🇦",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-PA-RobertoNeural",
+    "name": "Roberto",
+    "gender": "Male",
+    "locale": "es-PA",
+    "country": "Panama",
+    "flag": "🇵🇦",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-PY-MarioNeural",
+    "name": "Mario",
+    "gender": "Male",
+    "locale": "es-PY",
+    "country": "Paraguay",
+    "flag": "🇵🇾",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-PY-TaniaNeural",
+    "name": "Tania",
+    "gender": "Female",
+    "locale": "es-PY",
+    "country": "Paraguay",
+    "flag": "🇵🇾",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-PE-AlexNeural",
+    "name": "Alex",
+    "gender": "Male",
+    "locale": "es-PE",
+    "country": "Peru",
+    "flag": "🇵🇪",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-PE-CamilaNeural",
+    "name": "Camila",
+    "gender": "Female",
+    "locale": "es-PE",
+    "country": "Peru",
+    "flag": "🇵🇪",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-PR-KarinaNeural",
+    "name": "Karina",
+    "gender": "Female",
+    "locale": "es-PR",
+    "country": "Puerto Rico",
+    "flag": "🇵🇷",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-PR-VictorNeural",
+    "name": "Victor",
+    "gender": "Male",
+    "locale": "es-PR",
+    "country": "Puerto Rico",
+    "flag": "🇵🇷",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-ES-XimenaNeural",
+    "name": "Ximena",
+    "gender": "Female",
+    "locale": "es-ES",
+    "country": "Spain",
+    "flag": "🇪🇸",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-US-AlonsoNeural",
+    "name": "Alonso",
+    "gender": "Male",
+    "locale": "es-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-US-PalomaNeural",
+    "name": "Paloma",
+    "gender": "Female",
+    "locale": "es-US",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-UY-MateoNeural",
+    "name": "Mateo",
+    "gender": "Male",
+    "locale": "es-UY",
+    "country": "Uruguay",
+    "flag": "🇺🇾",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-UY-ValentinaNeural",
+    "name": "Valentina",
+    "gender": "Female",
+    "locale": "es-UY",
+    "country": "Uruguay",
+    "flag": "🇺🇾",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-VE-PaolaNeural",
+    "name": "Paola",
+    "gender": "Female",
+    "locale": "es-VE",
+    "country": "Venezuela",
+    "flag": "🇻🇪",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "es-VE-SebastianNeural",
+    "name": "Sebastian",
+    "gender": "Male",
+    "locale": "es-VE",
+    "country": "Venezuela",
+    "flag": "🇻🇪",
+    "language": "Spanish",
+    "featured": false
+  },
+  {
+    "id": "su-ID-JajangNeural",
+    "name": "Jajang",
+    "gender": "Male",
+    "locale": "su-ID",
+    "country": "Indonesia",
+    "flag": "🇮🇩",
+    "language": "Sundanese",
+    "featured": false
+  },
+  {
+    "id": "su-ID-TutiNeural",
+    "name": "Tuti",
+    "gender": "Female",
+    "locale": "su-ID",
+    "country": "Indonesia",
+    "flag": "🇮🇩",
+    "language": "Sundanese",
+    "featured": false
+  },
+  {
+    "id": "sw-KE-RafikiNeural",
+    "name": "Rafiki",
+    "gender": "Male",
+    "locale": "sw-KE",
+    "country": "Kenya",
+    "flag": "🇰🇪",
+    "language": "Swahili",
+    "featured": false
+  },
+  {
+    "id": "sw-KE-ZuriNeural",
+    "name": "Zuri",
+    "gender": "Female",
+    "locale": "sw-KE",
+    "country": "Kenya",
+    "flag": "🇰🇪",
+    "language": "Swahili",
+    "featured": false
+  },
+  {
+    "id": "sw-TZ-DaudiNeural",
+    "name": "Daudi",
+    "gender": "Male",
+    "locale": "sw-TZ",
+    "country": "Tanzania",
+    "flag": "🇹🇿",
+    "language": "Swahili",
+    "featured": false
+  },
+  {
+    "id": "sw-TZ-RehemaNeural",
+    "name": "Rehema",
+    "gender": "Female",
+    "locale": "sw-TZ",
+    "country": "Tanzania",
+    "flag": "🇹🇿",
+    "language": "Swahili",
+    "featured": false
+  },
+  {
+    "id": "sv-SE-MattiasNeural",
+    "name": "Mattias",
+    "gender": "Male",
+    "locale": "sv-SE",
+    "country": "Sweden",
+    "flag": "🇸🇪",
+    "language": "Swedish",
+    "featured": false
+  },
+  {
+    "id": "sv-SE-SofieNeural",
+    "name": "Sofie",
+    "gender": "Female",
+    "locale": "sv-SE",
+    "country": "Sweden",
+    "flag": "🇸🇪",
+    "language": "Swedish",
+    "featured": false
+  },
+  {
+    "id": "ta-IN-PallaviNeural",
+    "name": "Pallavi",
+    "gender": "Female",
+    "locale": "ta-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Tamil",
+    "featured": false
+  },
+  {
+    "id": "ta-IN-ValluvarNeural",
+    "name": "Valluvar",
+    "gender": "Male",
+    "locale": "ta-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Tamil",
+    "featured": false
+  },
+  {
+    "id": "ta-MY-KaniNeural",
+    "name": "Kani",
+    "gender": "Female",
+    "locale": "ta-MY",
+    "country": "Malaysia",
+    "flag": "🇲🇾",
+    "language": "Tamil",
+    "featured": false
+  },
+  {
+    "id": "ta-MY-SuryaNeural",
+    "name": "Surya",
+    "gender": "Male",
+    "locale": "ta-MY",
+    "country": "Malaysia",
+    "flag": "🇲🇾",
+    "language": "Tamil",
+    "featured": false
+  },
+  {
+    "id": "ta-SG-AnbuNeural",
+    "name": "Anbu",
+    "gender": "Male",
+    "locale": "ta-SG",
+    "country": "Singapore",
+    "flag": "🇸🇬",
+    "language": "Tamil",
+    "featured": false
+  },
+  {
+    "id": "ta-SG-VenbaNeural",
+    "name": "Venba",
+    "gender": "Female",
+    "locale": "ta-SG",
+    "country": "Singapore",
+    "flag": "🇸🇬",
+    "language": "Tamil",
+    "featured": false
+  },
+  {
+    "id": "ta-LK-KumarNeural",
+    "name": "Kumar",
+    "gender": "Male",
+    "locale": "ta-LK",
+    "country": "Sri Lanka",
+    "flag": "🇱🇰",
+    "language": "Tamil",
+    "featured": false
+  },
+  {
+    "id": "ta-LK-SaranyaNeural",
+    "name": "Saranya",
+    "gender": "Female",
+    "locale": "ta-LK",
+    "country": "Sri Lanka",
+    "flag": "🇱🇰",
+    "language": "Tamil",
+    "featured": false
+  },
+  {
+    "id": "te-IN-MohanNeural",
+    "name": "Mohan",
+    "gender": "Male",
+    "locale": "te-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Telugu",
+    "featured": false
+  },
+  {
+    "id": "te-IN-ShrutiNeural",
+    "name": "Shruti",
+    "gender": "Female",
+    "locale": "te-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Telugu",
+    "featured": false
+  },
+  {
+    "id": "th-TH-NiwatNeural",
+    "name": "Niwat",
+    "gender": "Male",
+    "locale": "th-TH",
+    "country": "Thailand",
+    "flag": "🇹🇭",
+    "language": "Thai",
+    "featured": false
+  },
+  {
+    "id": "th-TH-PremwadeeNeural",
+    "name": "Premwadee",
+    "gender": "Female",
+    "locale": "th-TH",
+    "country": "Thailand",
+    "flag": "🇹🇭",
+    "language": "Thai",
+    "featured": false
+  },
+  {
+    "id": "tr-TR-AhmetNeural",
+    "name": "Ahmet",
+    "gender": "Male",
+    "locale": "tr-TR",
+    "country": "Türkiye",
+    "flag": "🇹🇷",
+    "language": "Turkish",
+    "featured": false
+  },
+  {
+    "id": "tr-TR-EmelNeural",
+    "name": "Emel",
+    "gender": "Female",
+    "locale": "tr-TR",
+    "country": "Türkiye",
+    "flag": "🇹🇷",
+    "language": "Turkish",
+    "featured": false
+  },
+  {
+    "id": "uk-UA-OstapNeural",
+    "name": "Ostap",
+    "gender": "Male",
+    "locale": "uk-UA",
+    "country": "Ukraine",
+    "flag": "🇺🇦",
+    "language": "Ukrainian",
+    "featured": false
+  },
+  {
+    "id": "uk-UA-PolinaNeural",
+    "name": "Polina",
+    "gender": "Female",
+    "locale": "uk-UA",
+    "country": "Ukraine",
+    "flag": "🇺🇦",
+    "language": "Ukrainian",
+    "featured": false
+  },
+  {
+    "id": "ur-IN-GulNeural",
+    "name": "Gul",
+    "gender": "Female",
+    "locale": "ur-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Urdu",
+    "featured": false
+  },
+  {
+    "id": "ur-IN-SalmanNeural",
+    "name": "Salman",
+    "gender": "Male",
+    "locale": "ur-IN",
+    "country": "India",
+    "flag": "🇮🇳",
+    "language": "Urdu",
+    "featured": false
+  },
+  {
+    "id": "uz-UZ-MadinaNeural",
+    "name": "Madina",
+    "gender": "Female",
+    "locale": "uz-UZ",
+    "country": "Latin, Uzbekistan",
+    "flag": "🇺🇿",
+    "language": "Uzbek",
+    "featured": false
+  },
+  {
+    "id": "uz-UZ-SardorNeural",
+    "name": "Sardor",
+    "gender": "Male",
+    "locale": "uz-UZ",
+    "country": "Latin, Uzbekistan",
+    "flag": "🇺🇿",
+    "language": "Uzbek",
+    "featured": false
+  },
+  {
+    "id": "vi-VN-HoaiMyNeural",
+    "name": "HoaiMy",
+    "gender": "Female",
+    "locale": "vi-VN",
+    "country": "Vietnam",
+    "flag": "🇻🇳",
+    "language": "Vietnamese",
+    "featured": false
+  },
+  {
+    "id": "vi-VN-NamMinhNeural",
+    "name": "NamMinh",
+    "gender": "Male",
+    "locale": "vi-VN",
+    "country": "Vietnam",
+    "flag": "🇻🇳",
+    "language": "Vietnamese",
+    "featured": false
+  },
+  {
+    "id": "cy-GB-AledNeural",
+    "name": "Aled",
+    "gender": "Male",
+    "locale": "cy-GB",
+    "country": "United Kingdom",
+    "flag": "🇬🇧",
+    "language": "Welsh",
+    "featured": false
+  },
+  {
+    "id": "cy-GB-NiaNeural",
+    "name": "Nia",
+    "gender": "Female",
+    "locale": "cy-GB",
+    "country": "United Kingdom",
+    "flag": "🇬🇧",
+    "language": "Welsh",
+    "featured": false
+  },
+  {
+    "id": "zu-ZA-ThandoNeural",
+    "name": "Thando",
+    "gender": "Female",
+    "locale": "zu-ZA",
+    "country": "South Africa",
+    "flag": "🇿🇦",
+    "language": "Zulu",
+    "featured": false
+  },
+  {
+    "id": "zu-ZA-ThembaNeural",
+    "name": "Themba",
+    "gender": "Male",
+    "locale": "zu-ZA",
+    "country": "South Africa",
+    "flag": "🇿🇦",
+    "language": "Zulu",
+    "featured": false
+  }
+]
