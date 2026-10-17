@@ -73,8 +73,18 @@ def get_kokoro_engine():
 
 def get_kokoro_voice_metadata() -> List[Dict[str, Any]]:
     for v in KOKORO_VOICES:
-        if "language" not in v:
-            v["language"] = "Spanish" if v["lang_code"].startswith("es") else "English"
+        if v.get("lang_code", "").startswith("en-us"):
+            v["language"] = "American English"
+            v["accent"] = "American"
+        elif v.get("lang_code", "").startswith("en-gb"):
+            v["language"] = "British English"
+            v["accent"] = "British"
+        elif v.get("lang_code", "").startswith("es"):
+            v["language"] = "Spanish"
+            v["accent"] = "Spanish"
+        else:
+            v["language"] = "English"
+            v["accent"] = "English"
     return KOKORO_VOICES
 
 def synthesize_kokoro_to_file(

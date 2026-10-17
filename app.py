@@ -72,6 +72,8 @@ class TTSRequest(BaseModel):
     rate: str = "+0%"
     pitch: str = "+0Hz"
     volume: str = "+0%"
+    speed: Optional[float] = 1.0
+    sentence_pause: Optional[float] = 0.28
 
 @app.get("/api/engines")
 async def get_engines():
@@ -195,10 +197,14 @@ async def get_voices(engine: str = "edge-tts", language: Optional[str] = None):
         kv = backend_kokoro.get_kokoro_voice_metadata()
         if language and language.lower() != "all":
             lang_lower = language.lower()
-            if lang_lower.startswith("en"):
-                return [v for v in kv if v["lang_code"].startswith("en")]
-            elif lang_lower.startswith("es"):
-                return [v for v in kv if v["lang_code"].startswith("es")]
+            if "american" in lang_lower or "us" in lang_lower:
+                return [v for v in kv if v.get("lang_code", "").startswith("en-us")]
+            elif "british" in lang_lower or "gb" in lang_lower:
+                return [v for v in kv if v.get("lang_code", "").startswith("en-gb")]
+            elif "spanish" in lang_lower or "es" in lang_lower:
+                return [v for v in kv if v.get("lang_code", "").startswith("es")]
+            elif "en" in lang_lower or "english" in lang_lower:
+                return [v for v in kv if v.get("lang_code", "").startswith("en")]
         return kv
 
     if not language or language.lower() == "all":
@@ -295,19 +301,26 @@ async def generate_speech(req: TTSRequest):
             req.voice = v_match["id"]
             
         speed = 1.0
-        try:
-            if req.rate and req.rate.endswith("%"):
+        if req.speed is not None and req.speed > 0:
+            speed = float(req.speed)
+        elif req.rate and req.rate.endswith("%"):
+            try:
                 val = int(req.rate.replace("%", "").replace("+", ""))
                 speed = max(0.5, min(2.0, 1.0 + (val / 100.0)))
-        except Exception:
-            speed = 1.0
+            except Exception:
+                speed = 1.0
             
+        sentence_pause = 0.28
+        if req.sentence_pause is not None and req.sentence_pause >= 0:
+            sentence_pause = float(req.sentence_pause)
+
         try:
             elapsed = backend_kokoro.synthesize_kokoro_to_file(
                 text=text,
                 output_path=filepath,
                 voice_id=req.voice,
-                speed=speed
+                speed=speed,
+                sentence_pause=sentence_pause
             )
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"Kokoro generation failed: {str(e)}")

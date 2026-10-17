@@ -3,14 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>LoveVoice Studio AI — 322+ Voices · 76+ Languages</title>
+  <title>LoveVoice Studio AI — Kokoro Ultra & Global HD</title>
   
-  <!-- PWA & Mobile Web App Meta -->
   <meta name="theme-color" content="#6366f1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="LoveVoice AI">
-  <link rel="manifest" href="/static/manifest.json">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
   
   <!-- Tailwind CSS & Lucide Icons -->
@@ -41,13 +36,13 @@
     .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 9999px; }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
-    .voice-card.selected { border-color: #6366f1 !important; background: rgba(99, 102, 241, 0.12) !important; }
+    .voice-card.selected { border-color: #6366f1 !important; background: rgba(99, 102, 241, 0.14) !important; }
     .voice-card { -webkit-tap-highlight-color: transparent; }
   </style>
 </head>
 <body class="bg-dark-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-brand-500 selection:text-white">
 
-  <!-- COMPACT MOBILE-FRIENDLY HEADER -->
+  <!-- HEADER -->
   <header class="bg-dark-900/95 border-b border-dark-700/80 sticky top-0 z-40 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex items-center justify-between">
       
@@ -59,20 +54,15 @@
         <div>
           <div class="flex items-center space-x-1.5">
             <h1 class="font-bold text-sm sm:text-base tracking-tight text-white">LoveVoice Studio</h1>
-            <span class="text-[9px] font-semibold uppercase px-1.5 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30">AI</span>
+            <span id="headerEngineTag" class="text-[9px] font-semibold uppercase px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">🌟 Kokoro Ultra</span>
           </div>
-          <p class="text-[10px] text-slate-400 hidden sm:block">322+ Neural Voices · 76+ Languages (Urdu, Hindi, Spanish, English)</p>
+          <p id="headerSubtext" class="text-[10px] text-slate-400 hidden sm:block">ElevenLabs-Grade Human Neural Speech Studio</p>
         </div>
       </div>
 
       <!-- Action Buttons -->
       <div class="flex items-center space-x-2">
-        <button id="pwaInstallBtn" onclick="installPWA()" class="hidden flex items-center space-x-1 px-2 py-1 rounded-lg bg-gradient-to-r from-brand-600 to-indigo-600 text-white text-[11px] font-semibold shadow-md">
-          <i data-lucide="download" class="w-3 h-3"></i>
-          <span>Install</span>
-        </button>
-
-        <button onclick="toggleHistoryDrawer()" class="relative p-1.5 sm:p-2 rounded-lg bg-dark-800 hover:bg-dark-700 text-slate-300 hover:text-white border border-dark-700 transition" title="History">
+        <button onclick="toggleHistoryDrawer()" class="relative p-1.5 sm:p-2 rounded-lg bg-dark-800 hover:bg-dark-700 text-slate-300 hover:text-white border border-dark-700 transition" title="Generation History">
           <i data-lucide="history" class="w-4 h-4 sm:w-5 sm:h-5"></i>
           <span id="historyBadge" class="hidden absolute -top-1 -right-1 bg-brand-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
         </button>
@@ -83,7 +73,7 @@
   <!-- MAIN CONTAINER -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-5">
 
-    <!-- MOBILE VIEW TABS (Visible only on mobile/tablet screens < lg) -->
+    <!-- MOBILE TABS (< lg) -->
     <div class="lg:hidden flex rounded-xl bg-dark-900 p-1 border border-dark-700/80 mb-3 shadow-md sticky top-[57px] z-30 backdrop-blur-md">
       <button id="tabBtn-script" onclick="switchMobileTab('script')" class="flex-1 py-2 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition bg-brand-600 text-white shadow-sm">
         <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
@@ -92,45 +82,53 @@
       <button id="tabBtn-voice" onclick="switchMobileTab('voice')" class="flex-1 py-2 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition text-slate-400 hover:text-white">
         <i data-lucide="mic" class="w-3.5 h-3.5"></i>
         <span>🎙️ Choose Voice</span>
-        <span id="tabVoiceCount" class="text-[10px] bg-dark-750 px-1.5 py-0.2 rounded-full font-mono text-brand-300">322</span>
+        <span id="tabVoiceCount" class="text-[10px] bg-dark-750 px-1.5 py-0.2 rounded-full font-mono text-brand-300">29</span>
       </button>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
 
-      <!-- LEFT COLUMN: VOICE SELECTOR (Hidden on mobile when on Script tab, 5 cols on desktop) -->
+      <!-- LEFT COLUMN: VOICE SELECTOR (5 cols on desktop) -->
       <div id="voiceColumn" class="hidden lg:flex lg:col-span-5 flex-col space-y-3">
         <div class="bg-dark-850/90 border border-dark-700/80 rounded-2xl p-3.5 sm:p-4 shadow-xl flex flex-col h-[520px] sm:h-[620px] lg:h-[720px]">
           
-          <!-- ENGINE SELECTOR (Compact Segmented Control) -->
+          <!-- ENGINE SELECTOR (Kokoro Ultra vs LoveVoice Global) -->
           <div class="mb-3">
             <div class="grid grid-cols-2 gap-1.5 p-1 bg-dark-900 rounded-xl border border-dark-700/80">
-              <button onclick="switchEngine('edge-tts')" id="engineBtn-edge" class="p-2 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm">
+              <button onclick="switchEngine('kokoro')" id="engineBtn-kokoro" class="p-2 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm">
+                <span class="font-bold text-xs flex items-center gap-1 truncate text-amber-300">🌟 Kokoro Ultra</span>
+                <span class="text-[9px] text-amber-300/80 font-mono mt-0.5">ElevenLabs Grade (29)</span>
+              </button>
+              <button onclick="switchEngine('edge-tts')" id="engineBtn-edge" class="p-2 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800">
                 <span class="font-bold text-xs flex items-center gap-1 truncate">⚡ LoveVoice Global</span>
                 <span class="text-[9px] text-emerald-300 font-mono mt-0.5">322 Voices · 76+ Langs</span>
-              </button>
-              <button onclick="switchEngine('kokoro')" id="engineBtn-kokoro" class="p-2 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800">
-                <span class="font-bold text-xs flex items-center gap-1 truncate">🌟 Kokoro Ultra</span>
-                <span class="text-[9px] text-amber-300 font-mono mt-0.5">ElevenLabs Grade (29)</span>
               </button>
             </div>
           </div>
 
-          <!-- VOICE LIST HEADER & COUNT -->
+          <!-- VOICE LIST HEADER -->
           <div class="flex items-center justify-between pb-2 border-b border-dark-700/60">
             <div class="flex items-center space-x-1.5">
               <i data-lucide="mic" class="w-4 h-4 text-brand-400"></i>
-              <h2 id="voiceListTitle" class="font-semibold text-white text-xs sm:text-sm">Select Global Voice</h2>
+              <h2 id="voiceListTitle" class="font-semibold text-white text-xs sm:text-sm">Kokoro Ultra Voices</h2>
             </div>
-            <span id="voiceCountBadge" class="text-[11px] font-mono bg-dark-700/80 text-brand-300 px-2 py-0.5 rounded-md">322 Voices</span>
+            <span id="voiceCountBadge" class="text-[11px] font-mono bg-dark-700/80 text-amber-300 px-2 py-0.5 rounded-md">29 Voices</span>
           </div>
 
           <!-- FILTERS & LANGUAGE SELECT -->
           <div class="pt-2 space-y-2">
             
-            <!-- Quick Popular Languages Pills -->
-            <div id="quickLangContainer" class="flex space-x-1.5 overflow-x-auto custom-scrollbar pb-1 text-xs">
-              <button onclick="setLanguage('all')" id="pill-all" class="px-2.5 py-1 rounded-lg bg-brand-600 text-white font-semibold whitespace-nowrap shadow-sm">🌟 All</button>
+            <!-- KOKORO QUICK ACCENT PILLS -->
+            <div id="quickLangContainer-kokoro" class="flex space-x-1.5 overflow-x-auto custom-scrollbar pb-1 text-xs">
+              <button onclick="setKokoroAccent('all')" id="kokoroPill-all" class="px-2.5 py-1 rounded-lg bg-brand-600 text-white font-semibold whitespace-nowrap shadow-sm">🌟 All (29)</button>
+              <button onclick="setKokoroAccent('American')" id="kokoroPill-American" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇺🇸 American (18)</button>
+              <button onclick="setKokoroAccent('British')" id="kokoroPill-British" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇬🇧 British (8)</button>
+              <button onclick="setKokoroAccent('Spanish')" id="kokoroPill-Spanish" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇪🇸 Spanish (3)</button>
+            </div>
+
+            <!-- EDGE-TTS QUICK LANGUAGE PILLS -->
+            <div id="quickLangContainer-edge" class="hidden flex space-x-1.5 overflow-x-auto custom-scrollbar pb-1 text-xs">
+              <button onclick="setLanguage('all')" id="pill-all" class="px-2.5 py-1 rounded-lg bg-brand-600 text-white font-semibold whitespace-nowrap shadow-sm">🌟 All (322)</button>
               <button onclick="setLanguage('Urdu')" id="pill-Urdu" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇵🇰 Urdu</button>
               <button onclick="setLanguage('Hindi')" id="pill-Hindi" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇮🇳 Hindi</button>
               <button onclick="setLanguage('English')" id="pill-English" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇺🇸 English</button>
@@ -144,7 +142,7 @@
             <div class="grid grid-cols-12 gap-1.5">
               <div class="col-span-7">
                 <select id="allLangSelect" onchange="onDropdownLangChange()" class="w-full bg-dark-900 border border-dark-700 rounded-lg px-2 py-1.5 text-xs text-white focus:outline-none focus:border-brand-500 font-medium">
-                  <option value="all">🌍 All Languages (76+)</option>
+                  <option value="all">🌟 All Kokoro Voices (29)</option>
                 </select>
               </div>
               <div class="col-span-5">
@@ -159,7 +157,7 @@
             <!-- Search Input -->
             <div class="relative">
               <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5"></i>
-              <input type="text" id="voiceSearchInput" oninput="applyFilters()" placeholder="Search voice or country..." class="w-full bg-dark-900 border border-dark-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500">
+              <input type="text" id="voiceSearchInput" oninput="applyFilters()" placeholder="Search voice name or style (Heart, Adam, Bella)..." class="w-full bg-dark-900 border border-dark-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500">
             </div>
           </div>
 
@@ -170,20 +168,32 @@
         </div>
       </div>
 
-      <!-- RIGHT COLUMN: SCRIPT, CONTROLS & PLAYER (7 cols on desktop) -->
+      <!-- RIGHT COLUMN: SCRIPT, NATIVE CONTROLS & PLAYER (7 cols on desktop) -->
       <div id="scriptColumn" class="flex lg:col-span-7 flex-col space-y-3 sm:space-y-4">
 
         <!-- SCRIPT CARD -->
         <div class="bg-dark-850/90 border border-dark-700/80 rounded-2xl p-3.5 sm:p-5 shadow-xl flex flex-col">
           
-          <!-- Script Header & Quick Sample Buttons -->
+          <!-- Script Header & Sample Buttons -->
           <div class="flex items-center justify-between pb-2.5 border-b border-dark-700/60">
             <div class="flex items-center space-x-1.5">
               <i data-lucide="file-text" class="w-4 h-4 text-brand-400"></i>
               <h2 class="font-semibold text-white text-xs sm:text-sm">Speech Script</h2>
             </div>
             
-            <div class="flex items-center space-x-1 flex-wrap">
+            <!-- Kokoro Studio Sample Buttons -->
+            <div id="kokoroSamples" class="flex items-center space-x-1 flex-wrap">
+              <button onclick="setKokoroSample('narration')" class="text-[10px] bg-dark-750 hover:bg-dark-700 text-amber-300 px-2 py-0.5 rounded transition flex items-center gap-1 border border-dark-700">📖 Story</button>
+              <button onclick="setKokoroSample('podcast')" class="text-[10px] bg-dark-750 hover:bg-dark-700 text-indigo-300 px-2 py-0.5 rounded transition flex items-center gap-1 border border-dark-700">🎙️ Podcast</button>
+              <button onclick="setKokoroSample('cinematic')" class="text-[10px] bg-dark-750 hover:bg-dark-700 text-purple-300 px-2 py-0.5 rounded transition flex items-center gap-1 border border-dark-700">🎬 Trailer</button>
+              <button onclick="setKokoroSample('spanish')" class="text-[10px] bg-dark-750 hover:bg-dark-700 text-rose-300 px-2 py-0.5 rounded transition flex items-center gap-1 border border-dark-700">🇪🇸 Spanish</button>
+              <button onclick="clearText()" class="text-slate-400 hover:text-rose-400 transition p-1" title="Clear text">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+
+            <!-- Edge-TTS Global Sample Buttons -->
+            <div id="edgeSamples" class="hidden flex items-center space-x-1 flex-wrap">
               <button onclick="setSample('ur')" class="text-[10px] bg-dark-750 hover:bg-dark-700 text-emerald-400 px-1.5 py-0.5 rounded transition">🇵🇰 اردو</button>
               <button onclick="setSample('hi')" class="text-[10px] bg-dark-750 hover:bg-dark-700 text-amber-400 px-1.5 py-0.5 rounded transition">🇮🇳 हिंदी</button>
               <button onclick="setSample('ar')" class="text-[10px] bg-dark-750 hover:bg-dark-700 text-teal-400 px-1.5 py-0.5 rounded transition">🇸🇦 عربي</button>
@@ -204,12 +214,12 @@
               <span id="currentVoiceAvatar" class="text-xl flex-shrink-0">👩</span>
               <div class="min-w-0">
                 <div class="flex items-center space-x-1.5 truncate">
-                  <span class="text-[11px] text-slate-400">Voice:</span>
-                  <span id="currentVoiceName" class="font-bold text-white text-xs sm:text-sm truncate">Uzma</span>
-                  <span id="currentVoiceFlag">🇵🇰</span>
-                  <span id="currentEngineBadge" class="text-[9px] font-bold uppercase px-1.5 py-0.2 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">⚡ Global HD</span>
+                  <span class="text-[11px] text-slate-400">Active Voice:</span>
+                  <span id="currentVoiceName" class="font-bold text-white text-xs sm:text-sm truncate">Heart (ElevenLabs Grade)</span>
+                  <span id="currentVoiceFlag">🇺🇸</span>
+                  <span id="currentEngineBadge" class="text-[9px] font-bold uppercase px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">🌟 ElevenLabs Quality</span>
                 </div>
-                <div id="currentVoiceDetails" class="text-[10px] text-slate-400 font-mono truncate">ur-PK-UzmaNeural (Urdu · Pakistan)</div>
+                <div id="currentVoiceDetails" class="text-[10px] text-slate-400 font-mono truncate">af_heart · Flagship Female Studio Voice</div>
               </div>
             </div>
             <div class="flex items-center gap-1 text-[11px] text-brand-400 font-semibold group-hover:text-brand-300 flex-shrink-0">
@@ -218,8 +228,8 @@
             </div>
           </div>
 
-          <!-- SMART AUTO-DIRECTOR HUD -->
-          <div id="smartDirectorHud" class="mt-2.5 p-2.5 rounded-xl bg-dark-900/90 border border-amber-500/30 flex flex-col space-y-1.5 transition">
+          <!-- EDGE-TTS AUTO-DIRECTOR HUD (Hidden on Kokoro) -->
+          <div id="smartDirectorHud" class="hidden mt-2.5 p-2.5 rounded-xl bg-dark-900/90 border border-amber-500/30 flex flex-col space-y-1.5 transition">
             <div class="flex items-center justify-between text-xs">
               <div class="flex items-center space-x-1.5 min-w-0">
                 <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400 flex-shrink-0 animate-pulse"></i>
@@ -237,12 +247,58 @@
 
           <!-- TEXTAREA -->
           <div class="mt-2.5 relative">
-            <textarea id="textInput" rows="5" oninput="handleTextInput()" placeholder="Enter your text here in Urdu, Hindi, English, Spanish, Arabic, or any of 76+ languages..." class="w-full bg-dark-900 border border-dark-700 rounded-xl p-3 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition resize-y font-sans custom-scrollbar leading-relaxed"></textarea>
+            <textarea id="textInput" rows="5" oninput="handleTextInput()" placeholder="Enter script here for ultra-realistic neural speech synthesis..." class="w-full bg-dark-900 border border-dark-700 rounded-xl p-3 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition resize-y font-sans custom-scrollbar leading-relaxed"></textarea>
             <div id="charCountLabel" class="text-[10px] font-mono text-slate-500 text-right mt-0.5">0 / 30,000 characters</div>
           </div>
 
-          <!-- VOICE CONTROLS: SPEED, PITCH, VOLUME -->
-          <div class="grid grid-cols-3 gap-2 mt-2">
+          <!-- KOKORO NATIVE STUDIO CONTROLS (Active on Kokoro) -->
+          <div id="kokoroControlsPanel" class="mt-2.5 p-3 rounded-xl bg-dark-900/80 border border-brand-500/30 space-y-2.5">
+            <div class="flex items-center justify-between text-xs pb-1.5 border-b border-dark-700/60">
+              <span class="font-bold text-white flex items-center gap-1.5">
+                <i data-lucide="sliders" class="w-3.5 h-3.5 text-brand-400"></i> Kokoro Studio Acoustic Controls
+              </span>
+              <span class="text-[9px] font-mono text-amber-300 font-semibold px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">
+                🌟 ElevenLabs Quality (24kHz ONNX Flow)
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <!-- Kokoro Speed Slider -->
+              <div class="bg-dark-850 border border-dark-700/70 rounded-xl p-2.5">
+                <div class="flex justify-between items-center text-[11px] mb-1">
+                  <span class="text-slate-300 font-medium flex items-center gap-1">
+                    <i data-lucide="gauge" class="w-3 h-3 text-brand-400"></i> Speaking Speed
+                  </span>
+                  <span id="kokoroSpeedVal" class="font-mono text-brand-300 font-bold">1.0x (Normal)</span>
+                </div>
+                <input type="range" id="kokoroSpeedSlider" min="0.6" max="1.5" step="0.05" value="1.0" oninput="updateKokoroControls()" class="w-full accent-brand-500 cursor-pointer h-1.5 bg-dark-700 rounded-lg">
+                <div class="flex justify-between text-[9px] text-slate-500 mt-1 font-mono">
+                  <span>0.6x Slow</span>
+                  <span>1.0x Natural</span>
+                  <span>1.5x Fast</span>
+                </div>
+              </div>
+
+              <!-- Kokoro Human Breath / Sentence Pause Slider -->
+              <div class="bg-dark-850 border border-dark-700/70 rounded-xl p-2.5">
+                <div class="flex justify-between items-center text-[11px] mb-1">
+                  <span class="text-slate-300 font-medium flex items-center gap-1">
+                    <i data-lucide="wind" class="w-3 h-3 text-emerald-400"></i> Breath & Sentence Pause
+                  </span>
+                  <span id="kokoroPauseVal" class="font-mono text-emerald-300 font-bold">0.28s (Natural Breath)</span>
+                </div>
+                <input type="range" id="kokoroPauseSlider" min="0.10" max="0.60" step="0.02" value="0.28" oninput="updateKokoroControls()" class="w-full accent-emerald-500 cursor-pointer h-1.5 bg-dark-700 rounded-lg">
+                <div class="flex justify-between text-[9px] text-slate-500 mt-1 font-mono">
+                  <span>0.10s Snappy</span>
+                  <span>0.28s Natural</span>
+                  <span>0.60s Dramatic</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EDGE-TTS SPEED/PITCH/VOLUME CONTROLS (Hidden on Kokoro) -->
+          <div id="edgeControlsPanel" class="hidden grid grid-cols-3 gap-2 mt-2">
             <div class="bg-dark-900/60 border border-dark-700/50 rounded-xl p-2">
               <div class="flex justify-between items-center text-[11px] mb-0.5">
                 <span class="text-slate-400">Speed</span>
@@ -251,7 +307,7 @@
               <input type="range" id="rateSlider" min="-50" max="50" value="0" step="5" oninput="updateControls()" class="w-full accent-brand-500 cursor-pointer h-1 bg-dark-700 rounded-lg">
             </div>
 
-            <div id="pitchCard" class="bg-dark-900/60 border border-dark-700/50 rounded-xl p-2">
+            <div class="bg-dark-900/60 border border-dark-700/50 rounded-xl p-2">
               <div class="flex justify-between items-center text-[11px] mb-0.5">
                 <span class="text-slate-400">Pitch</span>
                 <span id="pitchVal" class="font-mono text-brand-400 font-semibold">+0Hz</span>
@@ -268,8 +324,8 @@
             </div>
           </div>
 
-          <!-- EMOTION PRESETS -->
-          <div class="mt-2.5 pt-2 border-t border-dark-700/60">
+          <!-- EDGE-TTS EMOTION PRESETS (Hidden on Kokoro) -->
+          <div id="edgeEmotionPresetsPanel" class="hidden mt-2.5 pt-2 border-t border-dark-700/60">
             <div class="flex items-center justify-between text-[11px] mb-1.5">
               <span class="text-slate-300 font-medium">Voice Mood & Tone:</span>
               <span id="activeEmotionLabel" class="text-[10px] font-mono text-brand-300 font-bold">🌟 Natural</span>
@@ -302,7 +358,7 @@
           <!-- GENERATE BUTTON -->
           <button id="generateBtn" onclick="generateVoice()" class="mt-3 w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-brand-600/30 flex items-center justify-center space-x-2 transition disabled:opacity-50">
             <i data-lucide="play" class="w-4 h-4 fill-white"></i>
-            <span id="generateBtnText">Generate Speech</span>
+            <span id="generateBtnText">Generate ElevenLabs Quality Audio</span>
           </button>
         </div>
 
@@ -356,14 +412,13 @@
 
   <!-- JAVASCRIPT APPLICATION LOGIC -->
   <script>
-    let currentEngine = 'edge-tts';
-    let allVoicesMaster = []; // Master list of all voices
-    let allVoices = [];       // Filtered voices
+    let currentEngine = 'kokoro'; // Default to ElevenLabs-grade Kokoro
+    let allVoicesMaster = [];
+    let allVoices = [];
     let allLanguages = [];
     let currentLanguage = 'all';
-    let selectedVoiceId = 'ur-PK-UzmaNeural';
+    let selectedVoiceId = 'af_heart';
     let isGenerating = false;
-    let deferredPwaPrompt = null;
     let currentMobileTab = 'script';
 
     // Unregister legacy service workers to force immediate fresh UI
@@ -375,28 +430,6 @@
       });
       if (window.caches) {
         caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
-      }
-    }
-
-    // PWA Prompt
-    window.addEventListener('beforeinstallprompt', e => {
-      e.preventDefault();
-      deferredPwaPrompt = e;
-      const btn = document.getElementById('pwaInstallBtn');
-      if (btn) btn.classList.remove('hidden');
-    });
-
-    function installPWA() {
-      if (deferredPwaPrompt) {
-        deferredPwaPrompt.prompt();
-        deferredPwaPrompt.userChoice.then(choice => {
-          if (choice.outcome === 'accepted') {
-            document.getElementById('pwaInstallBtn').classList.add('hidden');
-          }
-          deferredPwaPrompt = null;
-        });
-      } else {
-        alert('To install on mobile, open your browser menu (3 dots) and tap "Add to Home screen" or "Install App".');
       }
     }
 
@@ -449,8 +482,8 @@
     window.addEventListener('DOMContentLoaded', async () => {
       lucide.createIcons();
       await fetchLanguages();
-      await fetchVoicesMaster();
-      await setSample('ur');
+      await switchEngine('kokoro');
+      setKokoroSample('narration');
       loadHistory();
       switchMobileTab('script');
     });
@@ -459,37 +492,91 @@
       try {
         const res = await fetch('/api/languages');
         allLanguages = await res.json();
-        
-        const select = document.getElementById('allLangSelect');
-        select.innerHTML = `<option value="all">🌍 All Languages (${allLanguages.length}+)</option>` + 
-          allLanguages.map(l => `<option value="${l.name}">${l.flag} ${l.name} (${l.count})</option>`).join('');
       } catch (err) {
         console.error('Failed to fetch languages:', err);
       }
     }
 
+    // Switch between Kokoro Ultra & Edge-TTS Global
     async function switchEngine(engine) {
       currentEngine = engine;
+      currentLanguage = 'all';
+
       const btnEdge = document.getElementById('engineBtn-edge');
       const btnKokoro = document.getElementById('engineBtn-kokoro');
       const title = document.getElementById('voiceListTitle');
-      const quickLangs = document.getElementById('quickLangContainer');
+      const headerTag = document.getElementById('headerEngineTag');
+      const headerSubtext = document.getElementById('headerSubtext');
+      const genBtnText = document.getElementById('generateBtnText');
 
-      if (engine === 'edge-tts') {
-        btnEdge.className = 'p-2 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm';
-        btnKokoro.className = 'p-2 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800';
-        title.innerText = 'Select Global Voice';
-        quickLangs.classList.remove('hidden');
-        selectedVoiceId = 'ur-PK-UzmaNeural';
-      } else {
+      const kokoroPills = document.getElementById('quickLangContainer-kokoro');
+      const edgePills = document.getElementById('quickLangContainer-edge');
+      const kokoroSamples = document.getElementById('kokoroSamples');
+      const edgeSamples = document.getElementById('edgeSamples');
+      const kokoroControls = document.getElementById('kokoroControlsPanel');
+      const edgeControls = document.getElementById('edgeControlsPanel');
+      const edgeEmotions = document.getElementById('edgeEmotionPresetsPanel');
+      const directorHud = document.getElementById('smartDirectorHud');
+      const select = document.getElementById('allLangSelect');
+
+      if (engine === 'kokoro') {
         btnKokoro.className = 'p-2 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm';
         btnEdge.className = 'p-2 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800';
         title.innerText = 'Kokoro Ultra Voices';
-        quickLangs.classList.add('hidden');
+        headerTag.innerText = '🌟 Kokoro Ultra';
+        headerTag.className = 'text-[9px] font-semibold uppercase px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30';
+        headerSubtext.innerText = 'ElevenLabs-Grade Human Neural Speech Studio';
+        genBtnText.innerText = 'Generate ElevenLabs Quality Audio';
+
+        // Show Kokoro controls & hide Edge-TTS emotions
+        kokoroPills.classList.remove('hidden');
+        edgePills.classList.add('hidden');
+        kokoroSamples.classList.remove('hidden');
+        edgeSamples.classList.add('hidden');
+        kokoroControls.classList.remove('hidden');
+        edgeControls.classList.add('hidden');
+        edgeEmotions.classList.add('hidden');
+        directorHud.classList.add('hidden');
+
+        // Populate Kokoro Dropdown
+        select.innerHTML = `
+          <option value="all">🌟 All Kokoro Voices (29)</option>
+          <option value="American">🇺🇸 American English (18)</option>
+          <option value="British">🇬🇧 British English (8)</option>
+          <option value="Spanish">🇪🇸 Spanish (3)</option>
+        `;
+        select.value = 'all';
+
         selectedVoiceId = 'af_heart';
+      } else {
+        btnEdge.className = 'p-2 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm';
+        btnKokoro.className = 'p-2 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800';
+        title.innerText = 'Select Global Voice';
+        headerTag.innerText = '⚡ Global 322';
+        headerTag.className = 'text-[9px] font-semibold uppercase px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+        headerSubtext.innerText = '322 Voices across Urdu, Hindi, Arabic, Spanish & 70+ Languages';
+        genBtnText.innerText = 'Generate Speech';
+
+        // Show Edge-TTS controls & hide Kokoro controls
+        edgePills.classList.remove('hidden');
+        kokoroPills.classList.add('hidden');
+        edgeSamples.classList.remove('hidden');
+        kokoroSamples.classList.add('hidden');
+        edgeControls.classList.remove('hidden');
+        edgeEmotions.classList.remove('hidden');
+        directorHud.classList.remove('hidden');
+        kokoroControls.classList.add('hidden');
+
+        // Populate Edge-TTS Dropdown
+        select.innerHTML = `<option value="all">🌍 All Languages (${allLanguages.length}+)</option>` + 
+          allLanguages.map(l => `<option value="${l.name}">${l.flag} ${l.name} (${l.count})</option>`).join('');
+        select.value = 'all';
+
+        selectedVoiceId = 'ur-PK-UzmaNeural';
       }
 
       await fetchVoicesMaster();
+      lucide.createIcons();
     }
 
     // Load master list once per engine
@@ -505,16 +592,26 @@
       }
     }
 
-    // Instant Client-Side Filter (0ms delay, no network requests on language click)
+    // Instant Client-Side Filter (0ms delay)
     function applyFilters() {
       const search = (document.getElementById('voiceSearchInput').value || '').toLowerCase().trim();
       const gender = document.getElementById('genderFilter').value;
 
       let filtered = allVoicesMaster;
 
-      // Filter by language
+      // Filter by language / accent
       if (currentLanguage !== 'all') {
-        filtered = filtered.filter(v => (v.language || '').toLowerCase() === currentLanguage.toLowerCase());
+        const target = currentLanguage.toLowerCase();
+        filtered = filtered.filter(v => {
+          if (currentEngine === 'kokoro') {
+            if (target === 'american') return (v.lang_code || '').startsWith('en-us');
+            if (target === 'british') return (v.lang_code || '').startsWith('en-gb');
+            if (target === 'spanish') return (v.lang_code || '').startsWith('es');
+            return (v.language || '').toLowerCase() === target;
+          } else {
+            return (v.language || '').toLowerCase() === target;
+          }
+        });
       }
 
       // Filter by gender
@@ -529,7 +626,8 @@
           const matchCountry = (v.country || '').toLowerCase().includes(search);
           const matchLang = (v.language || '').toLowerCase().includes(search);
           const matchId = (v.id || '').toLowerCase().includes(search);
-          return matchName || matchCountry || matchLang || matchId;
+          const matchDesc = (v.desc || '').toLowerCase().includes(search);
+          return matchName || matchCountry || matchLang || matchId || matchDesc;
         });
       }
 
@@ -539,15 +637,32 @@
       updateSelectedVoiceBanner();
     }
 
+    // Kokoro Accent Selection
+    function setKokoroAccent(accent) {
+      currentLanguage = accent;
+      const pills = document.querySelectorAll('#quickLangContainer-kokoro button');
+      pills.forEach(p => {
+        p.className = 'px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700';
+      });
+      const activePill = document.getElementById(`kokoroPill-${accent}`);
+      if (activePill) {
+        activePill.className = 'px-2.5 py-1 rounded-lg bg-brand-600 text-white font-semibold whitespace-nowrap shadow-sm';
+      }
+
+      const select = document.getElementById('allLangSelect');
+      if (select) select.value = accent;
+
+      applyFilters();
+      if (allVoices.length > 0 && !allVoices.some(v => v.id === selectedVoiceId)) {
+        selectVoice(allVoices[0].id);
+      }
+    }
+
+    // Edge-TTS Language Selection
     function setLanguage(lang, targetVoiceId = null) {
       currentLanguage = lang;
       
-      if (currentEngine === 'kokoro' && lang !== 'English' && lang !== 'Spanish' && lang !== 'all') {
-        switchEngine('edge-tts');
-      }
-
-      // Update pills styling
-      const pills = document.querySelectorAll('#quickLangContainer button');
+      const pills = document.querySelectorAll('#quickLangContainer-edge button');
       pills.forEach(p => {
         p.className = 'px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700';
       });
@@ -556,23 +671,25 @@
         activePill.className = 'px-2.5 py-1 rounded-lg bg-brand-600 text-white font-semibold whitespace-nowrap shadow-sm';
       }
 
-      // Update dropdown value
       const select = document.getElementById('allLangSelect');
       if (select) select.value = lang;
 
-      // Instant filter
       applyFilters();
 
       if (targetVoiceId) {
         selectVoice(targetVoiceId);
-      } else if (allVoices.length > 0) {
+      } else if (allVoices.length > 0 && !allVoices.some(v => v.id === selectedVoiceId)) {
         selectVoice(allVoices[0].id);
       }
     }
 
     function onDropdownLangChange() {
       const val = document.getElementById('allLangSelect').value;
-      setLanguage(val);
+      if (currentEngine === 'kokoro') {
+        setKokoroAccent(val);
+      } else {
+        setLanguage(val);
+      }
     }
 
     function renderVoices() {
@@ -586,14 +703,19 @@
       container.innerHTML = allVoices.map(v => {
         const isSel = v.id === selectedVoiceId;
         const avatar = v.gender === 'Female' ? '👩' : '👨';
+        const isFlagship = v.id === 'af_heart' || v.id === 'am_adam';
         const badge = currentEngine === 'kokoro'
-          ? (v.id === 'af_heart' || v.id === 'am_adam' ? '<span class="text-[9px] uppercase px-1 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold">Flagship</span>' : '')
+          ? (isFlagship ? '<span class="text-[9px] uppercase px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold">Flagship</span>' : '')
           : (v.featured ? '<span class="text-[9px] uppercase px-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 font-bold">Featured</span>' : '');
+
+        const descText = currentEngine === 'kokoro' 
+          ? (v.desc || `${v.country} · ${v.gender}`)
+          : `${v.language} · ${v.country} · ${v.gender}`;
 
         return `
           <div onclick="selectVoice('${v.id}')" class="voice-card cursor-pointer p-2.5 rounded-xl border border-dark-700/70 bg-dark-900/60 hover:border-brand-500/60 hover:bg-dark-800 transition flex items-center justify-between ${isSel ? 'selected' : ''}">
             <div class="flex items-center space-x-2.5 min-w-0">
-              <div class="w-8 h-8 rounded-full bg-dark-750 border border-dark-600 flex items-center justify-center text-sm flex-shrink-0">
+              <div class="w-8 h-8 rounded-full ${isFlagship ? 'bg-amber-500/20 border-amber-500/40' : 'bg-dark-750 border-dark-600'} border flex items-center justify-center text-sm flex-shrink-0">
                 ${avatar}
               </div>
               <div class="min-w-0">
@@ -602,7 +724,7 @@
                   <span class="text-xs" title="${v.country}">${v.flag || '🌐'}</span>
                   ${badge}
                 </div>
-                <div class="text-[10px] text-slate-400 truncate">${v.language} · ${v.country} · ${v.gender}</div>
+                <div class="text-[10px] text-slate-400 truncate">${descText}</div>
               </div>
             </div>
             
@@ -622,7 +744,6 @@
       renderVoices();
       updateSelectedVoiceBanner();
       
-      // Auto-switch to script tab on mobile when a voice is selected!
       if (window.innerWidth < 1024) {
         setTimeout(() => switchMobileTab('script'), 180);
       }
@@ -640,7 +761,7 @@
       if (currentEngine === 'kokoro') {
         badge.innerText = '🌟 ElevenLabs Quality';
         badge.className = 'text-[9px] font-bold uppercase px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30';
-        document.getElementById('currentVoiceDetails').innerText = `${v.id} · ${v.country} · ${v.gender}`;
+        document.getElementById('currentVoiceDetails').innerText = `${v.id} · ${v.desc || `${v.country} · ${v.gender}`}`;
       } else {
         badge.innerText = '⚡ Global HD';
         badge.className = 'text-[9px] font-bold uppercase px-1.5 py-0.2 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30';
@@ -649,7 +770,8 @@
     }
 
     async function quickPreviewVoice(voiceId) {
-      const sampleText = "Hello! LoveVoice Studio testing voice clarity.";
+      const isKokoro = currentEngine === 'kokoro';
+      const sampleText = isKokoro ? "Hello! This voice delivers deep human clarity and realistic inflection." : "Hello! Testing voice clarity.";
       try {
         const res = await fetch('/api/generate', {
           method: 'POST',
@@ -660,7 +782,9 @@
             engine: currentEngine,
             rate: '+0%',
             pitch: '+0Hz',
-            volume: '+0%'
+            volume: '+0%',
+            speed: isKokoro ? parseFloat(document.getElementById('kokoroSpeedSlider').value) : 1.0,
+            sentence_pause: 0.2
           })
         });
         const data = await res.json();
@@ -673,7 +797,32 @@
       }
     }
 
-    // Emotion Preset Management
+    // Kokoro Acoustic Controls
+    function updateKokoroControls() {
+      const sp = parseFloat(document.getElementById('kokoroSpeedSlider').value);
+      const pa = parseFloat(document.getElementById('kokoroPauseSlider').value);
+      
+      let speedDesc = 'Normal';
+      if (sp <= 0.8) speedDesc = 'Storytelling / Calm';
+      else if (sp >= 1.2) speedDesc = 'Fast / Dynamic';
+      document.getElementById('kokoroSpeedVal').innerText = `${sp.toFixed(2)}x (${speedDesc})`;
+
+      let pauseDesc = 'Natural Breath';
+      if (pa <= 0.18) pauseDesc = 'Snappy Dialogue';
+      else if (pa >= 0.40) pauseDesc = 'Dramatic Pause';
+      document.getElementById('kokoroPauseVal').innerText = `${pa.toFixed(2)}s (${pauseDesc})`;
+    }
+
+    // Edge-TTS Controls
+    function updateControls() {
+      const r = document.getElementById('rateSlider').value;
+      const p = document.getElementById('pitchSlider').value;
+      const v = document.getElementById('volumeSlider').value;
+      document.getElementById('rateVal').innerText = `${r >= 0 ? '+' : ''}${r}%`;
+      document.getElementById('pitchVal').innerText = `${p >= 0 ? '+' : ''}${p}Hz`;
+      document.getElementById('volumeVal').innerText = `${v >= 0 ? '+' : ''}${v}%`;
+    }
+
     const EMOTION_PRESETS = {
       natural:  { rate: 0, pitch: 0, label: '🌟 Natural / Story', hudReason: 'Balanced, standard neural pacing.' },
       happy:    { rate: 10, pitch: 15, label: '😃 Cheerful & Happy', hudReason: 'Fast upbeat cadence with elevated pitch.' },
@@ -707,15 +856,6 @@
       }
     }
 
-    function updateControls() {
-      const r = document.getElementById('rateSlider').value;
-      const p = document.getElementById('pitchSlider').value;
-      const v = document.getElementById('volumeSlider').value;
-      document.getElementById('rateVal').innerText = `${r >= 0 ? '+' : ''}${r}%`;
-      document.getElementById('pitchVal').innerText = `${p >= 0 ? '+' : ''}${p}Hz`;
-      document.getElementById('volumeVal').innerText = `${v >= 0 ? '+' : ''}${v}%`;
-    }
-
     function toggleAutoDirector() {
       const isAuto = document.getElementById('autoDirectToggle').checked;
       if (isAuto) handleTextInput();
@@ -724,6 +864,7 @@
     let directDebounceTimer = null;
     function handleTextInput() {
       updateCharCount();
+      if (currentEngine !== 'edge-tts') return; // Kokoro is natively emotional, no auto-director needed
       if (!document.getElementById('autoDirectToggle').checked) return;
       clearTimeout(directDebounceTimer);
       directDebounceTimer = setTimeout(triggerAutoDirector, 400);
@@ -787,9 +928,28 @@
 
     function clearText() {
       document.getElementById('textInput').value = '';
-      handleTextInput();
+      updateCharCount();
     }
 
+    // Kokoro Studio Samples
+    function setKokoroSample(type) {
+      if (type === 'narration') {
+        document.getElementById('textInput').value = "The winter evening settled softly over the quiet mountain valley. Far away, a lone cabin's light flickered through the falling snow, whispering ancient stories of warmth, resilience, and quiet hope.";
+        selectVoice('af_heart');
+      } else if (type === 'podcast') {
+        document.getElementById('textInput').value = "Welcome back to the studio. Today, we're diving deep into the next frontier of neural acoustics — how artificial voices are finally mastering the delicate art of human breathing, subtle vocal fry, and genuine emotional connection.";
+        selectVoice('am_adam');
+      } else if (type === 'cinematic') {
+        document.getElementById('textInput').value = "In the heart of an ancient empire, where every stone carried a dark prophecy, one legendary traveler dared to challenge the shadows and uncover the truth.";
+        selectVoice('am_onyx');
+      } else if (type === 'spanish') {
+        document.getElementById('textInput').value = "Bienvenidos a una experiencia sonora inolvidable. Cada palabra cobra vida con una cadencia natural, llena de emoción y calidez humana.";
+        selectVoice('ef_dora');
+      }
+      updateCharCount();
+    }
+
+    // Edge-TTS Samples
     async function setSample(lang) {
       if (lang === 'ur') {
         document.getElementById('textInput').value = "السلام علیکم! LoveVoice Studio میں خوش آمدید۔ اب آپ اردو، ہندی، عربی، انگلش اور ہسپانوی سمیت تمام زبانوں میں بہترین اور قدرتی آوازیں تیار کر سکتے ہیں۔";
@@ -798,7 +958,7 @@
         document.getElementById('textInput').value = "नमस्ते! LoveVoice Studio में आपका स्वागत है। अब आप हिंदी, उर्दू, अंग्रेजी और दुनिया भर की भाषाओं में स्वाभाविक आवाज़ें आसानी से तैयार कर सकते हैं।";
         setLanguage('Hindi', 'hi-IN-SwaraNeural');
       } else if (lang === 'ar') {
-        document.getElementById('textInput').value = "مرحباً بكم في استوديو LoveVoice! يمكنك الآن إنشاء تعليقات صوتية طبيعية واحترافية باللغة العربية وأكثر من 70 لغة حول العالم.";
+        document.getElementById('textInput').value = "مرحباً بكم في استودیو LoveVoice! يمكنك الآن إنشاء تعليقات صوتية طبيعية واحترافية باللغة العربية وأكثر من 70 لغة حول العالم.";
         setLanguage('Arabic', 'ar-SA-ZariyahNeural');
       } else if (lang === 'es') {
         document.getElementById('textInput').value = "¡Bienvenido a LoveVoice Studio! Ahora puedes generar locuciones humanas y expresivas en español con calidad de estudio en segundos.";
@@ -822,25 +982,27 @@
       }
       if (isGenerating) return;
 
+      const isKokoro = currentEngine === 'kokoro';
       const rate = `${document.getElementById('rateSlider').value >= 0 ? '+' : ''}${document.getElementById('rateSlider').value}%`;
       const pitch = `${document.getElementById('pitchSlider').value >= 0 ? '+' : ''}${document.getElementById('pitchSlider').value}Hz`;
       const volume = `${document.getElementById('volumeSlider').value >= 0 ? '+' : ''}${document.getElementById('volumeSlider').value}%`;
+      const speed = isKokoro ? parseFloat(document.getElementById('kokoroSpeedSlider').value) : 1.0;
+      const pause = isKokoro ? parseFloat(document.getElementById('kokoroPauseSlider').value) : 0.28;
 
       const btn = document.getElementById('generateBtn');
       const btnText = document.getElementById('generateBtnText');
       isGenerating = true;
       btn.disabled = true;
       let secondsPassed = 0;
-      
-      const words = text.split(/\s+/).filter(Boolean).length;
-      const isLongText = words > 80;
 
       const timerInterval = setInterval(() => {
         secondsPassed++;
-        btnText.innerText = `⏳ Generating Audio (${secondsPassed}s)...`;
+        btnText.innerText = isKokoro
+          ? `⏳ Synthesizing ElevenLabs Audio (${secondsPassed}s · Local CPU)...`
+          : `⏳ Generating Speech (${secondsPassed}s)...`;
       }, 1000);
       
-      btnText.innerText = `⏳ Generating Audio...`;
+      btnText.innerText = isKokoro ? `⏳ Synthesizing ElevenLabs Audio...` : `⏳ Generating Audio...`;
 
       try {
         const response = await fetch('/api/generate', {
@@ -852,7 +1014,9 @@
             engine: currentEngine,
             rate: rate,
             pitch: pitch,
-            volume: volume
+            volume: volume,
+            speed: speed,
+            sentence_pause: pause
           })
         });
 
@@ -870,7 +1034,7 @@
         clearInterval(timerInterval);
         isGenerating = false;
         btn.disabled = false;
-        btnText.innerText = currentEngine === 'kokoro' ? 'Generate ElevenLabs Quality Audio' : 'Generate Speech';
+        btnText.innerText = isKokoro ? 'Generate ElevenLabs Quality Audio' : 'Generate Speech';
       }
     }
 
@@ -914,10 +1078,14 @@
         }
 
         container.innerHTML = history.map(h => {
+          const engineTag = h.engine === 'kokoro'
+            ? '<span class="text-[9px] uppercase px-1 rounded bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30">Kokoro</span>'
+            : '<span class="text-[9px] uppercase px-1 rounded bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">Global HD</span>';
+
           return `
             <div class="p-2.5 rounded-xl border border-dark-700 bg-dark-850 hover:border-dark-600 transition flex flex-col space-y-1.5">
               <div class="flex items-center justify-between text-xs">
-                <span class="font-bold text-white flex items-center gap-1">${h.voice_flag} ${h.voice_name}</span>
+                <span class="font-bold text-white flex items-center gap-1">${h.voice_flag} ${h.voice_name} ${engineTag}</span>
                 <span class="text-slate-500 font-mono text-[9px]">${h.created_at}</span>
               </div>
               <p class="text-[11px] text-slate-300 line-clamp-2 italic">"${h.text}"</p>
