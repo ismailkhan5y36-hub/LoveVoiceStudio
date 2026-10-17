@@ -366,9 +366,16 @@
     let deferredPwaPrompt = null;
     let currentMobileTab = 'script';
 
-    // PWA Service Worker
+    // Unregister legacy service workers to force immediate fresh UI
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/static/sw.js').catch(err => console.log('SW error:', err));
+      navigator.serviceWorker.getRegistrations().then(registrations => {
+        for (let r of registrations) {
+          r.unregister();
+        }
+      });
+      if (window.caches) {
+        caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
+      }
     }
 
     // PWA Prompt

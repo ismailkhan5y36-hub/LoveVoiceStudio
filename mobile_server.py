@@ -107,7 +107,14 @@ def split_text_into_chunks(text: str, max_chunk_size: int = 1500):
 async def handle_index(request):
     index_file = STATIC_DIR / "index.html"
     if index_file.exists():
-        return web.FileResponse(index_file)
+        return web.FileResponse(
+            index_file,
+            headers={
+                "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
+                "Pragma": "no-cache",
+                "Expires": "0"
+            }
+        )
     return web.Response(text="<h1>LoveVoice Studio Mobile Initializing...</h1>", content_type="text/html")
 
 async def handle_engines(request):
