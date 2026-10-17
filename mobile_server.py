@@ -3,6 +3,7 @@ import sys
 import json
 import uuid
 import time
+import socket
 import asyncio
 import re
 from datetime import datetime
@@ -10,6 +11,12 @@ from pathlib import Path
 from aiohttp import web
 import edge_tts
 import smart_director
+
+# Force IPv4 to eliminate 90s IPv6 TCP connection timeout on mobile networks / Termux
+_orig_getaddrinfo = socket.getaddrinfo
+def _ipv4_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
+    return _orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
+socket.getaddrinfo = _ipv4_getaddrinfo
 
 APP_DIR = Path(__file__).parent.resolve()
 OUTPUTS_DIR = APP_DIR / "outputs"
@@ -148,7 +155,7 @@ async def handle_voices(request):
     if not lang or lang.lower() == "all":
         return web.json_response(CACHED_VOICES)
     lang_lower = lang.lower()
-    filtered = [v for v in CACHED_VOICES if v["language"].lower() == lang_lower]
+    filtered = [v for v in CACHED_VOICES if (v.get("language") or "").lower() == lang_lower]
     return web.json_response(filtered)
 
 async def handle_smart_direct(request):
@@ -199,7 +206,11 @@ async def handle_generate(request):
                 pitch=pitch,
                 volume=volume
             )
-            await communicate.save(str(filepath))
+            # High-speed streaming synthesis (eliminates memory buffer delays)
+            with open(filepath, "wb") as f:
+                async for chunk in communicate.stream():
+                    if chunk["type"] == "audio":
+                        f.write(chunk["data"])
         else:
             temp_paths = [OUTPUTS_DIR / f"temp_{item_id}_{idx}.mp3" for idx in range(len(chunks))]
 
@@ -211,7 +222,10 @@ async def handle_generate(request):
                     pitch=pitch,
                     volume=volume
                 )
-                await comm.save(str(dest_path))
+                with open(dest_path, "wb") as f:
+                    async for chunk in comm.stream():
+                        if chunk["type"] == "audio":
+                            f.write(chunk["data"])
 
             tasks = [run_single_chunk(i, chunks[i], temp_paths[i]) for i in range(len(chunks))]
             await asyncio.gather(*tasks)
@@ -312,7 +326,7 @@ def main():
         pass
     port = int(os.environ.get("PORT", 7860))
     print("=" * 65)
-    print("   🌟 LoveVoice Studio AI Mobile Server (Ultra-Lightweight)")
+    print("   🌟 LoveVoice Studio AI Mobile Server (Fast IPv4 Streaming)")
     print("   🎙️ 322+ Neural Voices in 76+ Languages")
     print(f"   📱 Running on: http://localhost:{port}")
     print("=" * 65)

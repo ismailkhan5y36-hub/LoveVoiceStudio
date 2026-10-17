@@ -2,10 +2,18 @@ import os
 import json
 import uuid
 import time
+import socket
 import asyncio
 from datetime import datetime
 from pathlib import Path
 from typing import Optional, List, Dict, Any
+
+# Force IPv4 to eliminate 90s IPv6 TCP timeout on mobile networks
+_orig_getaddrinfo = socket.getaddrinfo
+def _ipv4_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
+    return _orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
+socket.getaddrinfo = _ipv4_getaddrinfo
+
 
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
@@ -340,7 +348,10 @@ async def generate_speech(req: TTSRequest):
                 pitch=req.pitch,
                 volume=req.volume
             )
-            await communicate.save(str(filepath))
+            with open(filepath, "wb") as f:
+                async for chunk in communicate.stream():
+                    if chunk["type"] == "audio":
+                        f.write(chunk["data"])
         else:
             temp_paths = [OUTPUTS_DIR / f"temp_{item_id}_{idx}.mp3" for idx in range(len(chunks))]
             
@@ -352,7 +363,10 @@ async def generate_speech(req: TTSRequest):
                     pitch=req.pitch,
                     volume=req.volume
                 )
-                await comm.save(str(dest_path))
+                with open(dest_path, "wb") as f:
+                    async for chunk in comm.stream():
+                        if chunk["type"] == "audio":
+                            f.write(chunk["data"])
 
             # Parallel download of all chunks simultaneously
             await asyncio.gather(*[

@@ -2,430 +2,376 @@
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>LoveVoice Studio AI — 322+ Global Voices in 76+ Languages</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>LoveVoice Studio AI — 322+ Voices · 76+ Languages</title>
   
-  <!-- PWA & Mobile Meta -->
-  <link rel="manifest" href="/static/manifest.json">
-  <meta name="theme-color" content="#7c3aed">
-  <meta name="mobile-web-app-capable" content="yes">
+  <!-- PWA & Mobile Web App Meta -->
+  <meta name="theme-color" content="#6366f1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="apple-touch-icon" href="/static/icon.png">
-
-  <!-- Tailwind CSS CDN -->
+  <meta name="apple-mobile-web-app-title" content="LoveVoice AI">
+  <link rel="manifest" href="/static/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+  
+  <!-- Tailwind CSS & Lucide Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
           colors: {
-            dark: {
-              950: '#07080b',
-              900: '#0c0d14',
-              850: '#11131c',
-              800: '#181a26',
-              700: '#232638',
-              600: '#32364e',
-            },
             brand: {
-              500: '#8b5cf6',
-              600: '#7c3aed',
-              700: '#6d28d9',
+              50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc',
+              400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca',
+              800: '#3730a3', 900: '#312e81', 950: '#1e1b4b'
+            },
+            dark: {
+              750: '#1e2433', 800: '#191f2e', 850: '#131824', 900: '#0e121a', 950: '#090c12'
             }
           }
         }
       }
     }
   </script>
+  
   <style>
-    body {
-      background-color: #07080b;
-      color: #f1f5f9;
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.16) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.12) 0px, transparent 50%);
-      background-attachment: fixed;
-    }
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: rgba(15, 23, 42, 0.6);
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: rgba(148, 163, 184, 0.25);
-      border-radius: 4px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: rgba(139, 92, 246, 0.5);
-    }
-    .voice-card.selected {
-      border-color: #8b5cf6 !important;
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.22), rgba(124, 58, 237, 0.10)) !important;
-      box-shadow: 0 0 20px -3px rgba(139, 92, 246, 0.35);
-    }
-    audio::-webkit-media-controls-panel {
-      background-color: #181a26;
-    }
-    audio::-webkit-media-controls-current-time-display,
-    audio::-webkit-media-controls-time-remaining-display {
-      color: #f1f5f9;
-    }
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
+    .voice-card.selected { border-color: #6366f1 !important; background: rgba(99, 102, 241, 0.12) !important; }
+    .voice-card { -webkit-tap-highlight-color: transparent; }
   </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans selection:bg-brand-500 selection:text-white pb-10">
+<body class="bg-dark-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-brand-500 selection:text-white">
 
-  <!-- TOP APP BAR -->
-  <header class="border-b border-dark-700/80 bg-dark-900/90 backdrop-blur-md sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-brand-600/30">
-          <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+  <!-- COMPACT MOBILE-FRIENDLY HEADER -->
+  <header class="bg-dark-900/95 border-b border-dark-700/80 sticky top-0 z-40 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex items-center justify-between">
+      
+      <!-- Brand Logo & Title -->
+      <div class="flex items-center space-x-2.5">
+        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-brand-500/30 flex-shrink-0">
+          <i data-lucide="sparkles" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
         </div>
         <div>
-          <div class="flex items-center space-x-2">
-            <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">LoveVoice Studio AI</h1>
-            <span class="text-[9px] sm:text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-500/20 to-purple-500/20 text-amber-300 border border-amber-500/30">322+ Voices · Global</span>
+          <div class="flex items-center space-x-1.5">
+            <h1 class="font-bold text-sm sm:text-base tracking-tight text-white">LoveVoice Studio</h1>
+            <span class="text-[9px] font-semibold uppercase px-1.5 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30">AI</span>
           </div>
-          <p class="text-[11px] sm:text-xs text-slate-400">Urdu, Hindi, Arabic, Spanish, English & 70+ Languages</p>
+          <p class="text-[10px] text-slate-400 hidden sm:block">322+ Neural Voices · 76+ Languages (Urdu, Hindi, Spanish, English)</p>
         </div>
       </div>
 
-      <div class="flex items-center space-x-2 sm:space-x-3">
-        <!-- PWA Install Button (Shown on Mobile) -->
-        <button id="pwaInstallBtn" onclick="installPWA()" class="hidden flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-gradient-to-r from-brand-600 to-indigo-600 text-white text-xs font-semibold shadow-md transition">
-          <i data-lucide="download" class="w-3.5 h-3.5"></i>
-          <span class="hidden sm:inline">Install</span> App
+      <!-- Action Buttons -->
+      <div class="flex items-center space-x-2">
+        <button id="pwaInstallBtn" onclick="installPWA()" class="hidden flex items-center space-x-1 px-2 py-1 rounded-lg bg-gradient-to-r from-brand-600 to-indigo-600 text-white text-[11px] font-semibold shadow-md">
+          <i data-lucide="download" class="w-3 h-3"></i>
+          <span>Install</span>
         </button>
 
-        <button onclick="toggleHistoryDrawer()" class="relative p-2 rounded-lg bg-dark-800 hover:bg-dark-700 text-slate-300 hover:text-white border border-dark-700 transition" title="Generation History">
-          <i data-lucide="history" class="w-5 h-5"></i>
-          <span id="historyBadge" class="hidden absolute -top-1 -right-1 bg-brand-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+        <button onclick="toggleHistoryDrawer()" class="relative p-1.5 sm:p-2 rounded-lg bg-dark-800 hover:bg-dark-700 text-slate-300 hover:text-white border border-dark-700 transition" title="History">
+          <i data-lucide="history" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+          <span id="historyBadge" class="hidden absolute -top-1 -right-1 bg-brand-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
         </button>
       </div>
     </div>
   </header>
 
   <!-- MAIN CONTAINER -->
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5 grid grid-cols-1 lg:grid-cols-12 gap-5">
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-5">
 
-    <!-- LEFT COLUMN: ENGINE & VOICE SELECTOR (5 cols on desktop, full width on mobile) -->
-    <div class="lg:col-span-5 flex flex-col space-y-4">
-      <div class="bg-dark-850/90 border border-dark-700/80 rounded-2xl p-4 sm:p-5 shadow-xl flex flex-col h-[650px] sm:h-[750px]">
-        
-        <!-- ENGINE SELECTOR -->
-        <div class="mb-3">
-          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2 flex items-center justify-between">
-            <span class="flex items-center gap-1.5"><i data-lucide="cpu" class="w-3.5 h-3.5 text-brand-400"></i> Speech Synthesis Engine</span>
-            <span id="engineBadgeInfo" class="text-[10px] font-mono text-emerald-400 font-bold">Cloud 322 Voices Active</span>
-          </div>
-          <div class="grid grid-cols-2 gap-2 p-1.5 bg-dark-900 rounded-xl border border-dark-700/80">
-            <!-- Engine 1: LoveVoice Global (Default) -->
-            <button onclick="switchEngine('edge-tts')" id="engineBtn-edge" class="p-2.5 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm">
-              <span class="font-bold text-xs tracking-tight flex items-center gap-1 truncate">⚡ LoveVoice Global</span>
-              <span class="text-[9px] uppercase font-mono px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 font-bold mt-1 inline-block w-fit">322 Voices · 76+ Langs</span>
-              <span class="text-[10px] text-slate-300 mt-1 line-clamp-1 leading-tight">Instant HD (~1s)</span>
-            </button>
-
-            <!-- Engine 2: Kokoro Ultra -->
-            <button onclick="switchEngine('kokoro')" id="engineBtn-kokoro" class="p-2.5 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800">
-              <span class="font-bold text-xs tracking-tight flex items-center gap-1 truncate">🌟 Kokoro Ultra</span>
-              <span class="text-[9px] uppercase font-mono px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-bold mt-1 inline-block w-fit">ElevenLabs Grade</span>
-              <span class="text-[10px] text-slate-400 mt-1 line-clamp-1 leading-tight">Human Breathing (29 Voices)</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- VOICE LIST HEADER -->
-        <div class="flex items-center justify-between pb-2 border-b border-dark-700/60">
-          <div class="flex items-center space-x-2">
-            <i data-lucide="mic" class="w-4 h-4 text-brand-400"></i>
-            <h2 id="voiceListTitle" class="font-semibold text-white text-sm">Select Global Voice</h2>
-          </div>
-          <span id="voiceCountBadge" class="text-xs font-mono bg-dark-700/80 text-brand-300 px-2 py-0.5 rounded-md">322 Voices</span>
-        </div>
-
-        <!-- LANGUAGE SELECTOR & FILTERS -->
-        <div class="pt-2.5 space-y-2">
-          
-          <!-- QUICK POPULAR LANGUAGE PILLS (Horizontal Scroll on Mobile) -->
-          <div id="quickLangContainer" class="flex space-x-1.5 overflow-x-auto custom-scrollbar pb-1 text-xs">
-            <button onclick="setLanguage('all')" id="pill-all" class="px-2.5 py-1 rounded-lg bg-brand-600 text-white font-semibold whitespace-nowrap shadow-sm">🌟 All</button>
-            <button onclick="setLanguage('Urdu')" id="pill-Urdu" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇵🇰 Urdu</button>
-            <button onclick="setLanguage('Hindi')" id="pill-Hindi" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇮🇳 Hindi</button>
-            <button onclick="setLanguage('English')" id="pill-English" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇺🇸 English</button>
-            <button onclick="setLanguage('Spanish')" id="pill-Spanish" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇪🇸 Spanish</button>
-            <button onclick="setLanguage('Arabic')" id="pill-Arabic" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇸🇦 Arabic</button>
-            <button onclick="setLanguage('French')" id="pill-French" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇫🇷 French</button>
-            <button onclick="setLanguage('German')" id="pill-German" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇩🇪 German</button>
-          </div>
-
-          <!-- ALL LANGUAGES DROPDOWN + SEARCH -->
-          <div class="grid grid-cols-12 gap-2">
-            <!-- Full Language Select Dropdown (76+ Languages) -->
-            <div class="col-span-7">
-              <select id="allLangSelect" onchange="onDropdownLangChange()" class="w-full bg-dark-900 border border-dark-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-brand-500 font-medium">
-                <option value="all">🌍 All Languages (76+)</option>
-              </select>
-            </div>
-            <!-- Gender Select -->
-            <div class="col-span-5">
-              <select id="genderFilter" onchange="renderVoices()" class="w-full bg-dark-900 border border-dark-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500">
-                <option value="all">All Genders</option>
-                <option value="Female">👩 Female</option>
-                <option value="Male">👨 Male</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Free-text Search -->
-          <div class="relative">
-            <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5"></i>
-            <input type="text" id="voiceSearchInput" oninput="renderVoices()" placeholder="Search voice, language, country..." class="w-full bg-dark-900 border border-dark-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500">
-          </div>
-        </div>
-
-        <!-- VOICE CARDS LIST -->
-        <div id="voiceListContainer" class="flex-1 overflow-y-auto custom-scrollbar mt-3 space-y-2 pr-1">
-          <div class="flex items-center justify-center h-40 text-slate-500 text-xs">Loading voices...</div>
-        </div>
-      </div>
+    <!-- MOBILE VIEW TABS (Visible only on mobile/tablet screens < lg) -->
+    <div class="lg:hidden flex rounded-xl bg-dark-900 p-1 border border-dark-700/80 mb-3 shadow-md sticky top-[57px] z-30 backdrop-blur-md">
+      <button id="tabBtn-script" onclick="switchMobileTab('script')" class="flex-1 py-2 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition bg-brand-600 text-white shadow-sm">
+        <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+        <span>✍️ Studio & Script</span>
+      </button>
+      <button id="tabBtn-voice" onclick="switchMobileTab('voice')" class="flex-1 py-2 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition text-slate-400 hover:text-white">
+        <i data-lucide="mic" class="w-3.5 h-3.5"></i>
+        <span>🎙️ Choose Voice</span>
+        <span id="tabVoiceCount" class="text-[10px] bg-dark-750 px-1.5 py-0.2 rounded-full font-mono text-brand-300">322</span>
+      </button>
     </div>
 
-    <!-- RIGHT COLUMN: SCRIPT, PARAMETERS & AUDIO PLAYER (7 cols) -->
-    <div class="lg:col-span-7 flex flex-col space-y-4">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
 
-      <!-- SCRIPT EDITOR CARD -->
-      <div class="bg-dark-850/90 border border-dark-700/80 rounded-2xl p-4 sm:p-5 shadow-xl flex flex-col">
-        <div class="flex items-center justify-between pb-3 border-b border-dark-700/60">
-          <div class="flex items-center space-x-2">
-            <i data-lucide="file-text" class="w-5 h-5 text-brand-400"></i>
-            <h2 class="font-semibold text-white text-base">Text to Speech Script</h2>
-          </div>
-          <!-- Quick Samples for Different Languages -->
-          <div class="flex items-center space-x-1.5 flex-wrap">
-            <button onclick="setSample('ur')" class="text-[11px] bg-dark-750 hover:bg-dark-700 text-emerald-400 px-2 py-1 rounded transition">🇵🇰 اردو</button>
-            <button onclick="setSample('hi')" class="text-[11px] bg-dark-750 hover:bg-dark-700 text-amber-400 px-2 py-1 rounded transition">🇮🇳 हिंदी</button>
-            <button onclick="setSample('ar')" class="text-[11px] bg-dark-750 hover:bg-dark-700 text-teal-400 px-2 py-1 rounded transition">🇸🇦 عربي</button>
-            <button onclick="setSample('en')" class="text-[11px] bg-dark-750 hover:bg-dark-700 text-indigo-400 px-2 py-1 rounded transition">🇺🇸 EN</button>
-            <button onclick="setSample('es')" class="text-[11px] bg-dark-750 hover:bg-dark-700 text-rose-400 px-2 py-1 rounded transition">🇪🇸 ES</button>
-            <button onclick="enhancePacing()" class="text-[11px] bg-brand-600/20 hover:bg-brand-600/30 text-amber-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1 border border-brand-500/30 font-medium" title="Smart Emotion & Breath Pacing">
-              <i data-lucide="sparkles" class="w-3 h-3 text-amber-400"></i> Smart Pacing
-            </button>
-            <button onclick="clearText()" class="text-xs text-slate-400 hover:text-rose-400 transition p-1" title="Clear text">
-              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- CURRENT SELECTED VOICE BANNER -->
-        <div class="mt-3 p-3 rounded-xl bg-dark-900/90 border border-brand-500/30 flex items-center justify-between">
-          <div class="flex items-center space-x-3 min-w-0">
-            <span id="currentVoiceAvatar" class="text-2xl flex-shrink-0">👩</span>
-            <div class="min-w-0">
-              <div class="flex items-center space-x-2 truncate">
-                <span class="text-xs text-slate-400">Active:</span>
-                <span id="currentVoiceName" class="font-bold text-white text-sm truncate">Jenny</span>
-                <span id="currentVoiceFlag">🇺🇸</span>
-                <span id="currentEngineBadge" class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">⚡ Global HD</span>
-              </div>
-              <div id="currentVoiceDetails" class="text-[11px] text-slate-400 font-mono truncate">en-US-JennyNeural (English · United States)</div>
-            </div>
-          </div>
-          <span class="text-[10px] uppercase font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 flex-shrink-0">Active</span>
-        </div>
-
-        <!-- SMART AUTO-DIRECTOR HUD -->
-        <div id="autoDirectorHUD" class="mt-3 p-3 rounded-xl bg-gradient-to-r from-violet-950/40 via-purple-950/30 to-indigo-950/40 border border-brand-500/40 flex items-center justify-between shadow-sm">
-          <div class="flex items-center space-x-2.5 min-w-0">
-            <div class="w-8 h-8 rounded-lg bg-brand-500/20 border border-brand-500/40 flex items-center justify-center text-base flex-shrink-0">
-              🤖
-            </div>
-            <div class="min-w-0">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="text-xs font-bold text-white tracking-tight">Smart Auto-Director:</span>
-                <span id="detectedEmotionBadge" class="text-[11px] font-semibold text-emerald-300 bg-emerald-500/20 border border-emerald-500/30 px-2 py-0.5 rounded-full truncate">
-                  🌟 Listening to text...
-                </span>
-                <span id="detectedConfidenceBadge" class="text-[10px] font-mono text-slate-400"></span>
-              </div>
-              <p id="detectedEmotionReason" class="text-[11px] text-slate-400 truncate mt-0.5">
-                Type or paste script to automatically tune emotion, speed & pitch.
-              </p>
-            </div>
-          </div>
+      <!-- LEFT COLUMN: VOICE SELECTOR (Hidden on mobile when on Script tab, 5 cols on desktop) -->
+      <div id="voiceColumn" class="hidden lg:flex lg:col-span-5 flex-col space-y-3">
+        <div class="bg-dark-850/90 border border-dark-700/80 rounded-2xl p-3.5 sm:p-4 shadow-xl flex flex-col h-[520px] sm:h-[620px] lg:h-[720px]">
           
-          <div class="flex items-center space-x-2 flex-shrink-0 ml-2">
-            <span class="text-[11px] text-slate-400 hidden sm:inline">Auto-Tune</span>
-            <label class="relative inline-flex items-center cursor-pointer" title="Turn Smart Auto-Director ON or OFF">
-              <input type="checkbox" id="autoDirectorToggle" checked onchange="toggleAutoDirector()" class="sr-only peer">
-              <div class="w-9 h-5 bg-dark-750 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-600"></div>
-            </label>
-          </div>
-        </div>
-
-        <div class="mt-3 relative">
-          <textarea id="textInput" rows="7" placeholder="Type or paste text in ANY language (Urdu, Hindi, Arabic, Spanish, English, etc.)... Supports up to 30,000 characters with auto-chunking!" 
-            class="w-full bg-dark-900 border border-dark-700/80 rounded-xl p-4 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition resize-none leading-relaxed"
-            oninput="handleTextInput()"></textarea>
-          
-          <div class="flex items-center justify-between mt-2 px-1 text-xs text-slate-400">
-            <span id="charCountLabel">0 / 30,000 characters</span>
-            <span id="qualityNote" class="text-brand-300 font-medium">⚡ 322 Voices · 76+ Languages · 48kHz HD Audio</span>
-          </div>
-        </div>
-
-        <!-- AUDIO FINE TUNING CONTROLS -->
-        <div class="mt-3 pt-3 border-t border-dark-700/60 grid grid-cols-1 md:grid-cols-3 gap-3">
-          <!-- Speed / Rate -->
-          <div class="bg-dark-900/60 border border-dark-700/50 rounded-xl p-2.5">
-            <div class="flex justify-between items-center text-xs mb-1">
-              <span class="text-slate-400 flex items-center gap-1"><i data-lucide="gauge" class="w-3.5 h-3.5 text-violet-400"></i> Speed / Pacing</span>
-              <span id="rateVal" class="font-mono text-brand-400 font-semibold">+0%</span>
+          <!-- ENGINE SELECTOR (Compact Segmented Control) -->
+          <div class="mb-3">
+            <div class="grid grid-cols-2 gap-1.5 p-1 bg-dark-900 rounded-xl border border-dark-700/80">
+              <button onclick="switchEngine('edge-tts')" id="engineBtn-edge" class="p-2 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm">
+                <span class="font-bold text-xs flex items-center gap-1 truncate">⚡ LoveVoice Global</span>
+                <span class="text-[9px] text-emerald-300 font-mono mt-0.5">322 Voices · 76+ Langs</span>
+              </button>
+              <button onclick="switchEngine('kokoro')" id="engineBtn-kokoro" class="p-2 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800">
+                <span class="font-bold text-xs flex items-center gap-1 truncate">🌟 Kokoro Ultra</span>
+                <span class="text-[9px] text-amber-300 font-mono mt-0.5">ElevenLabs Grade (29)</span>
+              </button>
             </div>
-            <input type="range" id="rateSlider" min="-50" max="50" value="0" step="5" oninput="updateControls()" class="w-full accent-brand-500 cursor-pointer">
           </div>
 
-          <!-- Pitch -->
-          <div id="pitchCard" class="bg-dark-900/60 border border-dark-700/50 rounded-xl p-2.5">
-            <div class="flex justify-between items-center text-xs mb-1">
-              <span class="text-slate-400 flex items-center gap-1"><i data-lucide="sliders" class="w-3.5 h-3.5 text-indigo-400"></i> Pitch</span>
-              <span id="pitchVal" class="font-mono text-brand-400 font-semibold">+0Hz</span>
+          <!-- VOICE LIST HEADER & COUNT -->
+          <div class="flex items-center justify-between pb-2 border-b border-dark-700/60">
+            <div class="flex items-center space-x-1.5">
+              <i data-lucide="mic" class="w-4 h-4 text-brand-400"></i>
+              <h2 id="voiceListTitle" class="font-semibold text-white text-xs sm:text-sm">Select Global Voice</h2>
             </div>
-            <input type="range" id="pitchSlider" min="-50" max="50" value="0" step="5" oninput="updateControls()" class="w-full accent-brand-500 cursor-pointer">
+            <span id="voiceCountBadge" class="text-[11px] font-mono bg-dark-700/80 text-brand-300 px-2 py-0.5 rounded-md">322 Voices</span>
           </div>
 
-          <!-- Volume -->
-          <div class="bg-dark-900/60 border border-dark-700/50 rounded-xl p-2.5">
-            <div class="flex justify-between items-center text-xs mb-1">
-              <span class="text-slate-400 flex items-center gap-1"><i data-lucide="volume-2" class="w-3.5 h-3.5 text-emerald-400"></i> Volume</span>
-              <span id="volumeVal" class="font-mono text-brand-400 font-semibold">+0%</span>
+          <!-- FILTERS & LANGUAGE SELECT -->
+          <div class="pt-2 space-y-2">
+            
+            <!-- Quick Popular Languages Pills -->
+            <div id="quickLangContainer" class="flex space-x-1.5 overflow-x-auto custom-scrollbar pb-1 text-xs">
+              <button onclick="setLanguage('all')" id="pill-all" class="px-2.5 py-1 rounded-lg bg-brand-600 text-white font-semibold whitespace-nowrap shadow-sm">🌟 All</button>
+              <button onclick="setLanguage('Urdu')" id="pill-Urdu" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇵🇰 Urdu</button>
+              <button onclick="setLanguage('Hindi')" id="pill-Hindi" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇮🇳 Hindi</button>
+              <button onclick="setLanguage('English')" id="pill-English" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇺🇸 English</button>
+              <button onclick="setLanguage('Spanish')" id="pill-Spanish" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇪🇸 Spanish</button>
+              <button onclick="setLanguage('Arabic')" id="pill-Arabic" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇸🇦 Arabic</button>
+              <button onclick="setLanguage('French')" id="pill-French" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇫🇷 French</button>
+              <button onclick="setLanguage('German')" id="pill-German" class="px-2.5 py-1 rounded-lg bg-dark-900 hover:bg-dark-750 text-slate-300 hover:text-white whitespace-nowrap border border-dark-700">🇩🇪 German</button>
             </div>
-            <input type="range" id="volumeSlider" min="-50" max="50" value="0" step="5" oninput="updateControls()" class="w-full accent-brand-500 cursor-pointer">
+
+            <!-- Full Dropdown + Gender Filter -->
+            <div class="grid grid-cols-12 gap-1.5">
+              <div class="col-span-7">
+                <select id="allLangSelect" onchange="onDropdownLangChange()" class="w-full bg-dark-900 border border-dark-700 rounded-lg px-2 py-1.5 text-xs text-white focus:outline-none focus:border-brand-500 font-medium">
+                  <option value="all">🌍 All Languages (76+)</option>
+                </select>
+              </div>
+              <div class="col-span-5">
+                <select id="genderFilter" onchange="applyFilters()" class="w-full bg-dark-900 border border-dark-700 rounded-lg px-2 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500">
+                  <option value="all">All Genders</option>
+                  <option value="Female">👩 Female</option>
+                  <option value="Male">👨 Male</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Search Input -->
+            <div class="relative">
+              <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5"></i>
+              <input type="text" id="voiceSearchInput" oninput="applyFilters()" placeholder="Search voice or country..." class="w-full bg-dark-900 border border-dark-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500">
+            </div>
+          </div>
+
+          <!-- VOICE CARDS LIST -->
+          <div id="voiceListContainer" class="flex-1 overflow-y-auto custom-scrollbar mt-2.5 space-y-1.5 pr-1">
+            <div class="flex items-center justify-center h-40 text-slate-500 text-xs">Loading voices...</div>
           </div>
         </div>
-
-        <!-- SMART EMOTION & MOOD PRESETS -->
-        <div class="mt-3 pt-3 border-t border-dark-700/60">
-          <div class="flex items-center justify-between text-xs mb-2">
-            <span class="text-slate-300 flex items-center gap-1.5 font-medium">
-              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> Smart Voice Emotion / Tone:
-            </span>
-            <span id="activeEmotionLabel" class="text-xs font-mono text-brand-300 font-bold">🌟 Natural / Story</span>
-          </div>
-          <div class="grid grid-cols-4 sm:grid-cols-7 gap-1.5 text-[11px]">
-            <button type="button" onclick="setEmotion('natural')" id="emo-natural" class="emotion-btn p-1.5 rounded-lg border border-brand-500 bg-brand-500/20 text-white font-medium flex flex-col items-center gap-0.5 transition shadow-sm">
-              <span class="text-sm">🌟</span><span class="truncate">Natural</span>
-            </button>
-            <button type="button" onclick="setEmotion('happy')" id="emo-happy" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
-              <span class="text-sm">😃</span><span class="truncate">Cheerful</span>
-            </button>
-            <button type="button" onclick="setEmotion('sad')" id="emo-sad" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
-              <span class="text-sm">😢</span><span class="truncate">Emotional</span>
-            </button>
-            <button type="button" onclick="setEmotion('whisper')" id="emo-whisper" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
-              <span class="text-sm">🤫</span><span class="truncate">Whisper</span>
-            </button>
-            <button type="button" onclick="setEmotion('dramatic')" id="emo-dramatic" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
-              <span class="text-sm">🎙️</span><span class="truncate">Drama</span>
-            </button>
-            <button type="button" onclick="setEmotion('excited')" id="emo-excited" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
-              <span class="text-sm">⚡</span><span class="truncate">Excited</span>
-            </button>
-            <button type="button" onclick="setEmotion('news')" id="emo-news" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
-              <span class="text-sm">📰</span><span class="truncate">News</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- GENERATE BUTTON -->
-        <button id="generateBtn" onclick="generateVoice()" class="mt-4 w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-semibold text-sm shadow-lg shadow-brand-600/30 hover:shadow-brand-600/50 flex items-center justify-center space-x-2 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
-          <i data-lucide="play" class="w-4 h-4 fill-white"></i>
-          <span id="generateBtnText">Generate Speech</span>
-        </button>
       </div>
 
-      <!-- ACTIVE GENERATED PLAYER CARD -->
-      <div id="playerCard" class="bg-dark-850/90 border border-dark-700/80 rounded-2xl p-4 sm:p-5 shadow-xl">
-        <div class="flex items-center justify-between pb-3 border-b border-dark-700/60">
-          <div class="flex items-center space-x-3 min-w-0">
-            <div id="playerAvatar" class="w-10 h-10 rounded-full bg-brand-500/20 border border-brand-500/40 flex items-center justify-center text-lg flex-shrink-0">🎧</div>
-            <div class="min-w-0">
-              <div class="flex items-center space-x-2 truncate">
-                <span id="playerVoiceName" class="font-bold text-white text-base truncate">Audio Player</span>
-                <span id="playerFlag" class="text-sm"></span>
-                <span id="playerCountry" class="text-xs text-slate-400 truncate"></span>
-              </div>
-              <div class="text-xs text-slate-400 truncate">
-                <span id="playerMeta">Ready to synthesize</span>
-              </div>
+      <!-- RIGHT COLUMN: SCRIPT, CONTROLS & PLAYER (7 cols on desktop) -->
+      <div id="scriptColumn" class="flex lg:col-span-7 flex-col space-y-3 sm:space-y-4">
+
+        <!-- SCRIPT CARD -->
+        <div class="bg-dark-850/90 border border-dark-700/80 rounded-2xl p-3.5 sm:p-5 shadow-xl flex flex-col">
+          
+          <!-- Script Header & Quick Sample Buttons -->
+          <div class="flex items-center justify-between pb-2.5 border-b border-dark-700/60">
+            <div class="flex items-center space-x-1.5">
+              <i data-lucide="file-text" class="w-4 h-4 text-brand-400"></i>
+              <h2 class="font-semibold text-white text-xs sm:text-sm">Speech Script</h2>
+            </div>
+            
+            <div class="flex items-center space-x-1 flex-wrap">
+              <button onclick="setSample('ur')" class="text-[10px] bg-dark-750 hover:bg-dark-700 text-emerald-400 px-1.5 py-0.5 rounded transition">🇵🇰 اردو</button>
+              <button onclick="setSample('hi')" class="text-[10px] bg-dark-750 hover:bg-dark-700 text-amber-400 px-1.5 py-0.5 rounded transition">🇮🇳 हिंदी</button>
+              <button onclick="setSample('ar')" class="text-[10px] bg-dark-750 hover:bg-dark-700 text-teal-400 px-1.5 py-0.5 rounded transition">🇸🇦 عربي</button>
+              <button onclick="setSample('en')" class="text-[10px] bg-dark-750 hover:bg-dark-700 text-indigo-400 px-1.5 py-0.5 rounded transition">🇺🇸 EN</button>
+              <button onclick="setSample('es')" class="text-[10px] bg-dark-750 hover:bg-dark-700 text-rose-400 px-1.5 py-0.5 rounded transition">🇪🇸 ES</button>
+              <button onclick="enhancePacing()" class="text-[10px] bg-brand-600/20 hover:bg-brand-600/30 text-amber-300 hover:text-white px-2 py-0.5 rounded transition flex items-center gap-1 border border-brand-500/30 font-medium" title="Smart Emotion & Breath Pacing">
+                <i data-lucide="sparkles" class="w-3 h-3 text-amber-400"></i> Smart Pacing
+              </button>
+              <button onclick="clearText()" class="text-slate-400 hover:text-rose-400 transition p-1" title="Clear text">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
             </div>
           </div>
 
-          <div class="flex items-center space-x-2 flex-shrink-0">
-            <a id="downloadBtn" href="#" download="lovevoice_speech.mp3" class="hidden flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-md shadow-emerald-600/20 transition">
-              <i data-lucide="download" class="w-4 h-4"></i>
+          <!-- ACTIVE VOICE TAP-TO-CHANGE BANNER -->
+          <div onclick="switchMobileTab('voice')" class="cursor-pointer mt-2.5 p-2.5 rounded-xl bg-dark-900/90 border border-brand-500/40 hover:border-brand-400 transition flex items-center justify-between group">
+            <div class="flex items-center space-x-2.5 min-w-0">
+              <span id="currentVoiceAvatar" class="text-xl flex-shrink-0">👩</span>
+              <div class="min-w-0">
+                <div class="flex items-center space-x-1.5 truncate">
+                  <span class="text-[11px] text-slate-400">Voice:</span>
+                  <span id="currentVoiceName" class="font-bold text-white text-xs sm:text-sm truncate">Uzma</span>
+                  <span id="currentVoiceFlag">🇵🇰</span>
+                  <span id="currentEngineBadge" class="text-[9px] font-bold uppercase px-1.5 py-0.2 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">⚡ Global HD</span>
+                </div>
+                <div id="currentVoiceDetails" class="text-[10px] text-slate-400 font-mono truncate">ur-PK-UzmaNeural (Urdu · Pakistan)</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 text-[11px] text-brand-400 font-semibold group-hover:text-brand-300 flex-shrink-0">
+              <span class="lg:hidden">Change</span>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </div>
+          </div>
+
+          <!-- SMART AUTO-DIRECTOR HUD -->
+          <div id="smartDirectorHud" class="mt-2.5 p-2.5 rounded-xl bg-dark-900/90 border border-amber-500/30 flex flex-col space-y-1.5 transition">
+            <div class="flex items-center justify-between text-xs">
+              <div class="flex items-center space-x-1.5 min-w-0">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400 flex-shrink-0 animate-pulse"></i>
+                <span class="font-bold text-slate-200 text-[11px] truncate">Auto-Director:</span>
+                <span id="detectedEmotionBadge" class="text-[10px] font-semibold text-amber-300 bg-amber-500/20 border border-amber-500/40 px-2 py-0.5 rounded-full truncate">🌟 Natural / Story</span>
+                <span id="detectedConfidenceBadge" class="text-[10px] text-slate-400 font-mono hidden sm:inline">(98%)</span>
+              </div>
+              <label class="flex items-center gap-1 cursor-pointer text-[10px] text-slate-400 hover:text-white flex-shrink-0">
+                <input type="checkbox" id="autoDirectToggle" checked onchange="toggleAutoDirector()" class="accent-brand-500 w-3 h-3 rounded">
+                <span>Auto</span>
+              </label>
+            </div>
+            <div id="detectedEmotionReason" class="text-[10px] text-slate-400 truncate">Detects mood and tunes tone automatically as you type.</div>
+          </div>
+
+          <!-- TEXTAREA -->
+          <div class="mt-2.5 relative">
+            <textarea id="textInput" rows="5" oninput="handleTextInput()" placeholder="Enter your text here in Urdu, Hindi, English, Spanish, Arabic, or any of 76+ languages..." class="w-full bg-dark-900 border border-dark-700 rounded-xl p-3 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition resize-y font-sans custom-scrollbar leading-relaxed"></textarea>
+            <div id="charCountLabel" class="text-[10px] font-mono text-slate-500 text-right mt-0.5">0 / 30,000 characters</div>
+          </div>
+
+          <!-- VOICE CONTROLS: SPEED, PITCH, VOLUME -->
+          <div class="grid grid-cols-3 gap-2 mt-2">
+            <div class="bg-dark-900/60 border border-dark-700/50 rounded-xl p-2">
+              <div class="flex justify-between items-center text-[11px] mb-0.5">
+                <span class="text-slate-400">Speed</span>
+                <span id="rateVal" class="font-mono text-brand-400 font-semibold">+0%</span>
+              </div>
+              <input type="range" id="rateSlider" min="-50" max="50" value="0" step="5" oninput="updateControls()" class="w-full accent-brand-500 cursor-pointer h-1 bg-dark-700 rounded-lg">
+            </div>
+
+            <div id="pitchCard" class="bg-dark-900/60 border border-dark-700/50 rounded-xl p-2">
+              <div class="flex justify-between items-center text-[11px] mb-0.5">
+                <span class="text-slate-400">Pitch</span>
+                <span id="pitchVal" class="font-mono text-brand-400 font-semibold">+0Hz</span>
+              </div>
+              <input type="range" id="pitchSlider" min="-50" max="50" value="0" step="5" oninput="updateControls()" class="w-full accent-brand-500 cursor-pointer h-1 bg-dark-700 rounded-lg">
+            </div>
+
+            <div class="bg-dark-900/60 border border-dark-700/50 rounded-xl p-2">
+              <div class="flex justify-between items-center text-[11px] mb-0.5">
+                <span class="text-slate-400">Volume</span>
+                <span id="volumeVal" class="font-mono text-brand-400 font-semibold">+0%</span>
+              </div>
+              <input type="range" id="volumeSlider" min="-50" max="50" value="0" step="5" oninput="updateControls()" class="w-full accent-brand-500 cursor-pointer h-1 bg-dark-700 rounded-lg">
+            </div>
+          </div>
+
+          <!-- EMOTION PRESETS -->
+          <div class="mt-2.5 pt-2 border-t border-dark-700/60">
+            <div class="flex items-center justify-between text-[11px] mb-1.5">
+              <span class="text-slate-300 font-medium">Voice Mood & Tone:</span>
+              <span id="activeEmotionLabel" class="text-[10px] font-mono text-brand-300 font-bold">🌟 Natural</span>
+            </div>
+            <div class="grid grid-cols-4 sm:grid-cols-7 gap-1 text-[11px]">
+              <button type="button" onclick="setEmotion('natural')" id="emo-natural" class="emotion-btn p-1.5 rounded-lg border border-brand-500 bg-brand-500/20 text-white font-medium flex flex-col items-center gap-0.5 transition shadow-sm">
+                <span class="text-xs sm:text-sm">🌟</span><span class="text-[10px] truncate">Natural</span>
+              </button>
+              <button type="button" onclick="setEmotion('happy')" id="emo-happy" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
+                <span class="text-xs sm:text-sm">😃</span><span class="text-[10px] truncate">Cheerful</span>
+              </button>
+              <button type="button" onclick="setEmotion('sad')" id="emo-sad" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
+                <span class="text-xs sm:text-sm">😢</span><span class="text-[10px] truncate">Sad</span>
+              </button>
+              <button type="button" onclick="setEmotion('whisper')" id="emo-whisper" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
+                <span class="text-xs sm:text-sm">🤫</span><span class="text-[10px] truncate">Whisper</span>
+              </button>
+              <button type="button" onclick="setEmotion('dramatic')" id="emo-dramatic" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
+                <span class="text-xs sm:text-sm">🎙️</span><span class="text-[10px] truncate">Drama</span>
+              </button>
+              <button type="button" onclick="setEmotion('excited')" id="emo-excited" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
+                <span class="text-xs sm:text-sm">⚡</span><span class="text-[10px] truncate">Excited</span>
+              </button>
+              <button type="button" onclick="setEmotion('news')" id="emo-news" class="emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition">
+                <span class="text-xs sm:text-sm">📰</span><span class="text-[10px] truncate">News</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- GENERATE BUTTON -->
+          <button id="generateBtn" onclick="generateVoice()" class="mt-3 w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-brand-600/30 flex items-center justify-center space-x-2 transition disabled:opacity-50">
+            <i data-lucide="play" class="w-4 h-4 fill-white"></i>
+            <span id="generateBtnText">Generate Speech</span>
+          </button>
+        </div>
+
+        <!-- PLAYER CARD -->
+        <div id="playerCard" class="bg-dark-850/90 border border-dark-700/80 rounded-2xl p-3.5 sm:p-4 shadow-xl">
+          <div class="flex items-center justify-between pb-2.5 border-b border-dark-700/60">
+            <div class="flex items-center space-x-2.5 min-w-0">
+              <div id="playerAvatar" class="w-8 h-8 rounded-full bg-brand-500/20 border border-brand-500/40 flex items-center justify-center text-sm flex-shrink-0">🎧</div>
+              <div class="min-w-0">
+                <div class="flex items-center space-x-1.5 truncate">
+                  <span id="playerVoiceName" class="font-bold text-white text-xs sm:text-sm truncate">Audio Player</span>
+                  <span id="playerFlag" class="text-xs"></span>
+                  <span id="playerCountry" class="text-[11px] text-slate-400 truncate"></span>
+                </div>
+                <div class="text-[10px] text-slate-400 truncate">
+                  <span id="playerMeta">Ready to synthesize speech</span>
+                </div>
+              </div>
+            </div>
+
+            <a id="downloadBtn" href="#" download="lovevoice_speech.mp3" class="hidden flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold shadow-md transition flex-shrink-0">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i>
               <span>Download MP3</span>
             </a>
           </div>
+
+          <div class="mt-2.5">
+            <audio id="audioElement" controls class="w-full h-9 rounded-lg accent-brand-500"></audio>
+          </div>
         </div>
 
-        <!-- AUDIO PLAYER CONTROLS (NATIVE) -->
-        <div class="mt-3">
-          <audio id="audioElement" class="w-full rounded-xl" controls preload="auto"></audio>
-        </div>
       </div>
 
     </div>
   </main>
 
-  <!-- HISTORY DRAWER (MODAL SLIDE-IN) -->
-  <div id="historyModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex justify-end">
-    <div class="w-full max-w-md bg-dark-900 border-l border-dark-700 h-full p-5 flex flex-col shadow-2xl">
-      <div class="flex items-center justify-between pb-4 border-b border-dark-700">
-        <div class="flex items-center space-x-2">
-          <i data-lucide="history" class="w-5 h-5 text-brand-400"></i>
-          <h3 class="font-bold text-white text-lg">Generation History</h3>
-        </div>
+  <!-- HISTORY MODAL DRAWER -->
+  <div id="historyModal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex justify-end">
+    <div class="w-full max-w-md bg-dark-900 border-l border-dark-700 h-full p-4 flex flex-col shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-dark-700">
+        <h3 class="font-bold text-white text-sm flex items-center gap-1.5">
+          <i data-lucide="history" class="w-4 h-4 text-brand-400"></i> Generation History
+        </h3>
         <button onclick="toggleHistoryDrawer()" class="p-1 rounded-lg hover:bg-dark-800 text-slate-400 hover:text-white">
-          <i data-lucide="x" class="w-5 h-5"></i>
+          <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
-
-      <div id="historyListContainer" class="flex-1 overflow-y-auto custom-scrollbar my-4 space-y-3">
-        <div class="text-center py-10 text-slate-500 text-sm">No audio generated yet.</div>
-      </div>
+      <div id="historyListContainer" class="flex-1 overflow-y-auto custom-scrollbar py-3 space-y-2"></div>
     </div>
   </div>
 
-  <!-- JAVASCRIPT APP LOGIC -->
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
   <script>
-    let currentEngine = 'edge-tts'; // Default to ultra-fast global 322 voices
-    let allVoices = [];
+    let currentEngine = 'edge-tts';
+    let allVoicesMaster = []; // Master list of all voices
+    let allVoices = [];       // Filtered voices
     let allLanguages = [];
     let currentLanguage = 'all';
-    let selectedVoiceId = 'en-US-JennyNeural';
+    let selectedVoiceId = 'ur-PK-UzmaNeural';
     let isGenerating = false;
     let deferredPwaPrompt = null;
+    let currentMobileTab = 'script';
 
-    // Service Worker Registration for PWA
+    // PWA Service Worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/static/sw.js').catch(err => console.log('SW error:', err));
     }
 
-    // PWA Install prompt listener
+    // PWA Prompt
     window.addEventListener('beforeinstallprompt', e => {
       e.preventDefault();
       deferredPwaPrompt = e;
@@ -447,11 +393,59 @@
       }
     }
 
+    // Mobile View Tab Switcher
+    function switchMobileTab(tab) {
+      currentMobileTab = tab;
+      const voiceCol = document.getElementById('voiceColumn');
+      const scriptCol = document.getElementById('scriptColumn');
+      const tabScript = document.getElementById('tabBtn-script');
+      const tabVoice = document.getElementById('tabBtn-voice');
+      
+      if (window.innerWidth < 1024) {
+        if (tab === 'script') {
+          voiceCol.classList.add('hidden');
+          voiceCol.classList.remove('flex');
+          scriptCol.classList.remove('hidden');
+          scriptCol.classList.add('flex');
+          tabScript.className = 'flex-1 py-2 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition bg-brand-600 text-white shadow-sm';
+          tabVoice.className = 'flex-1 py-2 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition text-slate-400 hover:text-white';
+        } else {
+          scriptCol.classList.add('hidden');
+          scriptCol.classList.remove('flex');
+          voiceCol.classList.remove('hidden');
+          voiceCol.classList.add('flex');
+          tabVoice.className = 'flex-1 py-2 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition bg-brand-600 text-white shadow-sm';
+          tabScript.className = 'flex-1 py-2 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition text-slate-400 hover:text-white';
+        }
+      } else {
+        voiceCol.classList.remove('hidden');
+        voiceCol.classList.add('flex');
+        scriptCol.classList.remove('hidden');
+        scriptCol.classList.add('flex');
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      const voiceCol = document.getElementById('voiceColumn');
+      const scriptCol = document.getElementById('scriptColumn');
+      if (window.innerWidth >= 1024) {
+        voiceCol.classList.remove('hidden');
+        voiceCol.classList.add('flex');
+        scriptCol.classList.remove('hidden');
+        scriptCol.classList.add('flex');
+      } else {
+        switchMobileTab(currentMobileTab);
+      }
+    });
+
+    // App Initialization
     window.addEventListener('DOMContentLoaded', async () => {
       lucide.createIcons();
       await fetchLanguages();
+      await fetchVoicesMaster();
       await setSample('ur');
       loadHistory();
+      switchMobileTab('script');
     });
 
     async function fetchLanguages() {
@@ -469,58 +463,80 @@
 
     async function switchEngine(engine) {
       currentEngine = engine;
-      
       const btnEdge = document.getElementById('engineBtn-edge');
       const btnKokoro = document.getElementById('engineBtn-kokoro');
       const title = document.getElementById('voiceListTitle');
-      const genBtnText = document.getElementById('generateBtnText');
-      const qualityNote = document.getElementById('qualityNote');
-      const badgeInfo = document.getElementById('engineBadgeInfo');
       const quickLangs = document.getElementById('quickLangContainer');
 
       if (engine === 'edge-tts') {
-        btnEdge.className = 'p-2.5 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm';
-        btnKokoro.className = 'p-2.5 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800';
+        btnEdge.className = 'p-2 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm';
+        btnKokoro.className = 'p-2 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800';
         title.innerText = 'Select Global Voice';
-        genBtnText.innerText = 'Generate Speech';
-        qualityNote.innerText = '⚡ 322 Voices · 76+ Languages · 48kHz HD Audio';
-        badgeInfo.innerText = 'Cloud 322 Voices Active';
         quickLangs.classList.remove('hidden');
         selectedVoiceId = 'ur-PK-UzmaNeural';
       } else {
-        btnKokoro.className = 'p-2.5 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm';
-        btnEdge.className = 'p-2.5 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800';
+        btnKokoro.className = 'p-2 rounded-lg border text-left transition flex flex-col bg-brand-600/20 border-brand-500 text-white shadow-sm';
+        btnEdge.className = 'p-2 rounded-lg border text-left transition flex flex-col border-transparent text-slate-400 hover:text-white hover:bg-dark-800';
         title.innerText = 'Kokoro Ultra Voices';
-        genBtnText.innerText = 'Generate ElevenLabs Quality Audio';
-        qualityNote.innerText = '✨ ONNX Micro-inflection · 24kHz Studio Audio (29 Voices)';
-        badgeInfo.innerText = 'ElevenLabs Grade (29 Voices)';
         quickLangs.classList.add('hidden');
         selectedVoiceId = 'af_heart';
       }
 
-      await fetchVoices();
+      await fetchVoicesMaster();
     }
 
-    async function fetchVoices() {
+    // Load master list once per engine
+    async function fetchVoicesMaster() {
       try {
-        const langParam = (currentEngine === 'edge-tts' && currentLanguage !== 'all') ? `&language=${encodeURIComponent(currentLanguage)}` : '';
-        const res = await fetch(`/api/voices?engine=${currentEngine}${langParam}`);
+        const res = await fetch(`/api/voices?engine=${currentEngine}`);
         const data = await res.json();
-        allVoices = Array.isArray(data) ? data : [];
-        document.getElementById('voiceCountBadge').innerText = `${allVoices.length} Voices`;
-        renderVoices();
-        updateSelectedVoiceBanner();
+        allVoicesMaster = Array.isArray(data) ? data : [];
+        document.getElementById('tabVoiceCount').innerText = allVoicesMaster.length;
+        applyFilters();
       } catch (err) {
-        console.error('Failed to fetch voices:', err);
+        console.error('Failed to fetch voices master:', err);
       }
     }
 
-    async function setLanguage(lang, targetVoiceId = null) {
+    // Instant Client-Side Filter (0ms delay, no network requests on language click)
+    function applyFilters() {
+      const search = (document.getElementById('voiceSearchInput').value || '').toLowerCase().trim();
+      const gender = document.getElementById('genderFilter').value;
+
+      let filtered = allVoicesMaster;
+
+      // Filter by language
+      if (currentLanguage !== 'all') {
+        filtered = filtered.filter(v => (v.language || '').toLowerCase() === currentLanguage.toLowerCase());
+      }
+
+      // Filter by gender
+      if (gender !== 'all') {
+        filtered = filtered.filter(v => v.gender === gender);
+      }
+
+      // Filter by search text
+      if (search) {
+        filtered = filtered.filter(v => {
+          const matchName = (v.name || '').toLowerCase().includes(search);
+          const matchCountry = (v.country || '').toLowerCase().includes(search);
+          const matchLang = (v.language || '').toLowerCase().includes(search);
+          const matchId = (v.id || '').toLowerCase().includes(search);
+          return matchName || matchCountry || matchLang || matchId;
+        });
+      }
+
+      allVoices = filtered;
+      document.getElementById('voiceCountBadge').innerText = `${allVoices.length} Voices`;
+      renderVoices();
+      updateSelectedVoiceBanner();
+    }
+
+    function setLanguage(lang, targetVoiceId = null) {
       currentLanguage = lang;
       
-      // If user chooses non-English/Spanish language while on Kokoro, auto-switch to LoveVoice Global
       if (currentEngine === 'kokoro' && lang !== 'English' && lang !== 'Spanish' && lang !== 'all') {
-        await switchEngine('edge-tts');
+        switchEngine('edge-tts');
       }
 
       // Update pills styling
@@ -537,9 +553,13 @@
       const select = document.getElementById('allLangSelect');
       if (select) select.value = lang;
 
-      await fetchVoices();
+      // Instant filter
+      applyFilters();
+
       if (targetVoiceId) {
         selectVoice(targetVoiceId);
+      } else if (allVoices.length > 0) {
+        selectVoice(allVoices[0].id);
       }
     }
 
@@ -550,37 +570,23 @@
 
     function renderVoices() {
       const container = document.getElementById('voiceListContainer');
-      const search = document.getElementById('voiceSearchInput').value.toLowerCase();
-      const gender = document.getElementById('genderFilter').value;
 
-      let filtered = allVoices.filter(v => {
-        if (gender !== 'all' && v.gender !== gender) return false;
-        if (search) {
-          const matchName = (v.name || '').toLowerCase().includes(search);
-          const matchCountry = (v.country || '').toLowerCase().includes(search);
-          const matchLang = (v.language || '').toLowerCase().includes(search);
-          const matchId = (v.id || '').toLowerCase().includes(search);
-          if (!matchName && !matchCountry && !matchLang && !matchId) return false;
-        }
-        return true;
-      });
-
-      if (filtered.length === 0) {
-        container.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">No voices match your search.</div>`;
+      if (allVoices.length === 0) {
+        container.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">No voices match your selection.</div>`;
         return;
       }
 
-      container.innerHTML = filtered.map(v => {
+      container.innerHTML = allVoices.map(v => {
         const isSel = v.id === selectedVoiceId;
         const avatar = v.gender === 'Female' ? '👩' : '👨';
         const badge = currentEngine === 'kokoro'
-          ? (v.id === 'af_heart' || v.id === 'am_adam' ? '<span class="text-[9px] uppercase px-1.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold">Flagship</span>' : '')
+          ? (v.id === 'af_heart' || v.id === 'am_adam' ? '<span class="text-[9px] uppercase px-1 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold">Flagship</span>' : '')
           : (v.featured ? '<span class="text-[9px] uppercase px-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 font-bold">Featured</span>' : '');
 
         return `
-          <div onclick="selectVoice('${v.id}')" class="voice-card cursor-pointer p-3 rounded-xl border border-dark-700/70 bg-dark-900/60 hover:border-brand-500/60 hover:bg-dark-800 transition flex items-center justify-between ${isSel ? 'selected' : ''}">
-            <div class="flex items-center space-x-3 min-w-0">
-              <div class="w-9 h-9 rounded-full bg-dark-750 border border-dark-600 flex items-center justify-center text-base flex-shrink-0">
+          <div onclick="selectVoice('${v.id}')" class="voice-card cursor-pointer p-2.5 rounded-xl border border-dark-700/70 bg-dark-900/60 hover:border-brand-500/60 hover:bg-dark-800 transition flex items-center justify-between ${isSel ? 'selected' : ''}">
+            <div class="flex items-center space-x-2.5 min-w-0">
+              <div class="w-8 h-8 rounded-full bg-dark-750 border border-dark-600 flex items-center justify-center text-sm flex-shrink-0">
                 ${avatar}
               </div>
               <div class="min-w-0">
@@ -589,12 +595,12 @@
                   <span class="text-xs" title="${v.country}">${v.flag || '🌐'}</span>
                   ${badge}
                 </div>
-                <div class="text-[11px] text-slate-400 truncate">${v.language} · ${v.country} · ${v.gender}</div>
+                <div class="text-[10px] text-slate-400 truncate">${v.language} · ${v.country} · ${v.gender}</div>
               </div>
             </div>
             
             <div class="flex items-center space-x-1.5 flex-shrink-0">
-              <button onclick="event.stopPropagation(); quickPreviewVoice('${v.id}')" class="px-2 py-1 rounded bg-dark-800 hover:bg-brand-600 text-slate-300 hover:text-white transition text-[11px] font-semibold flex items-center gap-1" title="Listen voice">
+              <button onclick="event.stopPropagation(); quickPreviewVoice('${v.id}')" class="px-2 py-1 rounded bg-dark-800 hover:bg-brand-600 text-slate-300 hover:text-white transition text-[10px] font-semibold flex items-center gap-1" title="Preview">
                 <span>▶ Preview</span>
               </button>
               ${isSel ? '<span class="text-brand-400 font-bold text-sm ml-1">✓</span>' : ''}
@@ -608,10 +614,15 @@
       selectedVoiceId = id;
       renderVoices();
       updateSelectedVoiceBanner();
+      
+      // Auto-switch to script tab on mobile when a voice is selected!
+      if (window.innerWidth < 1024) {
+        setTimeout(() => switchMobileTab('script'), 180);
+      }
     }
 
     function updateSelectedVoiceBanner() {
-      const v = allVoices.find(x => x.id === selectedVoiceId) || allVoices[0];
+      const v = allVoicesMaster.find(x => x.id === selectedVoiceId) || allVoicesMaster[0];
       if (!v) return;
       selectedVoiceId = v.id;
       document.getElementById('currentVoiceAvatar').innerText = v.gender === 'Female' ? '👩' : '👨';
@@ -621,37 +632,24 @@
       const badge = document.getElementById('currentEngineBadge');
       if (currentEngine === 'kokoro') {
         badge.innerText = '🌟 ElevenLabs Quality';
-        badge.className = 'text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30';
-        document.getElementById('currentVoiceDetails').innerText = `${v.id} · ${v.desc || `${v.country} · ${v.gender}`}`;
+        badge.className = 'text-[9px] font-bold uppercase px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30';
+        document.getElementById('currentVoiceDetails').innerText = `${v.id} · ${v.country} · ${v.gender}`;
       } else {
         badge.innerText = '⚡ Global HD';
-        badge.className = 'text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30';
+        badge.className = 'text-[9px] font-bold uppercase px-1.5 py-0.2 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30';
         document.getElementById('currentVoiceDetails').innerText = `${v.id} (${v.language} · ${v.country})`;
       }
     }
 
-    async function quickPreviewVoice(id) {
-      const v = allVoices.find(x => x.id === id);
-      if (!v) return;
-      
-      let samplePhrase = `Hello, my name is ${v.name}, your neural voice in LoveVoice Studio.`;
-      if (v.language === 'Urdu') {
-        samplePhrase = `السلام علیکم! میرا نام ${v.name} ہے۔ یہ LoveVoice Studio میں اردو کی نیورل آواز ہے۔`;
-      } else if (v.language === 'Hindi') {
-        samplePhrase = `नमस्ते! मेरा नाम ${v.name} है। LoveVoice Studio में आपका स्वागत है।`;
-      } else if (v.language === 'Spanish') {
-        samplePhrase = `Hola, mi nombre es ${v.name}, tu voz neuronal en LoveVoice Studio.`;
-      } else if (v.language === 'Arabic') {
-        samplePhrase = `مرحباً، اسمي ${v.name}، صوتك الطبيعي في استوديو LoveVoice.`;
-      }
-      
+    async function quickPreviewVoice(voiceId) {
+      const sampleText = "Hello! LoveVoice Studio testing voice clarity.";
       try {
         const res = await fetch('/api/generate', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
-            text: samplePhrase,
-            voice: id,
+            text: sampleText,
+            voice: voiceId,
             engine: currentEngine,
             rate: '+0%',
             pitch: '+0Hz',
@@ -659,152 +657,112 @@
           })
         });
         const data = await res.json();
-        if (data.url) {
-          playInMainPlayer(data);
-        }
+        const audio = document.getElementById('audioElement');
+        audio.src = data.url;
+        audio.load();
+        audio.play().catch(e => console.log(e));
       } catch (err) {
         console.error('Preview error:', err);
       }
     }
 
-    function updateControls() {
-      const rate = document.getElementById('rateSlider').value;
-      const pitch = document.getElementById('pitchSlider').value;
-      const volume = document.getElementById('volumeSlider').value;
-
-      document.getElementById('rateVal').innerText = `${rate >= 0 ? '+' : ''}${rate}%`;
-      document.getElementById('pitchVal').innerText = `${pitch >= 0 ? '+' : ''}${pitch}Hz`;
-      document.getElementById('volumeVal').innerText = `${volume >= 0 ? '+' : ''}${volume}%`;
-    }
-
-    const EMOTIONS = {
-      natural:  { rate: 0, pitch: 0, volume: 0, label: '🌟 Natural / Story' },
-      happy:    { rate: 10, pitch: 15, volume: 5, label: '😃 Cheerful & Happy' },
-      sad:      { rate: -15, pitch: -10, volume: -5, label: '😢 Emotional & Sad' },
-      whisper:  { rate: -10, pitch: -20, volume: -30, label: '🤫 Whisper / ASMR' },
-      dramatic: { rate: -8, pitch: -6, volume: 10, label: '🎙️ Dramatic Audiobook' },
-      excited:  { rate: 18, pitch: 20, volume: 10, label: '⚡ Excited & Energetic' },
-      news:     { rate: 6, pitch: -2, volume: 5, label: '📰 Authoritative News' }
+    // Emotion Preset Management
+    const EMOTION_PRESETS = {
+      natural:  { rate: 0, pitch: 0, label: '🌟 Natural / Story', hudReason: 'Balanced, standard neural pacing.' },
+      happy:    { rate: 10, pitch: 15, label: '😃 Cheerful & Happy', hudReason: 'Fast upbeat cadence with elevated pitch.' },
+      sad:      { rate: -15, pitch: -10, label: '😢 Emotional & Somber', hudReason: 'Slow gentle pacing with deepened pitch.' },
+      whisper:  { rate: -20, pitch: -5, label: '🤫 Whisper & Intimate', hudReason: 'Very soft, slow and gentle inflection.' },
+      dramatic: { rate: -10, pitch: 5, label: '🎙️ Dramatic & Epic', hudReason: 'Suspenseful cadence with high dynamic contrast.' },
+      excited:  { rate: 20, pitch: 20, label: '⚡ Excited & Energetic', hudReason: 'Rapid high-energy burst with elevated pitch.' },
+      news:     { rate: 5, pitch: 0, label: '📰 Professional & News', hudReason: 'Steady, broadcast-grade rhythmic delivery.' }
     };
 
-    function setEmotion(type) {
-      const cfg = EMOTIONS[type] || EMOTIONS.natural;
+    function setEmotion(emoKey, manual = true) {
+      const cfg = EMOTION_PRESETS[emoKey] || EMOTION_PRESETS.natural;
       document.getElementById('rateSlider').value = cfg.rate;
       document.getElementById('pitchSlider').value = cfg.pitch;
-      document.getElementById('volumeSlider').value = cfg.volume;
       updateControls();
-
+      
       document.querySelectorAll('.emotion-btn').forEach(b => {
-        b.classList.remove('border-brand-500', 'bg-brand-500/20', 'text-white', 'shadow-sm');
-        b.classList.add('border-dark-700', 'bg-dark-900', 'text-slate-400');
+        b.className = 'emotion-btn p-1.5 rounded-lg border border-dark-700 bg-dark-900 hover:bg-dark-800 text-slate-400 flex flex-col items-center gap-0.5 transition';
       });
-      const activeBtn = document.getElementById(`emo-${type}`);
+      const activeBtn = document.getElementById(`emo-${emoKey}`);
       if (activeBtn) {
-        activeBtn.classList.remove('border-dark-700', 'bg-dark-900', 'text-slate-400');
-        activeBtn.classList.add('border-brand-500', 'bg-brand-500/20', 'text-white', 'shadow-sm');
+        activeBtn.className = 'emotion-btn p-1.5 rounded-lg border border-brand-500 bg-brand-500/20 text-white font-medium flex flex-col items-center gap-0.5 transition shadow-sm';
       }
       document.getElementById('activeEmotionLabel').innerText = cfg.label;
+
+      if (manual) {
+        document.getElementById('autoDirectToggle').checked = false;
+        document.getElementById('detectedEmotionBadge').innerText = `Manual: ${cfg.label}`;
+        document.getElementById('detectedConfidenceBadge').innerText = '';
+        document.getElementById('detectedEmotionReason').innerText = cfg.hudReason;
+      }
     }
 
-    async function enhancePacing() {
-      const ta = document.getElementById('textInput');
-      let val = ta.value.trim();
-      if (!val) {
-        alert('Please enter or select some text first!');
-        return;
-      }
-      
-      try {
-        const res = await fetch('/api/smart-enhance', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ text: val })
-        });
-        if (res.ok) {
-          const data = await res.json();
-          ta.value = data.enhanced;
-        } else {
-          val = val.replace(/\b(However|Therefore|Meanwhile|Consequently|Furthermore|Moreover|In addition|Honestly|Surprisingly|Fortunately|Generally|Basically)\b/gi, '$1,');
-          val = val.replace(/\s*,\s*,+/g, ',');
-          val = val.replace(/\s+([.,!?;:۔।])/g, '$1');
-          val = val.replace(/\.{2,}/g, '... ');
-          val = val.replace(/([.,!?;:۔।])([^\s0-9.,!?;:۔।])/g, '$1 $2');
-          ta.value = val.trim();
-        }
-      } catch (e) {
-        val = val.replace(/\.{2,}/g, '... ');
-        ta.value = val.trim();
-      }
-      
-      handleTextInput();
-      
-      const note = document.getElementById('qualityNote');
-      const oldText = note.innerText;
-      note.innerText = '🎭 Word-level emotion pacing & breath applied!';
-      note.classList.add('text-amber-300');
-      setTimeout(() => {
-        note.innerText = oldText;
-        note.classList.remove('text-amber-300');
-      }, 3000);
+    function updateControls() {
+      const r = document.getElementById('rateSlider').value;
+      const p = document.getElementById('pitchSlider').value;
+      const v = document.getElementById('volumeSlider').value;
+      document.getElementById('rateVal').innerText = `${r >= 0 ? '+' : ''}${r}%`;
+      document.getElementById('pitchVal').innerText = `${p >= 0 ? '+' : ''}${p}Hz`;
+      document.getElementById('volumeVal').innerText = `${v >= 0 ? '+' : ''}${v}%`;
     }
-
-    let autoDirectorTimeout = null;
-    let autoDirectorEnabled = true;
 
     function toggleAutoDirector() {
-      autoDirectorEnabled = document.getElementById('autoDirectorToggle').checked;
-      const hud = document.getElementById('autoDirectorHUD');
-      if (autoDirectorEnabled) {
-        hud.classList.remove('opacity-60');
-        handleTextInput();
-      } else {
-        hud.classList.add('opacity-60');
-        document.getElementById('detectedEmotionBadge').innerText = '⏸️ Paused (Manual Mode)';
-        document.getElementById('detectedEmotionBadge').className = 'text-[11px] font-semibold text-slate-400 bg-dark-800 border border-dark-700 px-2 py-0.5 rounded-full truncate';
-        document.getElementById('detectedEmotionReason').innerText = 'Auto-Director is disabled. You have full manual control over sliders.';
-        document.getElementById('detectedConfidenceBadge').innerText = '';
-      }
+      const isAuto = document.getElementById('autoDirectToggle').checked;
+      if (isAuto) handleTextInput();
     }
 
+    let directDebounceTimer = null;
     function handleTextInput() {
       updateCharCount();
-      if (!autoDirectorEnabled) return;
-
-      clearTimeout(autoDirectorTimeout);
-      autoDirectorTimeout = setTimeout(autoDirectScript, 350);
+      if (!document.getElementById('autoDirectToggle').checked) return;
+      clearTimeout(directDebounceTimer);
+      directDebounceTimer = setTimeout(triggerAutoDirector, 400);
     }
 
-    async function autoDirectScript() {
+    async function triggerAutoDirector() {
       const text = document.getElementById('textInput').value.trim();
-      if (!text || text.length < 5) {
-        document.getElementById('detectedEmotionBadge').innerText = '🌟 Listening to text...';
-        document.getElementById('detectedEmotionBadge').className = 'text-[11px] font-semibold text-emerald-300 bg-emerald-500/20 border border-emerald-500/30 px-2 py-0.5 rounded-full truncate';
-        document.getElementById('detectedEmotionReason').innerText = 'Type or paste script to automatically tune emotion, speed & pitch.';
-        document.getElementById('detectedConfidenceBadge').innerText = '';
-        return;
-      }
-
+      if (!text || text.length < 5) return;
       try {
         const res = await fetch('/api/smart-direct', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ text })
+          body: JSON.stringify({ text: text })
         });
-        if (!res.ok) return;
         const data = await res.json();
         
-        // Auto-apply the detected emotion
-        setEmotion(data.emotion);
-        
-        // Update HUD
+        setEmotion(data.emotion, false);
         const badge = document.getElementById('detectedEmotionBadge');
         badge.innerText = `✨ ${data.label}`;
-        badge.className = 'text-[11px] font-semibold text-amber-300 bg-amber-500/20 border border-amber-500/40 px-2 py-0.5 rounded-full truncate shadow-sm';
-        
-        document.getElementById('detectedConfidenceBadge').innerText = `(${data.confidence}% match)`;
-        document.getElementById('detectedEmotionReason').innerText = `${data.reason} • Auto-tuned Speed: ${data.rate}, Pitch: ${data.pitch}`;
+        badge.className = 'text-[10px] font-semibold text-amber-300 bg-amber-500/20 border border-amber-500/40 px-2 py-0.5 rounded-full truncate';
+        document.getElementById('detectedConfidenceBadge').innerText = `(${data.confidence}%)`;
+        document.getElementById('detectedEmotionReason').innerText = `${data.reason} • Speed: ${data.rate}, Pitch: ${data.pitch}`;
       } catch (err) {
         console.error('Smart Director error:', err);
+      }
+    }
+
+    async function enhancePacing() {
+      const text = document.getElementById('textInput').value.trim();
+      if (!text) {
+        alert('Please enter some text first.');
+        return;
+      }
+      try {
+        const res = await fetch('/api/smart-enhance', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ text: text })
+        });
+        const data = await res.json();
+        if (data.enhanced) {
+          document.getElementById('textInput').value = data.enhanced;
+          handleTextInput();
+        }
+      } catch (err) {
+        console.error('Enhance pacing error:', err);
       }
     }
 
@@ -827,20 +785,20 @@
 
     async function setSample(lang) {
       if (lang === 'ur') {
-        document.getElementById('textInput').value = "السلام علیکم! LoveVoice Studio میں خوش آمدید۔ اب آپ اردو، ہندی، عربی، انگلش اور ہسپانوی سمیت دنیا کی تمام زبانوں میں بہترین اور قدرتی آوازیں تیار کر سکتے ہیں۔ یہ آڈیو بالکل واضح اور انسان جیسی ہے۔";
-        await setLanguage('Urdu', 'ur-PK-UzmaNeural');
+        document.getElementById('textInput').value = "السلام علیکم! LoveVoice Studio میں خوش آمدید۔ اب آپ اردو، ہندی، عربی، انگلش اور ہسپانوی سمیت تمام زبانوں میں بہترین اور قدرتی آوازیں تیار کر سکتے ہیں۔";
+        setLanguage('Urdu', 'ur-PK-UzmaNeural');
       } else if (lang === 'hi') {
-        document.getElementById('textInput').value = "नमस्ते! LoveVoice Studio में आपका स्वागत है। अब आप हिंदी, उर्दू, अंग्रेजी और दुनिया भर की भाषाओं में स्वाभाविक आवाज़ें आसानी से उत्पन्न कर सकते हैं।";
-        await setLanguage('Hindi', 'hi-IN-SwaraNeural');
+        document.getElementById('textInput').value = "नमस्ते! LoveVoice Studio में आपका स्वागत है। अब आप हिंदी, उर्दू, अंग्रेजी और दुनिया भर की भाषाओं में स्वाभाविक आवाज़ें आसानी से तैयार कर सकते हैं।";
+        setLanguage('Hindi', 'hi-IN-SwaraNeural');
       } else if (lang === 'ar') {
         document.getElementById('textInput').value = "مرحباً بكم في استوديو LoveVoice! يمكنك الآن إنشاء تعليقات صوتية طبيعية واحترافية باللغة العربية وأكثر من 70 لغة حول العالم.";
-        await setLanguage('Arabic', 'ar-SA-ZariyahNeural');
+        setLanguage('Arabic', 'ar-SA-ZariyahNeural');
       } else if (lang === 'es') {
         document.getElementById('textInput').value = "¡Bienvenido a LoveVoice Studio! Ahora puedes generar locuciones humanas y expresivas en español con calidad de estudio en segundos.";
-        await setLanguage('Spanish', 'es-ES-ElviraNeural');
+        setLanguage('Spanish', 'es-ES-ElviraNeural');
       } else {
         document.getElementById('textInput').value = "Welcome to LoveVoice Studio! You can now generate natural neural voiceovers across 322+ voices in over 76 languages with studio-grade clarity.";
-        await setLanguage('English', 'en-US-JennyNeural');
+        setLanguage('English', 'en-US-JennyNeural');
       }
       handleTextInput();
     }
@@ -868,25 +826,14 @@
       let secondsPassed = 0;
       
       const words = text.split(/\s+/).filter(Boolean).length;
-      const approxMins = Math.max(0.1, (words / 130)).toFixed(1);
       const isLongText = words > 80;
 
       const timerInterval = setInterval(() => {
         secondsPassed++;
-        if (isLongText) {
-          btnText.innerText = `⏳ Generating ~${approxMins} min Audio (${words} words · Parallel)... ${secondsPassed}s`;
-        } else {
-          btnText.innerText = currentEngine === 'kokoro' 
-            ? `⏳ Synthesizing Ultra Audio (${secondsPassed}s · Local CPU)...` 
-            : `⏳ Generating Speech (${secondsPassed}s)...`;
-        }
+        btnText.innerText = `⏳ Generating Audio (${secondsPassed}s)...`;
       }, 1000);
       
-      if (isLongText) {
-        btnText.innerText = `⏳ Starting Parallel Synthesis (~${approxMins} min Audio)...`;
-      } else {
-        btnText.innerText = currentEngine === 'kokoro' ? '⏳ Synthesizing Ultra Audio (Local CPU)...' : '⏳ Generating Speech...';
-      }
+      btnText.innerText = `⏳ Generating Audio...`;
 
       try {
         const response = await fetch('/api/generate', {
@@ -960,27 +907,23 @@
         }
 
         container.innerHTML = history.map(h => {
-          const engineTag = h.engine === 'kokoro'
-            ? '<span class="text-[9px] uppercase px-1 rounded bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30">Kokoro</span>'
-            : '<span class="text-[9px] uppercase px-1 rounded bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">Global HD</span>';
-
           return `
-            <div class="p-3 rounded-xl border border-dark-700 bg-dark-850 hover:border-dark-600 transition flex flex-col space-y-2">
+            <div class="p-2.5 rounded-xl border border-dark-700 bg-dark-850 hover:border-dark-600 transition flex flex-col space-y-1.5">
               <div class="flex items-center justify-between text-xs">
-                <span class="font-bold text-white flex items-center gap-1.5">${h.voice_flag} ${h.voice_name} ${engineTag}</span>
-                <span class="text-slate-500 font-mono text-[10px]">${h.created_at}</span>
+                <span class="font-bold text-white flex items-center gap-1">${h.voice_flag} ${h.voice_name}</span>
+                <span class="text-slate-500 font-mono text-[9px]">${h.created_at}</span>
               </div>
-              <p class="text-xs text-slate-300 line-clamp-2 italic">"${h.text}"</p>
+              <p class="text-[11px] text-slate-300 line-clamp-2 italic">"${h.text}"</p>
               <div class="flex items-center justify-between pt-1 border-t border-dark-750">
-                <span class="text-[10px] text-slate-400 font-mono">${h.size_kb} KB (${h.generation_time}s)</span>
-                <div class="flex items-center space-x-1.5">
-                  <button onclick="playHistoryAudio('${h.url}', '${h.voice_name}', '${h.voice_flag}', '${h.voice_gender}')" class="px-2 py-1 rounded bg-brand-600 hover:bg-brand-500 text-white text-[11px] font-semibold" title="Play">
+                <span class="text-[9px] text-slate-400 font-mono">${h.size_kb} KB (${h.generation_time}s)</span>
+                <div class="flex items-center space-x-1">
+                  <button onclick="playHistoryAudio('${h.url}', '${h.voice_name}', '${h.voice_flag}', '${h.voice_gender}')" class="px-2 py-0.5 rounded bg-brand-600 hover:bg-brand-500 text-white text-[10px] font-semibold">
                     ▶ Play
                   </button>
-                  <a href="${h.url}" download="${h.filename}" class="px-2 py-1 rounded bg-dark-700 hover:bg-emerald-600 text-slate-300 hover:text-white text-[11px]" title="Download">
+                  <a href="${h.url}" download="${h.filename}" class="px-2 py-0.5 rounded bg-dark-700 hover:bg-emerald-600 text-slate-300 hover:text-white text-[10px]">
                     ⬇ MP3
                   </a>
-                  <button onclick="deleteHistoryItem('${h.id}')" class="px-2 py-1 rounded bg-dark-700 hover:bg-rose-600 text-slate-400 hover:text-white text-[11px]" title="Delete">
+                  <button onclick="deleteHistoryItem('${h.id}')" class="px-2 py-0.5 rounded bg-dark-700 hover:bg-rose-600 text-slate-400 hover:text-white text-[10px]">
                     ✕
                   </button>
                 </div>
