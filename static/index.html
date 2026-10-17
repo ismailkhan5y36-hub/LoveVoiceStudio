@@ -285,13 +285,13 @@
                   <span class="text-slate-300 font-medium flex items-center gap-1">
                     <i data-lucide="wind" class="w-3 h-3 text-emerald-400"></i> Breath & Sentence Pause
                   </span>
-                  <span id="kokoroPauseVal" class="font-mono text-emerald-300 font-bold">0.28s (Natural Breath)</span>
+                  <span id="kokoroPauseVal" class="font-mono text-emerald-300 font-bold">0.30s (Natural Breath)</span>
                 </div>
-                <input type="range" id="kokoroPauseSlider" min="0.10" max="0.60" step="0.02" value="0.28" oninput="updateKokoroControls()" class="w-full accent-emerald-500 cursor-pointer h-1.5 bg-dark-700 rounded-lg">
+                <input type="range" id="kokoroPauseSlider" min="0.05" max="1.20" step="0.05" value="0.30" oninput="updateKokoroControls()" class="w-full accent-emerald-500 cursor-pointer h-1.5 bg-dark-700 rounded-lg">
                 <div class="flex justify-between text-[9px] text-slate-500 mt-1 font-mono">
-                  <span>0.10s Snappy</span>
-                  <span>0.28s Natural</span>
-                  <span>0.60s Dramatic</span>
+                  <span>0.05s Snappy</span>
+                  <span>0.30s Natural</span>
+                  <span>1.20s Dramatic</span>
                 </div>
               </div>
             </div>
@@ -802,14 +802,16 @@
       const sp = parseFloat(document.getElementById('kokoroSpeedSlider').value);
       const pa = parseFloat(document.getElementById('kokoroPauseSlider').value);
       
-      let speedDesc = 'Normal';
+      let speedDesc = 'Natural Pacing';
       if (sp <= 0.8) speedDesc = 'Storytelling / Calm';
       else if (sp >= 1.2) speedDesc = 'Fast / Dynamic';
       document.getElementById('kokoroSpeedVal').innerText = `${sp.toFixed(2)}x (${speedDesc})`;
 
       let pauseDesc = 'Natural Breath';
       if (pa <= 0.18) pauseDesc = 'Snappy Dialogue';
-      else if (pa >= 0.40) pauseDesc = 'Dramatic Pause';
+      else if (pa <= 0.40) pauseDesc = 'Natural Breath';
+      else if (pa <= 0.70) pauseDesc = 'Audiobook Narration';
+      else pauseDesc = 'Dramatic Suspension';
       document.getElementById('kokoroPauseVal').innerText = `${pa.toFixed(2)}s (${pauseDesc})`;
     }
 
