@@ -19,6 +19,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, HTMLResponse
 from pydantic import BaseModel
+import aiohttp
 import edge_tts
 
 APP_DIR = Path(__file__).parent.resolve()
@@ -341,12 +342,14 @@ async def generate_speech(req: TTSRequest):
     
     try:
         if len(chunks) == 1:
+            conn = aiohttp.TCPConnector(family=socket.AF_INET)
             communicate = edge_tts.Communicate(
                 text=chunks[0],
                 voice=req.voice,
                 rate=req.rate,
                 pitch=req.pitch,
-                volume=req.volume
+                volume=req.volume,
+                connector=conn
             )
             with open(filepath, "wb") as f:
                 async for chunk in communicate.stream():
@@ -356,12 +359,14 @@ async def generate_speech(req: TTSRequest):
             temp_paths = [OUTPUTS_DIR / f"temp_{item_id}_{idx}.mp3" for idx in range(len(chunks))]
             
             async def run_single_chunk(idx: int, chunk_text: str, dest_path: Path):
+                c_conn = aiohttp.TCPConnector(family=socket.AF_INET)
                 comm = edge_tts.Communicate(
                     text=chunk_text,
                     voice=req.voice,
                     rate=req.rate,
                     pitch=req.pitch,
-                    volume=req.volume
+                    volume=req.volume,
+                    connector=c_conn
                 )
                 with open(dest_path, "wb") as f:
                     async for chunk in comm.stream():

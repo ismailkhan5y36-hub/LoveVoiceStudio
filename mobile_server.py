@@ -8,15 +8,24 @@ import asyncio
 import re
 from datetime import datetime
 from pathlib import Path
+import aiohttp
 from aiohttp import web
 import edge_tts
 import smart_director
+
+# Keep Termux CPU and Network awake in background on Android
+if os.environ.get("TERMUX_VERSION") or os.path.exists("/data/data/com.termux"):
+    try:
+        os.system("termux-wake-lock 2>/dev/null")
+    except Exception:
+        pass
 
 # Force IPv4 to eliminate 90s IPv6 TCP connection timeout on mobile networks / Termux
 _orig_getaddrinfo = socket.getaddrinfo
 def _ipv4_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
     return _orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
 socket.getaddrinfo = _ipv4_getaddrinfo
+
 
 APP_DIR = Path(__file__).parent.resolve()
 OUTPUTS_DIR = APP_DIR / "outputs"
@@ -206,14 +215,16 @@ async def handle_generate(request):
 
     try:
         if len(chunks) == 1:
+            conn = aiohttp.TCPConnector(family=socket.AF_INET)
             communicate = edge_tts.Communicate(
                 text=chunks[0],
                 voice=voice,
                 rate=rate,
                 pitch=pitch,
-                volume=volume
+                volume=volume,
+                connector=conn
             )
-            # High-speed streaming synthesis (eliminates memory buffer delays)
+            # High-speed streaming synthesis
             with open(filepath, "wb") as f:
                 async for chunk in communicate.stream():
                     if chunk["type"] == "audio":
@@ -222,12 +233,14 @@ async def handle_generate(request):
             temp_paths = [OUTPUTS_DIR / f"temp_{item_id}_{idx}.mp3" for idx in range(len(chunks))]
 
             async def run_single_chunk(idx: int, chunk_text: str, dest_path: Path):
+                c_conn = aiohttp.TCPConnector(family=socket.AF_INET)
                 comm = edge_tts.Communicate(
                     text=chunk_text,
                     voice=voice,
                     rate=rate,
                     pitch=pitch,
-                    volume=volume
+                    volume=volume,
+                    connector=c_conn
                 )
                 with open(dest_path, "wb") as f:
                     async for chunk in comm.stream():
