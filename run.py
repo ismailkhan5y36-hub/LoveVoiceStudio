@@ -4,7 +4,11 @@ import time
 import socket
 import webbrowser
 import threading
-import uvicorn
+try:
+    import uvicorn
+    HAS_UVICORN = True
+except ImportError:
+    HAS_UVICORN = False
 
 def get_local_ip():
     try:
@@ -36,6 +40,17 @@ if __name__ == "__main__":
     print("=" * 65)
     
     port = int(os.environ.get("PORT", 7860))
-    if not os.environ.get("RENDER"):
-        threading.Thread(target=open_browser, daemon=True).start()
-    uvicorn.run("app:app", host="0.0.0.0", port=port, log_level="info")
+    if not os.environ.get("RENDER") and not os.environ.get("TERMUX_VERSION"):
+        try:
+            threading.Thread(target=open_browser, daemon=True).start()
+        except Exception:
+            pass
+
+    if HAS_UVICORN:
+        uvicorn.run("app:app", host="0.0.0.0", port=port, log_level="info")
+    else:
+        print("   [!] FastAPI/Uvicorn not found, launching ultra-light mobile engine...")
+        import mobile_server
+        app = mobile_server.create_app()
+        mobile_server.web.run_app(app, host="0.0.0.0", port=port)
+
